@@ -6,6 +6,8 @@ import DoctorsPage from './pages/DoctorsPage';
 import ClinicsPage from './pages/ClinicsPage';
 import LoginPage from './pages/LoginPage';
 import ServicesPage from './pages/ServicesPage';
+import AboutDoctor from './components/AboutDoctor';
+import ErrorPage from './pages/ErrorPage';
 
 function App() {
   return (
@@ -14,10 +16,12 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/doctors" element={<DoctorsPage />} />
+          <Route path="/doctors/:id" element={<AboutDoctor />} />
           <Route path="/clinics" element={<ClinicsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/services" element={<ServicesPage />} />
         </Route>
+        <Route path="*" element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   );
