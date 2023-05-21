@@ -1,12 +1,12 @@
 import React from 'react';
 import style from './style.module.sass'
 
-import iconA from '../../assets/icons/TopDoctors/Vector.png'
-import iconB from '../../assets/icons/TopDoctors/Dantist.png'
-import iconC from '../../assets/icons/TopDoctors/Dermotolog.png'
-import iconD from '../../assets/icons/TopDoctors/OKulist.png'
-import iconE from '../../assets/icons/TopDoctors/Screenshot_15 1.png'
-import iconF from '../../assets/icons/TopDoctors/Psyhology.png'
+import iconA from '../../assets/icons/TopDoctors/Terapevt.svg'
+import iconB from '../../assets/icons/TopDoctors/Dantist.svg'
+import iconC from '../../assets/icons/TopDoctors/Dermotolog.svg'
+import iconD from '../../assets/icons/TopDoctors/OKulist.svg'
+import iconE from '../../assets/icons/TopDoctors/Akusher.svg'
+import iconF from '../../assets/icons/TopDoctors/Psyhology.svg'
 
 
 function TopDoctors() {
@@ -19,7 +19,7 @@ function TopDoctors() {
         {title: 'Невролог', img: iconF}
     ]
   return (
-      <div className={style.topDoctors}>TopDoctors
+      <div className={style.topDoctors}>
         <div className={style.container}>
           <div className={style.inner}>
             <h2>Популярные специалисты</h2>
@@ -29,7 +29,7 @@ function TopDoctors() {
                           <div>
                               <img className={style.img} key={k} src={i.img} alt=""/>
                           </div>
-                          <p>{i.title}</p>
+                          <span>{i.title}</span>
                       </div> )}
                   </div>
               </div>

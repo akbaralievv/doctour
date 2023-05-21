@@ -29,6 +29,8 @@
 .searchDoctor .container .inner .left h1 {
   font-size: 60px;
   line-height: 82px;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 .searchDoctor .container .inner .right {
   width: 550px;
@@ -56,7 +58,6 @@
 }
 .footer .select.open .dropDown {
   display: block;
-  transition: .4s;
 }
 .footer .select.open .input {
   border-bottom: none;
@@ -75,6 +76,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  background: #FFFFFF;
 }
 .footer .select .input .accord__btn {
   background: none;
@@ -92,13 +94,11 @@
   left: 0;
   right: 0;
   overflow-y: auto;
-  transition: .4s !important;
 }
 .footer .select .dropDown .list {
   padding: 0;
   margin: 0;
   list-style: none;
-  transition: .4s !important;
 }
 .footer .select .dropDown .list .itemm {
   height: 34px;
@@ -110,6 +110,7 @@
           align-items: center;
   line-height: 23px;
   color: #023246;
+  padding-left: 20px;
 }
 .footer .select .dropDown .list .itemm:hover {
   color: #F6F6F6;

@@ -62,7 +62,6 @@ function SearchDoctors() {
                             zIndex: 100,
                             paddingBottom: open ? '5px' : '0',
                             borderRadius: open ? "0 0 8px 8px" : '0',
-                            transition: '.4s !important'
                         }}>
                             <ul className={styles.list}>
                                 {arr.map((i, k) => <li className={styles.itemm} key={k} onClick={changeValue}>{i}</li>)}
@@ -71,11 +70,10 @@ function SearchDoctors() {
                     </div>
                     {/* SELECT-RIGHT ==> */}
                     <div className={styles.select}>
-                        <div onClick={handleClick2} className={styles.input} onBlur={() => setOpen2(false)} style={{
+                        <div onClick={handleClick2} className={styles.input} onBlur={() => setOpen2(false)}  style={{
                             borderRadius: open2 ? '8px 8px 0 0' : '8px 8px 8px 8px',
                             color: open2 ? '#1B6B93' : '#023246',
-                            borderBottom: open2 ? 'none' : '1px solid #023246',
-                            transition: '.4s'
+                            borderBottom: open2 ? 'none' : '1px solid #023246'
                         }}>
                             <span onChange={changeValue2}>{state2}</span>
                             <button className={styles.accord__btn}>
@@ -106,3 +104,4 @@ function SearchDoctors() {
 }
 
 export default SearchDoctors;
+

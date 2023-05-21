@@ -3,27 +3,51 @@ import style from '../../components/ListDoctors/ListDoctors.module.sass'
 
 function ListDoctors() {
 
-  const arr3 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24]
-  // const arrText = ['Аллерголог', 'Андролог', 'Венеролог', 'Гастроэнтеролог', 'Гинеколог', 'Дерматолог', 'Иммунолог', 'Диетолог', 'Кардиолог', 'Косметолог', 'ЛОР']
+  const numText = [
+    {num: 1, text: 'Аллерголог'},
+    {num: 2, text: 'Аллерголог'},
+    {num: 3, text: 'Аллерголог'},
+    {num: 4, text: 'Аллерголог'},
+    {num: 5, text: 'Аллерголог'},
+    {num: 6, text: 'Аллерголог'},
+    {num: 7, text: 'Аллерголог'},
+    {num: 8, text: 'Аллерголог'},
+    {num: 9, text: 'Аллерголог'},
+    {num: 10, text: 'Аллерголог'},
+    {num: 11, text: 'Аллерголог'},
+    {num: 12, text: 'Аллерголог'}
+  ]
 
   return (
   <div className={style.listDoctors}>
     <div className={style.container}>
       <div className={style.inner}>
         <div className={style.left} style={{height: '580px'}}>
-          <span style={{marginBottom: '48px', display: 'block', fontWeight: '700', fontSize: '32px', textAlign:'center'}}>Врачи Бишкека</span>
-          <ul className={style.colon}>
-            {arr3.map((i2, k) => <li className={style.innerLi} key={k}><p className={style.input} style={{width: '60px',height: '24px'}}>{i2}</p>
-              <p>Аллерголог</p></li>)}
-          </ul>
+          <span className={style.span}>Врачи Бишкека</span>
+          <div className={style.innerRL}>
+            <ul className={style.colon}>
+              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
+                <p>{i1.text}</p></li>)}
+            </ul>
+            <ul className={style.colon}>
+              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
+                <p>{i1.text}</p></li>)}
+            </ul>
+          </div>
         </div>
-        <hr/>
-        <div className={style.left} style={{height: '580px'}}>
-          <span style={{marginBottom: '48px', display: 'block', fontWeight: '700', fontSize: '32px', textAlign:'center'}}>Врачи Оша</span>
-          <ul className={style.colon}>
-            {arr3.map((i2, k) => <li className={style.innerLi} key={k}><p className={style.input} style={{width: '60px',height: '24px'}}>{i2}</p>
-              <p>Аллерголог</p></li>)}
-          </ul>
+        <hr style={{marginTop: '80px', marginBottom: '-50px'}}/>
+        <div className={style.left}>
+          <span className={style.span}>Врачи Оша</span>
+          <div className={style.innerRL}>
+            <ul className={style.colon}>
+              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
+                <p>{i1.text}</p></li>)}
+            </ul>
+            <ul className={style.colon}>
+              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
+                <p>{i1.text}</p></li>)}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
