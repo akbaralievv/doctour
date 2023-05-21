@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+.listDoctors {
+  background-color: #DEECF2;
+  height: 800px;
+}
+.listDoctors .container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.listDoctors .container .inner {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 110px;
+}
+.listDoctors .container .inner .left {
+  max-width: 515px;
+  height: 508px;
+}
+.listDoctors .container .inner .left .colon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.listDoctors .container .inner .left .colon .innerLi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  margin-top: 20px;
+  width: 60px;
+  height: 24px;
+}
+.listDoctors .container .inner .left .colon .innerLi:nth-child(1) {
+  margin-top: 0;
+}
+.listDoctors .container .inner .left .colon .innerLi:nth-child(2) {
+  margin-top: 0;
+}
+.listDoctors .container .inner .left .colon .innerLi p {
+  font-size: 18px;
+}
+.listDoctors .container .inner .left .colon .innerLi .input {
+  margin-right: 8px;
+  border: 1px solid #1B6B93;
+  border-radius: 3px;
+  text-align: center;
+  background: #DEECF2;
+  color: #023246;
+  font-weight: 600;
+}
