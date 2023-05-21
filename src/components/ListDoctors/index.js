@@ -13,7 +13,7 @@ function ListDoctors() {
         <div className={style.left} style={{height: '580px'}}>
           <span style={{marginBottom: '48px', display: 'block', fontWeight: '700', fontSize: '32px', textAlign:'center'}}>Врачи Бишкека</span>
           <ul className={style.colon}>
-            {arr3.map((i2, k) => <li className={style.innerLi} key={k}><input className={style.input} value={i2} style={{width: '60px',height: '24px'}}/>
+            {arr3.map((i2, k) => <li className={style.innerLi} key={k}><p className={style.input} style={{width: '60px',height: '24px'}}>{i2}</p>
               <p>Аллерголог</p></li>)}
           </ul>
         </div>
@@ -21,7 +21,7 @@ function ListDoctors() {
         <div className={style.left} style={{height: '580px'}}>
           <span style={{marginBottom: '48px', display: 'block', fontWeight: '700', fontSize: '32px', textAlign:'center'}}>Врачи Оша</span>
           <ul className={style.colon}>
-            {arr3.map((i2, k) => <li className={style.innerLi} key={k}><input className={style.input} value={i2} style={{width: '60px',height: '24px'}}/>
+            {arr3.map((i2, k) => <li className={style.innerLi} key={k}><p className={style.input} style={{width: '60px',height: '24px'}}>{i2}</p>
               <p>Аллерголог</p></li>)}
           </ul>
         </div>
