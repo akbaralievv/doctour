@@ -1,5 +1,5 @@
 import React from 'react';
-import style from './style.module.sass'
+import style from './TopDocrtors.module.sass'
 
 import iconA from '../../assets/icons/TopDoctors/Terapevt.svg'
 import iconB from '../../assets/icons/TopDoctors/Dantist.svg'

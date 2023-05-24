@@ -2,15 +2,16 @@ import React from 'react';
 import SearchDoctors from "../../components/SearchDoctors";
 import ListDoctors from "../../components/ListDoctors";
 import TopDoctors from "../../components/TopDoctors";
-import Pagination from "../../components/Pagination";
+import Slider from "../../components/Slider";
+
 
 function MainPage() {
   return (
-  <div style={{background: '#F6F6F6'}}>
+  <div>
       <SearchDoctors />
       <TopDoctors />
       <ListDoctors />
-      <Pagination />
+      <Slider />
   </div>
   );
 }

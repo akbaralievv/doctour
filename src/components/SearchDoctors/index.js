@@ -28,10 +28,9 @@ function SearchDoctors() {
         await setOpen2(false)
     }
 
-
     return (
-        <div className={styles.searchDoctor}>
-            <div className={styles.container}>
+        <div className={styles.searchDoctor} >
+            <div className={styles.container} >
                 <div className={styles.inner}>
                     <div className={styles.left}>
                         <h1>Сервис по поиску лучших врачей по Кыргызстану</h1>
