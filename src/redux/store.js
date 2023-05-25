@@ -1,7 +1,9 @@
-import React from 'react';
+import {configureStore} from "@reduxjs/toolkit";
+import UIReducer from "./slices/UISlice"
 
-function store() {
-  return <div>store</div>;
-}
+export const store = configureStore({
+  reducer:{
+    UIReducer
+  }
+})
 
-export default store;
