@@ -30,6 +30,7 @@
 }
 
 .links {
+  z-index: 2;
   list-style: none;
   gap: 56px;
 }
