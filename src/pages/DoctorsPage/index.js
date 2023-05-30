@@ -10,43 +10,79 @@ import arrowSortUL from "../../assets/icons/ArrowL - Up.svg"
 import axios from "axios";
 
 import "./DoctorModule.css"
+import PaginationDocs from "../../Functions/PaginationDoctors/PaginationDocs";
 
 function DoctorsPage() {
   const [sorActive,setSortActive]=useState(false)
-  const [doctors,setDoctors]=useState()
+  const [doctors,setDoctors]=useState([])
   const [sortByRating,setSortByRating]=useState('')
+  const [sortStage,setSortStage]=useState('')
+  const [currentPage,setCurrentPage]=useState(1)
+  const [postsPerPage]=useState(7)
+
 
   const fetchDoctors= async ()=>{
-    const res = await axios.get(`https://6470c3c53de51400f724e60f.mockapi.io/api/v1/doctors?&sortBy=rating&order=${sortByRating}`)
+    const res = await axios.get(`https://6470c3c53de51400f724e60f.mockapi.io/api/v1/doctors`)
     setDoctors(res.data)
-    console.log(res.data.rating)
   }
-
   useEffect(()=>{
     fetchDoctors()
-  },[sortByRating])
+  },[])
+
+  const sortU=(arr)=>{
+    const sorted = arr.sort((b,a)=>(a.stage)-(b.stage))
+    setDoctors(sorted)
+    setSortStage('up')
+    return sorted
+  }
+  const sortD=(arr)=>{
+    const sorted = arr.sort((a,b)=>(a.stage)-(b.stage))
+    setDoctors(sorted)
+    setSortStage('down')
+    return sorted
+  }
 
   const setSortBlock=()=>{
     setSortActive(!sorActive)
   }
 
-  const sortRatingUp=()=>{
-    if(sortByRating==='desc'){
-      setSortByRating('')
-    }else {
-      setSortByRating('desc')
-      console.log('desc')
-    }
+  const sortRatingUp=(arr)=>{
+    const sorted = arr.sort((b,a)=>(a.price)-(b.price))
+    setDoctors(sorted)
+    setSortByRating('desc')
+    console.log(sorted)
+    return sorted
   }
-  const sortRatingDawn=()=>{
-    if(sortByRating==='asc'){
-      setSortByRating('')
-    }else {
-      setSortByRating('asc')
-      console.log('asc')
-    }
 
+  const sortRatingDawn=(arr)=>{
+    const sorted = arr.sort((a,b)=>(a.price)-(b.price))
+    setDoctors(sorted)
+    setSortByRating('asc')
+    return sorted
   }
+
+  const sortPriceUp=()=>{
+    sortRatingUp(doctors)
+  }
+  const sortPriceDown=()=>{
+    sortRatingDawn(doctors)
+  }
+
+  const sortStageUp = () => {
+    sortU(doctors)
+  }
+  const sortStageD = () => {
+    sortD(doctors)
+  }
+  useEffect(()=>{
+    sortPriceUp()
+    sortStageUp()
+  },[])
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = doctors.slice(indexOfFirstPost, indexOfLastPost)
+  const howManyPages = Math.ceil(doctors.length/postsPerPage)
+
 
 
 
@@ -71,15 +107,15 @@ function DoctorsPage() {
             <div className="price">
               по цене
               <div className="arrows">
-                <img onClick={sortRatingUp} src={arrowSortU}/>
-                <img onClick={sortRatingDawn} src={arrowSortD}/>
+                <img onClick={sortPriceUp} src={sortByRating==="asc"?arrowSortU:arrowSortUL}/>
+                <img onClick={sortPriceDown} src={sortByRating==="desc"?arrowSortD:arrowSortDL}/>
               </div>
             </div>
             <div className="stage">
               по стажу
               <div className="arrows">
-                <img src={arrowSortUL}/>
-                <img src={arrowSortDL}/>
+                <img onClick={sortStageUp} src={sortStage==="up"?arrowSortUL:arrowSortU}/>
+                <img onClick={sortStageD} src={sortStage=="down"?arrowSortDL:arrowSortD}/>
               </div>
             </div>
           </div>
@@ -88,7 +124,10 @@ function DoctorsPage() {
       </div>
 
 
-      <CardDoctor/>
+      {currentPosts.map((e)=><CardDoctor data={e}/>)}
+      <div className="pagination-block">
+        <PaginationDocs setCurrentPage={setCurrentPage} pages={howManyPages}/>
+      </div>
     </div>
   </div>;
 }

@@ -15,7 +15,7 @@ import "./module.css"
 function CardDoctor({data}) {
     const [like,setLike]=useState(false)
     const [stars,setStar]=useState([])
-
+    console.log(data.rating)
 
     const handleLike=()=>{
         setLike(!like)
@@ -34,22 +34,22 @@ function CardDoctor({data}) {
         return stars}
 
     useEffect(()=> {
-            setStar(StarArray(4))
+            setStar(StarArray(data.rating))
     },[])
 
 
-    return<Link style={{outline:'none',textDecoration:"none"}}><div className={'container'}>
+    return<Link style={{outline:'none',textDecoration:"none"}}><div style={{marginBottom:"48px"}} className={'container'}>
       <img onClick={handleLike} className={'heart'} src={like?heartActive:heart}/>
       <img className={'cardAvatar'} src={Card}/>
       <div className="info">
           <div className="up-side">
                 <div className="left">
-                    <div className="full-name"><h1>Акылбекова</h1></div>
-                    <div className="speciality">Кардиолог</div>
+                    <div className="full-name"><h1>{data.name}</h1></div>
+                    <div className="speciality">{data.spec}</div>
                     <div className="education"><p><img src={location}/>Юрфа</p></div>
                     <div className="mini-info">
-                        <div className="stage"><p><img src={pulse}/>стаж 14 лет</p></div>
-                        <div className="price"><p><img src={wallet}/>прием 900 сомов</p></div>
+                        <div className="stage"><p><img src={pulse}/>стаж {data.stage} лет</p></div>
+                        <div className="price"><p><img src={wallet}/>прием {data.price} сомов</p></div>
                         <div className="instagram"><p><img src={inst}/>@dsadamk</p></div>
                     </div>
                 </div>
@@ -58,7 +58,7 @@ function CardDoctor({data}) {
                       <div className="stars">
                           {stars.slice(0,5).map((e)=>e==='point'?<img src={star}/>:<img src={star0}/>)}
                       </div>
-                      <div className="rate">4.92</div>
+                      <div className="rate">{data.rating}</div>
                       <div className="feedback"><p>5 отзывов</p></div>
                   </div>
                   <div className="amount">
