@@ -1,10 +1,12 @@
 import React from 'react';
 // import AboutDoctor from "../../components/AboutDoctor";
+// import BtnForModal from "../../components/BtnForModal";
 
 function DoctorsPage() {
   return (
       <div>
-      {/*<AboutDoctor />*/}
+            {/*<AboutDoctor />*/}
+            {/*<BtnForModal/>*/}
       </div>
   );
 }
