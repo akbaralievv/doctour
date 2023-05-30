@@ -126,3 +126,38 @@
   color: #FFFFFF;
   border: none;
 }
+.footer>button{
+  cursor: pointer;
+}
+.activeSelect{
+  border-radius:8px 8px 0 0;
+  color: #1B6B93;
+  border-bottom: none;
+}
+.disabledSelect {
+  border-radius: 8px 8px 8px 8px;
+  color: #023246;
+  border-bottom: 1px solid #023246;
+}
+.activeDropDown{
+  max-height: 300px;
+  height: fit-content;
+  border: 1px solid #023246;
+  background: white;
+  z-index: 100;
+  padding-bottom: 5px;
+  border-radius: 0 0 8px 8px;
+}
+.disabledDropDown {
+  height: 0;
+  border: none ;
+  padding-bottom: 0;
+  border-radius: 0;
+}
+.arrow{
+  transform: rotate(-180deg);
+  cursor: pointer;
+}
+.disabledArrow{
+  transform: rotate(0deg);
+}
