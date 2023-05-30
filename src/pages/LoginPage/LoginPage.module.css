@@ -1,0 +1,84 @@
+.wrapper {
+  background-image: url("../../assets/images/BackgroundLogin.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 102px 0 102px 0;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+
+.inner {
+  display: inline-block;
+  background-color: white;
+  border-radius: 6px;
+}
+
+.auth_btns {
+  margin-bottom: 24px;
+}
+
+.auth, .create {
+  display: inline-block;
+  padding: 16px 45px;
+  border-color: #1B6B93;
+  text-decoration: none;
+  color: white;
+}
+
+.auth {
+  border-radius: 6px 0 0 0;
+}
+
+.create {
+  border-radius: 0 6px 0 0;
+}
+
+.active {
+  background-color: #1B6B93;
+}
+
+.entrance {
+  margin-top: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.entrance p {
+  margin: 24px 0;
+  text-align: center;
+}
+.entrance a {
+  color: white;
+  background-color: #023246;
+  display: inline-block;
+  text-decoration: none;
+  padding: 16px 80px;
+  border: none;
+  border-radius: 6px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 16px;
+}
