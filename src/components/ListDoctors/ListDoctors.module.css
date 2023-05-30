@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap");
+.listDoctors {
+  background-color: #DEECF2;
+  height: 800px;
+  font-family: "Open Sans", sans-serif;
+}
+.listDoctors .container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.listDoctors .container .inner {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 110px;
+}
+.listDoctors .container .inner .left {
+  max-width: 515px;
+  height: 580px;
+}
+.listDoctors .container .inner .left .span {
+  margin-bottom: 48px;
+  display: block;
+  font-weight: 700;
+  font-size: 32px;
+  text-align: center;
+}
+.listDoctors .container .inner .left .innerRL {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 515px;
+  height: 580px;
+}
+.listDoctors .container .inner .left .innerRL .colon .innerLi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 20px;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  height: 24px;
+}
+.listDoctors .container .inner .left .innerRL .colon .innerLi:nth-child(1) {
+  margin-top: 0;
+}
+.listDoctors .container .inner .left .innerRL .colon .innerLi p {
+  font-size: 18px;
+}
+.listDoctors .container .inner .left .innerRL .colon .innerLi .input {
+  min-width: 60px;
+  min-height: 24px;
+  margin-right: 8px;
+  border: 1px solid #1B6B93;
+  border-radius: 3px;
+  text-align: center;
+  color: #023246;
+  font-weight: 600;
+  background: transparent;
+}

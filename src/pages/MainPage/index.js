@@ -1,10 +1,17 @@
 import React from 'react';
-import SliderCard from '../../components/SliderCard';
+
+import SearchDoctors from '../../components/SearchDoctors';
+import TopDoctors from '../../components/TopDoctors';
+import ListDoctors from '../../components/ListDoctors';
+import Slider from '../../components/Slider';
 
 function MainPage() {
   return (
     <div>
-      <SliderCard />
+      <SearchDoctors />
+      <TopDoctors />
+      <ListDoctors />
+      <Slider />
     </div>
   );
 }
