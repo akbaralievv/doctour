@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import style from './Slider.module.sass'
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -31,6 +31,7 @@ const Slider = () => {
     return (
         <div className={style.pagination}>
             <div className={style.container}>
+                <div className={style.text}>Клиники</div>
                 <div className={style.parent}>
                     <button  className={'.swiper-button-prev'} ref={navigationPrevRef}>
                         <img src={ArLeft} alt=""/>

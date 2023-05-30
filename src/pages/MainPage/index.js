@@ -6,6 +6,7 @@ import Slider from "../../components/Slider";
 
 
 function MainPage() {
+
   return (
   <div>
       <SearchDoctors />
@@ -14,6 +15,6 @@ function MainPage() {
       <Slider />
   </div>
   );
-}
+};
 
 export default MainPage;
