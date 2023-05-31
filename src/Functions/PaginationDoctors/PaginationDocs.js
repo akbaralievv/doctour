@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-// import Prevs from '../../assets/icons/Arrow - Left 2.svg';
+import Prevs from '../../assets/icons/Arrow - Left 2.svg';
 import Nexts from '../../assets/icons/Arrow - Right 2.svg';
-// import './module.css';
+import './module.css';
 
 const PaginationDocs = ({ pages, setCurrentPage }) => {
   const [currentButton, setCurrentButton] = useState(1);
@@ -47,7 +47,7 @@ const PaginationDocs = ({ pages, setCurrentPage }) => {
     <div className={'pagination'} style={{ display: 'flex', justifyContent: 'center' }}>
       {pages > 3 ? (
         <img
-          src={Nexts}
+          src={Prevs}
           onClick={() => setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))}
         />
       ) : (

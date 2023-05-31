@@ -1,0 +1,30 @@
+.pagination img {
+    user-select: none;
+    cursor: pointer;
+}
+
+.pagination .figures {
+    user-select: none;
+    width: 33px;
+    height: 44px;
+    transition: 190ms;
+    color: #A5A5A5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 13px;
+    font-size: 24px;
+}
+
+.pagination .active {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: white;
+    background: #1B6B93;
+}
+
+/*# sourceMappingURL=module.css.map */

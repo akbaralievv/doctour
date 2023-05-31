@@ -3,6 +3,8 @@
   font-family: "Open Sans", sans-serif;
   background-color: #023246;
   height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -16,13 +18,20 @@
 }
 
 .inner, .logo > a, .nav, .selects, .links, .nav_login > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .inner {
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: white;
 }
 .inner a {
@@ -158,11 +167,11 @@
 
 .logo > a {
   gap: 11px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .css-1hb7zxy-IndicatorsContainer {
   display: none !important;
 }
-
-/*# sourceMappingURL=Header.module.css.map */
