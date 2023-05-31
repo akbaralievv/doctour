@@ -44,6 +44,7 @@ function Header() {
   const cityHandle = () => {
     dispatch(actionCityPop({ open: 'city', close: 'lang' }));
   };
+
   return (
     <header className={styles.wrapper}>
       <div className={styles.container}>
