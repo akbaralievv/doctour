@@ -7,6 +7,7 @@ import pulse from '../../assets/icons/Pulse.svg';
 import wallet from '../../assets/icons/Wallet.svg';
 import inst from '../../assets/icons/Inst.svg';
 import star0 from '../../assets/icons/Star0.svg';
+import star from '../../assets/icons/stars.svg';
 // import star from "../../assets/icons/Star.svg"
 
 import Card from '../../assets/images/img.png';

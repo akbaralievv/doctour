@@ -19,35 +19,38 @@
 .inner {
   display: inline-block;
   background-color: white;
-  border-radius: 6px;
+  border-radius: 16px;
 }
 
-.auth_btns {
-  margin-bottom: 24px;
+.container_inner {
+  padding: 24px;
 }
 
 .auth, .create {
   display: inline-block;
   padding: 16px 45px;
-  border-color: #1B6B93;
+  border-bottom: 1px solid #1B6B93;
   text-decoration: none;
-  color: white;
+  color: #B6B6B6;
+  text-align: center;
+  letter-spacing: 1px;
+  width: 50%;
 }
 
 .auth {
-  border-radius: 6px 0 0 0;
+  border-radius: 16px 0 0 0;
 }
 
 .create {
-  border-radius: 0 6px 0 0;
+  border-radius: 0 16px 0 0;
 }
 
 .active {
   background-color: #1B6B93;
+  color: white;
 }
 
 .entrance {
-  margin-top: 24px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,6 +65,7 @@
 .entrance p {
   margin: 24px 0;
   text-align: center;
+  color: #777777;
 }
 .entrance a {
   color: white;
