@@ -1,5 +1,6 @@
 import React from 'react';
 import style from './TopDocrtors.module.sass';
+import { Link } from 'react-router-dom';
 
 import iconA from '../../assets/icons/TopDoctors/Terapevt.svg';
 import iconB from '../../assets/icons/TopDoctors/Dantist.svg';
@@ -25,12 +26,12 @@ function TopDoctors() {
           <div className={style.topIcons}>
             <div className={style.icons}>
               {texts?.map((i, k) => (
-                <div key={k} className={style.block}>
+                <Link to="/" key={k} className={style.block}>
                   <div>
                     <img className={style.img} key={k} src={i.img} alt="" />
                   </div>
                   <span>{i.title}</span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

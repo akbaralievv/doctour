@@ -1,0 +1,63 @@
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.container .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  margin-top: 99px;
+  margin-bottom: 64px;
+}
+.container .inner h2 {
+  color: #023246;
+  font-family: "Open Sans", sans-serif;
+  font-size: 60px;
+  width: 664px;
+  margin-bottom: 40px;
+}
+.container .inner .app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 56px;
+}
+.container .inner .app a {
+  cursor: pointer;
+}
+.container .inner .app img {
+  width: 256px;
+}
+.container .inner .images .android_img {
+  width: 300px;
+}
+.container .inner .images .ios_img {
+  width: 400px;
+  margin-left: -63px;
+}
+.container .inner .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 56px;
+}
+.container .inner .title p {
+  color: #1B6B93;
+  font-size: 24px;
+}
+.container .inner .title span {
+  font-size: 16px;
+  color: #175675;
+  font-weight: 600;
+}

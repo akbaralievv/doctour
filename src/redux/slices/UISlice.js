@@ -3,23 +3,16 @@ import { createSlice } from '@reduxjs/toolkit';
 export const UISlice = createSlice({
   name: 'UISlice',
   initialState: {
-    popUp: Boolean,
+    popUp: false,
     langPopUp: false,
     cityModal: false,
+    city: 'bishkek',
   },
   reducers: {
     closePopUp: (state, action) => {
       state.popUp = action.payload;
       state.langPopUp = false;
       state.cityModal = false;
-    },
-    actionLangPops: (state, action) => {
-      state.cityModal = false;
-      if (state.langPopUp) {
-        state.langPopUp = false;
-      } else {
-        state.langPopUp = true;
-      }
     },
     actionCityPop: (state, action) => {
       state.langPopUp = false;
@@ -29,8 +22,11 @@ export const UISlice = createSlice({
         state.cityModal = true;
       }
     },
+    setCity: (state, action) => {
+      state.city = action.payload;
+    },
   },
 });
 
-export const { closePopUp, actionLangPops, actionCityPop } = UISlice.actions;
+export const { closePopUp, actionCityPop, setCity } = UISlice.actions;
 export default UISlice.reducer;

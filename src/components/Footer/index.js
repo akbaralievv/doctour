@@ -17,9 +17,6 @@ function Footer() {
           </div>
           <ul className={styles.links}>
             <li>
-              <NavLink to="/">Главная</NavLink>
-            </li>
-            <li>
               <NavLink to="/doctors">Врачи</NavLink>
             </li>
             <li>

@@ -16,7 +16,6 @@ import './module.css';
 function CardDoctor({ data }) {
   const [like, setLike] = useState(false);
   const [stars, setStar] = useState([]);
-  console.log(data.rating);
 
   const handleLike = () => {
     setLike(!like);
@@ -84,7 +83,9 @@ function CardDoctor({ data }) {
                 <div className="stars">
                   {stars
                     .slice(0, 5)
-                    .map((e) => (e === 'point' ? <img src={star0} /> : <img src={star0} />))}
+                    .map((e, id) =>
+                      e === 'point' ? <img src={star0} key={id} /> : <img src={star0} key={id} />,
+                    )}
                 </div>
                 <div className="rate">{data.rating}</div>
                 <div className="feedback">

@@ -1,87 +1,39 @@
-import React, { useRef } from 'react';
-import style from './Slider.module.sass';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
-import call from '../../assets/icons/Pagination/Call.svg';
-import location from '../../assets/icons/Pagination/Location.svg';
-import ArLeft from '../../assets/icons/Pagination/Left.svg';
-import ArRight from '../../assets/icons/Pagination/Right.svg';
-import img from '../../assets/images/Rectangle3.jpg';
-import { Navigation, Scrollbar, Autoplay } from 'swiper';
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from 'react';
 
-const Slider = () => {
-  const navigationPrevRef = useRef(null);
-  const navigationNextRef = useRef(null);
+import style from './Slider.module.css';
 
-  const visiblePhotos = [
-    { id: 1, img: img, title: 'img 1', call: call, location: location },
-    { id: 2, img: img, title: 'img 2', call: call, location: location },
-    { id: 3, img: img, title: 'img 3', call: call, location: location },
-    { id: 4, img: img, title: 'img 4', call: call, location: location },
-    { id: 5, img: img, title: 'img 5', call: call, location: location },
-    { id: 6, img: img, title: 'img 6', call: call, location: location },
-    { id: 7, img: img, title: 'img 7', call: call, location: location },
-    { id: 8, img: img, title: 'img 8', call: call, location: location },
-  ];
+import appStore from '../../assets/images/app-store.png';
+import googlePlay from '../../assets/images/google-play.png';
+import android from '../../assets/images/android.png';
+import ios from '../../assets/images/ios.png';
 
+const SliderCopy = () => {
   return (
-    <div className={style.slider}>
+    <div className={style.wrapper}>
       <div className={style.container}>
-        <div className={style.text}>Клиники</div>
-        <div className={style.parent}>
-          <button className={'.swiper-button-prev'} ref={navigationPrevRef}>
-            <img src={ArLeft} alt="" />
-          </button>
-          <Swiper
-            className={style.inner}
-            modules={[Navigation, Scrollbar, Autoplay]}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
-            spaceBetween={24}
-            slidesPerView={3}
-            loop={true}
-            pagination={{ clickable: true }}
-            onSwiper={(swiper) => {
-              setTimeout(() => {
-                swiper.params.navigation.prevEl = navigationPrevRef.current;
-                swiper.params.navigation.nextEl = navigationNextRef.current;
-                swiper.navigation.destroy();
-                swiper.navigation.init();
-                swiper.navigation.update();
-              });
-            }}>
-            {visiblePhotos.map((i) => (
-              <SwiperSlide className={style.blocks} key={i.id}>
-                <div className={style.forImg}>
-                  <img src={i.img} alt={i.title} />
-                </div>
-                <h2>Медицинский центр Prime Clinic</h2>
-                <p>
-                  Современная и удобная клиника в центре Бишкека. Предоставляет приём пациентов по
-                  широкому профилю медицинских услуг.
-                </p>
-                <div className={style.icons}>
-                  <div className={style.icon}>
-                    <img src={i.location} alt="" />
-                    <span>Абдрахманова, 202</span>
-                  </div>
-                  <div className={style.icon}>
-                    <img src={i.call} alt="" />
-                    <span>0 (312) 98-89-78</span>
-                  </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-          <button ref={navigationNextRef} className={'.swiper-button-next'}>
-            <img src={ArRight} alt="" />
-          </button>
+        <div className={style.inner}>
+          <div className={style.title}>
+            <div>
+              <h2>Запишитесь к врачу легко и быстро</h2>
+              <p>вместе с мобильным приложением DocTour</p>
+            </div>
+            <span>Приложение доступно в</span>
+            <div className={style.app}>
+              <a href="/">
+                <img src={appStore} alt="img" />
+              </a>
+              <a href="/">
+                <img src={googlePlay} alt="img" />
+              </a>
+            </div>
+          </div>
+          <div className={style.images}>
+            <img src={android} alt="img" className={style.android_img} />
+            <img src={ios} alt="img" className={style.ios_img} />
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
-export default Slider;
+export default SliderCopy;

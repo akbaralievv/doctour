@@ -1,59 +1,61 @@
-import React from 'react';
-import style from '../../components/ListDoctors/ListDoctors.module.sass'
+import React, { useEffect, useState } from 'react';
+import style from './ListDoctors.module.css';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-function ListDoctors() {
+function ListDoctorsCopy() {
+  const { data } = useSelector((state) => state.getSpecialtySlice);
+  const [objArray, setObjArray] = useState(null);
 
-  const numText = [
-    {num: 1, text: 'Аллерголог'},
-    {num: 2, text: 'Аллерголог'},
-    {num: 3, text: 'Аллерголог'},
-    {num: 4, text: 'Аллерголог'},
-    {num: 5, text: 'Аллерголог'},
-    {num: 6, text: 'Аллерголог'},
-    {num: 7, text: 'Аллерголог'},
-    {num: 8, text: 'Аллерголог'},
-    {num: 9, text: 'Аллерголог'},
-    {num: 10, text: 'Аллерголог'},
-    {num: 11, text: 'Аллерголог'},
-    {num: 12, text: 'Аллерголог'}
-  ]
+  useEffect(() => {
+    if (data) {
+      const firstChar = data.map((item) => item.specialty[0]);
+      const set = new Set([...firstChar]);
+      const setArray = [...set];
+      const obj = {};
+      setArray.map((item) => {
+        obj[item] = [];
+        data.map((i) => {
+          if (item === i.specialty[0]) {
+            obj[item].push(i);
+          }
+        });
+      });
+      const objArray = Object.entries(obj).map(([key, value]) => {
+        return { [key]: value };
+      });
+      setObjArray(objArray);
+    }
+  }, [data]);
 
   return (
-  <div className={style.listDoctors}>
-    <div className={style.container}>
-      <div className={style.inner}>
-        <div className={style.left} style={{height: '580px'}}>
-          <span className={style.span}>Врачи Бишкека</span>
-          <div className={style.innerRL}>
-            <ul className={style.colon}>
-              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
-                <p>{i1.text}</p></li>)}
-            </ul>
-            <ul className={style.colon}>
-              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
-                <p>{i1.text}</p></li>)}
-            </ul>
-          </div>
-        </div>
-        <hr style={{marginTop: '80px', marginBottom: '-50px'}}/>
-        <div className={style.left}>
-          <span className={style.span}>Врачи Оша</span>
-          <div className={style.innerRL}>
-            <ul className={style.colon}>
-              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
-                <p>{i1.text}</p></li>)}
-            </ul>
-            <ul className={style.colon}>
-              {numText.map((i1, k) => <li className={style.innerLi} key={k}><p className={style.input}>{i1.num}</p>
-                <p>{i1.text}</p></li>)}
-            </ul>
+    <>
+      <h2 className={style.h2}>Специальности врачей</h2>
+      <div className={style.wrapper}>
+        <div className={style.container}>
+          <div className={style.inner}>
+            {objArray?.map((item, id) => (
+              <ul key={id}>
+                <li>
+                  <h3>{Object.keys(item)}</h3>
+                </li>
+                {Object.values(item).map((data) =>
+                  data.map((item, key) => (
+                    <Link to="/" key={key}>
+                      <li>
+                        <span className={style.count}>{item.id}</span>
+                        <span>{item.specialty}</span>
+                      </li>
+                    </Link>
+                  )),
+                )}
+              </ul>
+            ))}
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  )
+    </>
+  );
 }
 
-export default ListDoctors;
-
+export default ListDoctorsCopy;

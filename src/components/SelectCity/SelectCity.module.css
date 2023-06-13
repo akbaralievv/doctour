@@ -1,0 +1,93 @@
+.selector {
+  position: relative;
+  margin-right: 20px;
+}
+.selector .selectTitle {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 5px;
+}
+.selector .selectTitle img {
+  width: 24px;
+  height: 24px;
+}
+.selector .selectBox {
+  z-index: 2;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 193px;
+  height: 84px;
+  margin-top: 16px;
+  background: #DEECF2;
+  border-radius: 8px;
+  color: #1B6B93;
+  font-weight: 500;
+  -webkit-animation: 300ms show;
+          animation: 300ms show;
+}
+.selector .selectBox .option {
+  z-index: 3;
+  padding: 10px 23px;
+}
+.selector .selectBox .option label {
+  cursor: pointer;
+}
+.selector .selectBox .option label p {
+  font-weight: 500;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-bottom: 16px;
+}
+.selector .selectBox .line {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 0;
+}
+.selector .selectBox .line img {
+  margin: auto;
+}
+.selector .selectBox input {
+  display: none;
+}
+
+.selects {
+  gap: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.none {
+  display: none;
+}

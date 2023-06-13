@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 .wrapper {
   background-color: #023246;
   height: 180px;
@@ -7,6 +8,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .container {
@@ -39,6 +43,10 @@
 .logo {
   gap: 11px;
 }
+.logo span {
+  font-family: "Anton", sans-serif;
+  font-weight: 400;
+}
 
 .links {
   list-style: none;
@@ -50,6 +58,7 @@
 }
 
 .copyright {
+  font-size: 14px;
   text-align: center;
   margin-top: 24px;
   color: rgb(246, 246, 246);

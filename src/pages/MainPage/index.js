@@ -1,17 +1,23 @@
 import React from 'react';
 
 import SearchDoctors from '../../components/SearchDoctors';
-import TopDoctors from '../../components/TopDoctors';
 import ListDoctors from '../../components/ListDoctors';
-import Slider from '../../components/Slider';
+import TopDoctors from '../../components/TopDoctors';
+import SliderCopy from '../../components/Slider';
+
+import styles from './MainPage.module.css';
 
 function MainPage() {
   return (
     <div>
-      <SearchDoctors />
-      <TopDoctors />
-      <ListDoctors />
-      <Slider />
+      <section className={styles.section}>
+        <div className={styles.section_inner}>
+          <SearchDoctors />
+          <TopDoctors />
+        </div>
+        <ListDoctors />
+      </section>
+      <SliderCopy />
     </div>
   );
 }

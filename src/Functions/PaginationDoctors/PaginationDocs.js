@@ -55,7 +55,7 @@ const PaginationDocs = ({ pages, setCurrentPage }) => {
       )}
       <div style={{ display: 'flex', margin: '0 32px' }}>
         {arrayOfCurrButtons.map((page, index) => (
-          <div className={'figures'}>
+          <div className={'figures'} key={index}>
             <a
               key={index}
               style={{ cursor: 'pointer' }}

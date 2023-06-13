@@ -1,0 +1,43 @@
+.topDoctors {
+  height: 210px;
+  font-family: "Open Sans", sans-serif;
+  margin: 70px auto 119px auto;
+}
+.topDoctors .container {
+  width: 1200px;
+  margin: 0 auto 64px;
+}
+.topDoctors .container .inner {
+  width: 100%;
+}
+.topDoctors .container .inner h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 1px;
+  color: #023246;
+}
+.topDoctors .container .inner .topIcons .icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.block {
+  width: 152px;
+  height: 161px;
+  text-align: center;
+  color: #1B6B93;
+  text-decoration: none;
+  cursor: pointer;
+}
+.block .img {
+  width: 133px;
+  height: 135px;
+}

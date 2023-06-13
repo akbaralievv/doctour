@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+
 import CardClinic from '../../components/CardClinic';
-import arrow from '../../assets/icons/Arrow - Right 2.svg';
-import arrowU from '../../assets/icons/Arrow - Up 2.svg';
-import arrowD from '../../assets/icons/Arrow - Down 5.svg';
-import arrowSortU from '../../assets/icons/Arrow - Up.svg';
-import arrowSortUL from '../../assets/icons/ArrowL - Up.svg';
-import arrowSortD from '../../assets/icons/Arrow - Down.svg';
-import arrowSortDL from '../../assets/icons/ArrowL - Downp.svg';
 import PaginationDocs from '../../Functions/PaginationDoctors/PaginationDocs';
 import './moduleClinic.css';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import SearchForm from '../../components/SearchForm';
 
 function ClinicsPage() {
   const data = [
@@ -44,6 +41,7 @@ function ClinicsPage() {
   const [sortStage, setSortStage] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
+  const { city } = useSelector((state) => state.UIReducer);
 
   const sortUClinic = (arr) => {
     const sorted = arr.sort((b, a) => a.stage - b.stage);
@@ -103,64 +101,15 @@ function ClinicsPage() {
     <div className={'container-clinic'}>
       <div className="wrapper-clinic">
         <div className="crumbLinks-clinic">
-          <h2>Бишкек</h2>
-          <img src={arrow} />
-          <h2>Клиники</h2>
+          <Breadcrumbs />
         </div>
         <div className="infoDoctors-clinic">
-          <h1>Все Клиники города Бишкек</h1>
+          <h1>Все Клиники города {city === 'bishkek' ? 'Бишкек' : city === 'osh' ? 'Ош' : ''}</h1>
         </div>
-        <div className="sort-clinic">
-          <div style={sorActives ? { height: '144px' } : {}} className="sort-block-clinic">
-            <div
-              onClick={setSortBlockClinic}
-              style={
-                sorActives
-                  ? {
-                      background: '#1B6B93',
-                      border: '#023246 1px solid',
-                      borderRadius: '6px 6px 0 0',
-                      color: '#c2e2f2',
-                    }
-                  : {}
-              }
-              className="sort-block__info-clinic">
-              <span>сортировать по</span>
-              <img src={sorActives ? arrowU : arrowD} />
-            </div>
-            <div className={sorActives ? 'sort-block__choose-clinic' : 'none'}>
-              <div className="price-clinic">
-                по цене
-                <div className="arrows-clinic">
-                  <img
-                    onClick={sortPriceU}
-                    src={sortByRating === 'asc' ? arrowSortU : arrowSortUL}
-                  />
-                  <img
-                    onClick={sortPriceDown}
-                    src={sortByRating === 'desc' ? arrowSortD : arrowSortDL}
-                  />
-                </div>
-              </div>
-              <div className="stage-clinic">
-                по популярности
-                <div className="arrows-clinic">
-                  <img
-                    onClick={sortStageUpClinic}
-                    src={sortStage === 'up' ? arrowSortUL : arrowSortU}
-                  />
-                  <img
-                    onClick={sortStageDClinic}
-                    src={sortStage == 'down' ? arrowSortDL : arrowSortD}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <SearchForm placeholder={'Клиники'} style={{ marginBottom: '48px' }} />
 
-        {currentPosts.map((e) => (
-          <CardClinic data={e} />
+        {currentPosts.map((e, id) => (
+          <CardClinic data={e} key={id} />
         ))}
         <div className="pagination-block-clinic">
           <PaginationDocs setCurrentPage={setCurrentPage} pages={howManyPages} />
