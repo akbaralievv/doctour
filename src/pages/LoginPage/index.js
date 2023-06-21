@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import styles from './LoginPage.module.css';
-import google from '../../assets/icons/google.svg';
 import Auth from '../../components/Auth';
 import CreateAcc from '../../components/CreateAcc';
 import { NavLink } from 'react-router-dom';
@@ -28,16 +27,7 @@ function LoginPage() {
                 Создать аккаунт
               </NavLink>
             </div>
-            <div className={styles.container_inner}>
-              {active ? <Auth /> : <CreateAcc />}
-              <div className={styles.entrance}>
-                <p>или войти с помощью</p>
-                <NavLink>
-                  <img src={google} alt="google" />
-                  <span>Войти через Google</span>
-                </NavLink>
-              </div>
-            </div>
+            <div className={styles.container_inner}>{active ? <Auth /> : <CreateAcc />}</div>
           </div>
         </div>
       </div>

@@ -17,6 +17,24 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 8px;
+  color: #0C384E;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
+.form label .forgout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: end;
+}
+.form label .forgout a {
+  text-decoration: none;
+  color: #1B6B93;
+  font-family: 400;
+  display: inline-block;
 }
 .form button {
   color: white;
@@ -37,34 +55,8 @@
           justify-content: center;
   cursor: pointer;
   margin-top: 32px;
+  font-size: 20px;
 }
-.form input {
-  height: 56px;
-  width: 488px;
-  border: 1px solid #B6B6B6;
-  border-radius: 8px;
-  padding-left: 16px;
-}
-.form input::-webkit-input-placeholder {
-  color: #B6B6B6;
-}
-.form input::-moz-placeholder {
-  color: #B6B6B6;
-}
-.form input:-ms-input-placeholder {
-  color: #B6B6B6;
-}
-.form input::-ms-input-placeholder {
-  color: #B6B6B6;
-}
-.form input::placeholder {
-  color: #B6B6B6;
-}
-.form div {
-  position: relative;
-}
-.form img {
-  position: absolute;
-  top: 16px;
-  right: 18px;
+.form .disabled {
+  background-color: #DEECF2;
 }

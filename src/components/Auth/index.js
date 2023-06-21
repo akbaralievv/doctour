@@ -1,83 +1,40 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
+import { NavLink } from 'react-router-dom';
 
-import styles from './Formik.module.css';
-import eyeShow from '../../assets/icons/Show.svg';
-import eyeHide from '../../assets/icons/Hide.svg';
+import styles from './Auth.module.css';
+import InputPhone from '../ui/InputPhone';
+import InputPassword from '../ui/InputPassword';
 
 const Basic = () => {
-  const [eye, setEye] = useState(true);
-  const handleClick = (isTrue) => {
-    setEye(isTrue);
+  const [value, setValue] = useState({
+    phone: '',
+    password: '',
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('996' + value.phone, value.password);
   };
+
   return (
-    <div>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}>
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <label>
-              Логин
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="Логин"
-              />
-            </label>
-            {errors.email && touched.email && errors.email}
-            <label>
-              Пароль
-              <div>
-                <input
-                  type={eye ? 'password' : 'text'}
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  placeholder="Пароль"
-                />
-                {eye ? (
-                  <img src={eyeShow} alt="icon" onClick={() => handleClick(false)} />
-                ) : (
-                  <img src={eyeHide} alt="icon" onClick={() => handleClick(true)} />
-                )}
-              </div>
-            </label>
-            {errors.password && touched.password && errors.password}
-            <button type="submit" disabled={isSubmitting}>
-              Войти
-            </button>
-          </form>
-        )}
-      </Formik>
-    </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <label>
+        Логин
+        <InputPhone value={value.phone} setValue={setValue} />
+      </label>
+      <label>
+        Пароль
+        <InputPassword value={value.password} setValue={setValue} name="password" />
+        <div className={styles.forgout}>
+          <NavLink>Забыли пароль?</NavLink>
+        </div>
+      </label>
+      <button
+        type="submit"
+        className={value.phone.length && value.password.length >= 4 ? '' : styles.disabled}>
+        Войти
+      </button>
+    </form>
   );
 };
 

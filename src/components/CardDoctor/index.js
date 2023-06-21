@@ -50,18 +50,18 @@ function CardDoctor({ data }) {
               <div className="full-name">
                 <h1>{data.name}</h1>
               </div>
-              <div className="speciality">{data.spec}</div>
+              <div className="speciality">{data.specialty}</div>
               <div className="education">
                 <p>
                   <img src={location} />
-                  Юрфа
+                  {data.address}
                 </p>
               </div>
               <div className="mini-info">
                 <div className="stage">
                   <p>
                     <img src={pulse} />
-                    стаж {data.stage} лет
+                    стаж {data.experience} лет
                   </p>
                 </div>
                 <div className="price">
@@ -73,7 +73,7 @@ function CardDoctor({ data }) {
                 <div className="instagram">
                   <p>
                     <img src={inst} />
-                    @dsadamk
+                    {data.social}
                   </p>
                 </div>
               </div>
@@ -99,11 +99,7 @@ function CardDoctor({ data }) {
             </div>
           </div>
           <div className="description">
-            <p>
-              Лечени и консультация по вопросам: порок сердца, сердечная недостаточность, аритмия,
-              атеросклероз, болезни периферических артерий и т.д. Проведение УЗИ диагностики входит
-              в стоимость приема.
-            </p>
+            <p>{data.description}</p>
           </div>
         </div>
       </div>

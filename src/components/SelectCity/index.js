@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
-
 import line from '../../assets/icons/Line 7.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { actionCityPop, setCity } from '../../redux/slices/UISlice';
 import styles from './SelectCity.module.sass';
-import location from '../../assets/icons/Location.svg';
-import { getSpecialty } from '../../redux/slices/GetSpecialtySlice';
+import location from '../../assets/icons/LocationHeader.svg';
 
 function SelectCity() {
   const dispatch = useDispatch();
@@ -17,15 +14,12 @@ function SelectCity() {
   const cityHandle = () => {
     dispatch(actionCityPop({ open: 'city', close: 'lang' }));
   };
-  useEffect(() => {
-    dispatch(getSpecialty(city));
-  }, [city]);
 
   return (
     <div className={styles.selects}>
       <div className={styles.selector}>
         <div className={styles.selectTitle} onClick={cityHandle}>
-          <img src={location} />
+          <img src={location} alt="icon" />
           {city === 'bishkek' ? 'Бишкек' : city === 'osh' ? 'Ош' : ''}
         </div>
         <div className={cityModal ? styles.selectBox : styles.none}>

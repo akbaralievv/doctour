@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import style from './ListDoctors.module.css';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getSpecialty } from '../../redux/slices/GetSpecialtySlice.js';
 
 function ListDoctorsCopy() {
-  const { data } = useSelector((state) => state.getSpecialtySlice);
+  const { data } = useSelector((state) => state.GetSpecialtySlice);
   const [objArray, setObjArray] = useState(null);
+  const dispatch = useDispatch();
+  const { city } = useSelector((state) => state.UIReducer);
+
+  useEffect(() => {
+    dispatch(getSpecialty(city));
+  }, [city]);
 
   useEffect(() => {
     if (data) {
