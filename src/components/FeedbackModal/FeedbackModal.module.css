@@ -1,0 +1,174 @@
+.modalWrapper {
+  width: 100%;
+  height: 325%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(182, 182, 182, 0.5);
+  z-index: 99;
+}
+
+.modalContent {
+  z-index: 100;
+  color: #023246;
+  width: 811px;
+  height: 968px;
+  background: #F6F6F6;
+  border-radius: 30px;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  right: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.modalContent .btnClose {
+  position: absolute;
+  left: 92.11%;
+  right: 2.96%;
+  top: 2.48%;
+  bottom: 93.39%;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1.5px solid #023246;
+  font-size: 30px;
+  font-weight: lighter;
+}
+.modalContent .innerModal {
+  font-family: "Open Sans", sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+  width: 591px;
+  height: 848px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.modalContent .innerModal .head {
+  width: 547px;
+  height: 230px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 auto;
+}
+.modalContent .innerModal .head h2 {
+  margin-top: 0;
+  font-size: 32px;
+  text-align: center;
+}
+.modalContent .innerModal .head .avatar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 547px;
+  height: 100px;
+}
+.modalContent .innerModal .head .avatar h3 {
+  font-size: 24px;
+  color: #1B6B93;
+}
+.modalContent .innerModal .iconStar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 393px;
+  height: 30px;
+}
+.modalContent .innerModal .iconStar h3 {
+  font-size: 24px;
+}
+.modalContent .innerModal .form {
+  width: 590px;
+  height: 466px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.modalContent .innerModal .form .comment {
+  width: 590px;
+  height: 322px;
+}
+.modalContent .innerModal .form .comment label {
+  font-size: 16px;
+  line-height: 23px;
+}
+.modalContent .innerModal .form .comment textarea {
+  width: 590px;
+  height: 290px;
+  border: 1px solid #023246;
+  border-radius: 8px;
+}
+.modalContent .innerModal .form .mail {
+  width: 590px;
+  height: 120px;
+}
+.modalContent .innerModal .form .mail label {
+  font-size: 16px;
+  line-height: 23px;
+}
+.modalContent .innerModal .form .mail input {
+  width: 590px;
+  height: 56px;
+  border: 1px solid #0C384E;
+  border-radius: 8px;
+}
+.modalContent .innerModal .form .mail span {
+  margin-top: 8px;
+  font-size: 14px;
+}
+.modalContent .innerModal .btnSend {
+  width: 591px;
+  height: 64px;
+  background: #1B6B93;
+  border-radius: 8px;
+  color: #FFFFFF;
+  font-size: 20px;
+  border: none;
+}

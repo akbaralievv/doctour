@@ -1,0 +1,125 @@
+.aboutDoctor .container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.aboutDoctor .container .info {
+  font-family: "Open Sans", sans-serif;
+  height: 357px;
+  color: #023246;
+  font-weight: 700;
+  letter-spacing: 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.aboutDoctor .container .info .infoImg {
+  position: relative;
+  margin-right: 27px;
+}
+.aboutDoctor .container .info .infoImg .imgOne {
+  width: 357px;
+  height: 357px;
+  border-radius: 20px;
+}
+.aboutDoctor .container .info .infoImg .iconOne {
+  position: absolute;
+  top: 8px;
+  right: 0;
+  bottom: 0;
+  left: 8px;
+}
+.aboutDoctor .container .info .infoInner {
+  width: 564px;
+  height: 354px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.aboutDoctor .container .info .infoInner h2 {
+  font-size: 32px;
+  margin: 0;
+}
+.aboutDoctor .container .info .infoInner h3 {
+  color: #1B6B93;
+  font-size: 24px;
+  margin: 20px 0 0 0;
+  line-height: 23px;
+}
+.aboutDoctor .container .info .infoInner .icons {
+  width: 475px;
+  height: 129px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 20px 0 20px 0;
+}
+.aboutDoctor .container .info .infoInner .icons .iconInner {
+  font-size: 20px;
+  line-height: 23px;
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.aboutDoctor .container .info .infoInner .icons .iconInner img {
+  margin-right: 10px;
+}
+.aboutDoctor .container .info .infoInner p {
+  font-size: 16px;
+  line-height: 23px;
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0;
+}
+.aboutDoctor .container .info .reviews {
+  margin: 40px 18px 40px 24px;
+  width: 210px;
+  height: 277px;
+  text-align: center;
+}
+.aboutDoctor .container .info .reviews .score {
+  font-size: 32px;
+  color: #1B6B93;
+}
+.aboutDoctor .container .info .reviews .innerReviews span {
+  font-weight: 400;
+  font-size: 16px;
+}
+.aboutDoctor .container .info .reviews .quantity {
+  width: 210px;
+  height: 155px;
+  background: #DEECF2;
+  border-radius: 10px;
+}
+.aboutDoctor .container .info .reviews .quantity p {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-top: 20px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 23px;
+}
+.aboutDoctor .container .info .reviews .quantity span {
+  font-size: 32px;
+  font-weight: 700;
+}

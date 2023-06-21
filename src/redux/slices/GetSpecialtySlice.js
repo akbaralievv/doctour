@@ -8,7 +8,7 @@ export const getSpecialty = createAsyncThunk('getSpecial', async function (city)
     const response = await axios.get(specialtyURL + city);
     if (response.status === 200) {
       const users = await response.data;
-      return users;
+      return users[0].specialty;
     } else {
       throw Error(`error ${response.status}`);
     }
