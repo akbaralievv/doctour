@@ -6,7 +6,7 @@ export const UISlice = createSlice({
     popUp: false,
     langPopUp: false,
     cityModal: false,
-    city: 'bishkek',
+    city: '1',
   },
   reducers: {
     closePopUp: (state, action) => {

@@ -7,8 +7,7 @@ import pulse from '../../assets/icons/Pulse.svg';
 import wallet from '../../assets/icons/Wallet.svg';
 import inst from '../../assets/icons/Inst.svg';
 import star0 from '../../assets/icons/Star0.svg';
-import star from '../../assets/icons/stars.svg';
-// import star from "../../assets/icons/Star.svg"
+import star from '../../assets/icons/Star.svg';
 
 import Card from '../../assets/images/img.png';
 import './module.css';
@@ -36,38 +35,43 @@ function CardDoctor({ data }) {
   };
 
   useEffect(() => {
-    setStar(StarArray(data.rating));
+    setStar(StarArray(data.average_rating));
   }, []);
 
   return (
     <Link style={{ outline: 'none', textDecoration: 'none' }}>
       <div style={{ marginBottom: '48px' }} className={'container'}>
-        <img onClick={handleLike} className={'heart'} src={like ? heartActive : heart} />
-        <img className={'cardAvatar'} src={Card} />
+        <img
+          onClick={handleLike}
+          className={'heart'}
+          src={like ? heartActive : heart}
+          alt="heart"
+        />
+        <img className={'cardAvatar'} src={Card} alt="doctor" />
         <div className="info">
           <div className="up-side">
             <div className="left">
               <div className="full-name">
-                <h1>{data.name}</h1>
+                <h1>{data.full_name}</h1>
               </div>
-              <div className="speciality">{data.specialty}</div>
+              <div className="speciality">{data.specialties.map((spec) => spec.name)}</div>
               <div className="education">
                 <p>
                   <img src={location} />
-                  {data.address}
+                  {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
                 </p>
               </div>
               <div className="mini-info">
                 <div className="stage">
                   <p>
                     <img src={pulse} />
-                    стаж {data.experience} лет
+                    Стаж {data.experience} лет
                   </p>
                 </div>
                 <div className="price">
                   <p>
                     <img src={wallet} />
-                    прием {data.price} сомов
+                    Прием {data.price} сомов
                   </p>
                 </div>
                 <div className="instagram">
@@ -84,12 +88,12 @@ function CardDoctor({ data }) {
                   {stars
                     .slice(0, 5)
                     .map((e, id) =>
-                      e === 'point' ? <img src={star0} key={id} /> : <img src={star0} key={id} />,
+                      e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
                     )}
                 </div>
                 <div className="rate">{data.rating}</div>
                 <div className="feedback">
-                  <p>5 отзывов</p>
+                  <p>{data.num_reviews} отзывов</p>
                 </div>
               </div>
               <div className="amount">
@@ -99,7 +103,7 @@ function CardDoctor({ data }) {
             </div>
           </div>
           <div className="description">
-            <p>{data.description}</p>
+            <p>{data.summary}</p>
           </div>
         </div>
       </div>

@@ -3,23 +3,25 @@ import InputMask from 'react-input-mask';
 
 import styles from './InputPhone.module.css';
 
-function InputPhone({ value, setValue }) {
+function Phone({ value, setValue }) {
   const [valid, setValid] = useState(false);
 
-  const handleOnBlurPhone = () => {
+  const handleBlur = () => {
     setValid(false);
   };
-  const handleChangePhone = (event) => {
+
+  const handleChange = (event) => {
     const phoneValue = event.target.value.split(' ').join('').replace(/\D/g, '');
     const phoneRegExp = /^\d{9}$/;
     if (phoneRegExp.test(phoneValue)) {
-      setValue((prev) => ({ ...prev, [event.target.name]: phoneValue }));
+      setValue((prev) => ({ ...prev, [event.target.name]: +`996${phoneValue}` }));
       setValid(true);
     } else {
       setValue((prev) => ({ ...prev, [event.target.name]: '' }));
       setValid(false);
     }
   };
+
   return (
     <>
       <div style={{ position: 'relative' }}>
@@ -29,8 +31,9 @@ function InputPhone({ value, setValue }) {
           mask="(999) 99 - 99 - 99"
           maskChar="_"
           placeholder="Номер телефона"
-          onChange={handleChangePhone}
-          onBlur={handleOnBlurPhone}
+          autoComplete="phone"
+          onChange={handleChange}
+          onBlur={handleBlur}
           className={`${styles.phone} ${valid && styles.valid}`}
         />
         <span className={styles.span}>+996</span>
@@ -40,4 +43,4 @@ function InputPhone({ value, setValue }) {
   );
 }
 
-export default InputPhone;
+export default Phone;

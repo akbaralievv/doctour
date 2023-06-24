@@ -16,7 +16,7 @@ function Breadcrumbs({ style }) {
 
   return (
     <div className={styles.wrapper} style={style}>
-      <span>{city === 'bishkek' ? 'Бишкек' : city === 'osh' ? 'Ош' : ''}</span>
+      <span>{city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</span>
       <img src={arrow} alt="icon" />
       <span>
         {path === '/doctors'

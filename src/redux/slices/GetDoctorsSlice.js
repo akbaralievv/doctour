@@ -3,11 +3,11 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.SERVICE_URL;
+const URL = links.DOCTORS_URL;
 
-export const getServices = createAsyncThunk('getServices', async function (city) {
+export const getDoctors = createAsyncThunk('getDoctors', async function ({ city, value }) {
   try {
-    const response = await axios.get(URL);
+    const response = await axios.get(`${URL}?search=${value}&city=${city}`);
     if (response.status === 200) {
       const data = await response.data;
       return data.results;
@@ -18,17 +18,16 @@ export const getServices = createAsyncThunk('getServices', async function (city)
     return console.error(err.message);
   }
 });
-
 const initialState = { data: [], error: '', loading: false };
 
-const getServicesSlice = createSlice({
-  name: 'getServicesSlice',
+const getDoctorsSlice = createSlice({
+  name: 'getDoctorsSlice',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getServices.fulfilled, (state, action) => {
+    builder.addCase(getDoctors.fulfilled, (state, action) => {
       state.loading = false;
       state.data = action.payload;
     });
   },
 });
-export default getServicesSlice.reducer;
+export default getDoctorsSlice.reducer;

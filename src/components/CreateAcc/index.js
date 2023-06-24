@@ -1,11 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import styles from './CreateAcc.module.css';
-import InputPhone from '../ui/InputPhone';
-import InputPassword from '../ui/InputPassword';
-import InputBirthday from '../ui/InputBirthday';
+import FullName from '../ui/inputs/FullName';
+import Birthday from '../ui/inputs/Birthday';
+import Gender from '../ui/inputs/Gender';
+import Phone from '../ui/inputs/Phone';
+import Password from '../ui/inputs/Password';
+import ConfirmPassword from '../ui/inputs/ConfirmPassword';
+import { useDispatch, useSelector } from 'react-redux';
+import { setState } from '../../redux/slices/PostCreateAccSlice';
 
 function CreateAcc() {
+  const { state } = useSelector((state) => state.PostCreateAccSlice);
   const [value, setValue] = useState({
     fullName: '',
     phone: '',
@@ -14,48 +20,57 @@ function CreateAcc() {
     birthday: '',
     gender: '',
   });
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setValue((prevValue) => ({ ...prevValue, [name]: value }));
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (disabled) {
+      dispatch(setState(value));
+    }
   };
+  const disabled =
+    value.fullName &&
+    value.phone &&
+    value.password.length >= 4 &&
+    value.confirmPassword === value.password &&
+    value.birthday &&
+    value.gender;
+
   return (
-    <form className={styles.form}>
-      <label>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div>
         ФИО
-        <input type="text" name="fullName" onChange={handleChange} />
-      </label>
-      {/* <label>
+        <FullName value={value.fullName} setValue={setValue} />
+      </div>
+      <div>
         Дата рождения
-        <input type="text" name="birthday" onChange={handleChange} />
-      </label> */}
-      <label>
-        Дата рождения
-        <InputBirthday />
-      </label>
-      <label>
+        <Birthday value={value.birthday} setValue={setValue} />
+      </div>
+      <div>
         Пол
-        <label>
-          <input type="checkbox" name="gender" onChange={handleChange} />
-          Мужской
-        </label>
-        <label>
-          <input type="checkbox" name="gender" onChange={handleChange} />
-          Женский
-        </label>
-      </label>
-      <label>
+        <Gender value={value.gender} setValue={setValue} />
+      </div>
+      <div>
         Номер телефона
-        <InputPhone value={value.phone} setValue={setValue} />
-      </label>
-      <label>
+        <Phone value={value.phone} setValue={setValue} />
+      </div>
+      <div>
         Создать пароль
-        <InputPassword value={value.password} setValue={setValue} name="password" />
-      </label>
-      <label>
+        <Password value={value.password} setValue={setValue} name="password" />
+      </div>
+      <div>
         Повторить пароль
-        <InputPassword value={value.confirmPassword} setValue={setValue} name="confirmPassword" />
-      </label>
-      <button type="submit">Создать аккаунт</button>
+        <ConfirmPassword
+          value={value.confirmPassword}
+          setValue={setValue}
+          name="confirmPassword"
+          style={value.confirmPassword === value.password ? true : false}
+        />
+      </div>
+      <button type="submit" className={!disabled ? styles.disabled : ''}>
+        Создать аккаунт
+      </button>
     </form>
   );
 }

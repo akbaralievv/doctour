@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const usersURL = 'https://64877e44beba62972790bb18.mockapi.io/';
+import { links } from './links';
 
-export const getUsers = createAsyncThunk('getServices', async function (city) {
+const URL = links.CLINIC_URL;
+
+export const getClinic = createAsyncThunk('getClinic', async function ({ city, value }) {
   try {
-    const response = await axios.get(usersURL + city);
+    const response = await axios.get(`${URL}?search=${value}&city=${city}`);
     if (response.status === 200) {
-      const users = await response.data;
-      return users[0].doctors;
+      const data = await response.data;
+      return data.results;
     } else {
       throw Error(`error ${response.status}`);
     }
@@ -19,14 +21,14 @@ export const getUsers = createAsyncThunk('getServices', async function (city) {
 
 const initialState = { data: [], error: '', loading: false };
 
-const getUsersSlice = createSlice({
-  name: 'getUsersSlice',
+const getClinicSlice = createSlice({
+  name: 'getClinicSlice',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(getUsers.fulfilled, (state, action) => {
+    builder.addCase(getClinic.fulfilled, (state, action) => {
       state.loading = false;
       state.data = action.payload;
     });
   },
 });
-export default getUsersSlice.reducer;
+export default getClinicSlice.reducer;

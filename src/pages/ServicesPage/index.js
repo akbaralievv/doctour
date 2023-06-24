@@ -19,13 +19,13 @@ function ServicesPage() {
       <div className={styles.container}>
         <Breadcrumbs />
         <div className={styles.inner}>
-          {data?.map((service, id) => (
-            <div key={id}>
-              <h2>{service.title}</h2>
+          {data?.map((service) => (
+            <div key={service.id}>
+              <h2>{service.name}</h2>
               <ul>
-                {service.data?.map((data, id) => (
-                  <li key={id}>
-                    <NavLink>{data.name}</NavLink>
+                {service.data?.map((data) => (
+                  <li key={data.id}>
+                    <NavLink>{data.subservice_service}</NavLink>
                   </li>
                 ))}
               </ul>

@@ -8,7 +8,7 @@
           flex-direction: column;
   gap: 16px;
 }
-.form label {
+.form > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -17,6 +17,10 @@
       -ms-flex-direction: column;
           flex-direction: column;
   gap: 8px;
+  color: #0C384E;
+  font-size: 16px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
 }
 .form button {
   color: white;
@@ -37,15 +41,11 @@
           justify-content: center;
   cursor: pointer;
   margin-top: 32px;
+  font-size: 20px;
 }
-.form input {
-  height: 56px;
-  width: 488px;
-  border: 1px solid #B6B6B6;
-  border-radius: 8px;
-  padding-left: 16px;
-}
-
-.validate {
+.form .validate {
   background: red;
+}
+.form .disabled {
+  background-color: #DEECF2;
 }

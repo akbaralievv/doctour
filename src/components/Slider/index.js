@@ -4,8 +4,7 @@ import style from './Slider.module.css';
 
 import appStore from '../../assets/images/app-store.png';
 import googlePlay from '../../assets/images/google-play.png';
-import android from '../../assets/images/android.png';
-import ios from '../../assets/images/ios.png';
+import ios from '../../assets/images/Mockup.png';
 
 const SliderCopy = () => {
   return (
@@ -28,7 +27,6 @@ const SliderCopy = () => {
             </div>
           </div>
           <div className={style.images}>
-            <img src={android} alt="img" className={style.android_img} />
             <img src={ios} alt="img" className={style.ios_img} />
           </div>
         </div>

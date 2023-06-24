@@ -1,0 +1,37 @@
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 16px;
+}
+.wrapper label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+}
+.wrapper label input {
+  width: 24px;
+  height: 24px;
+  outline: none;
+  border-radius: 50%;
+  border: 2px solid #1B6B93;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: relative;
+  cursor: pointer;
+}
+.wrapper label input:checked::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  background-color: #1B6B93;
+  border-radius: 50%;
+}

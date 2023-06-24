@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 
 import CardDoctor from '../../components/CardDoctor';
@@ -7,18 +6,19 @@ import './DoctorModule.css';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import PaginationDocs from '../../Functions/PaginationDoctors/PaginationDocs';
 import SearchForm from '../../components/SearchForm';
-import { getUsers } from '../../redux/slices/GetUsersSlice';
+import { getDoctors } from '../../redux/slices/GetDoctorsSlice';
 
 function DoctorsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
+  const [value, setValue] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
-  const { data } = useSelector((state) => state.GetUsersSlice);
+  const { data } = useSelector((state) => state.GetDoctorsSlice);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUsers(city));
-  }, [city]);
+    dispatch(getDoctors({ city, value }));
+  }, [city, value.trim()]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -32,12 +32,17 @@ function DoctorsPage() {
           <Breadcrumbs />
         </div>
         <div className="infoDoctors">
-          <h1>Все врачи города {city === 'bishkek' ? 'Бишкек' : city === 'osh' ? 'Ош' : ''}</h1>
+          <h1>Все врачи города {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</h1>
         </div>
-        <SearchForm placeholder={'Врачи'} style={{ marginBottom: '48px' }} />
+        <SearchForm
+          placeholder={'Врачи'}
+          style={{ marginBottom: '48px' }}
+          value={value}
+          setValue={setValue}
+        />
 
-        {currentPosts.map((e, id) => (
-          <CardDoctor data={e} key={id} />
+        {currentPosts.map((data) => (
+          <CardDoctor data={data} key={data.id} />
         ))}
         <div className="pagination-block">
           <PaginationDocs setCurrentPage={setCurrentPage} pages={howManyPages} />

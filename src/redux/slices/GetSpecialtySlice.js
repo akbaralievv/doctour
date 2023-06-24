@@ -1,14 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const specialtyURL = 'https://64877e44beba62972790bb18.mockapi.io/';
+import { links } from './links';
+
+const URL = links.SPECIALITY_URL;
 
 export const getSpecialty = createAsyncThunk('getSpecial', async function (city) {
   try {
-    const response = await axios.get(specialtyURL + city);
+    const response = await axios.get(URL);
     if (response.status === 200) {
-      const users = await response.data;
-      return users[0].specialty;
+      const data = await response.data;
+      return data.results;
     } else {
       throw Error(`error ${response.status}`);
     }
@@ -25,7 +27,7 @@ const getSpecialtySlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getSpecialty.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = [...action.payload].sort((a, b) => a.specialty.localeCompare(b.specialty));
+      state.data = [...action.payload].sort((a, b) => a.name.localeCompare(b.name));
     });
   },
 });

@@ -16,14 +16,14 @@ function ListDoctorsCopy() {
 
   useEffect(() => {
     if (data) {
-      const firstChar = data.map((item) => item.specialty[0]);
+      const firstChar = data?.map((item) => item.name[0]);
       const set = new Set([...firstChar]);
       const setArray = [...set];
       const obj = {};
-      setArray.map((item) => {
+      setArray?.map((item) => {
         obj[item] = [];
         data.map((i) => {
-          if (item === i.specialty[0]) {
+          if (item === i.name[0]) {
             obj[item].push(i);
           }
         });
@@ -46,12 +46,12 @@ function ListDoctorsCopy() {
                 <li>
                   <h3>{Object.keys(item)}</h3>
                 </li>
-                {Object.values(item).map((data) =>
+                {Object.values(item)?.map((data) =>
                   data.map((item, key) => (
                     <Link to="/" key={key}>
                       <li>
                         <span className={style.count}>{item.id}</span>
-                        <span>{item.specialty}</span>
+                        <span>{item.name}</span>
                       </li>
                     </Link>
                   )),

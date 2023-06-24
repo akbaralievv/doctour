@@ -2,36 +2,41 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Auth.module.css';
-import InputPhone from '../ui/InputPhone';
-import InputPassword from '../ui/InputPassword';
+import Phone from '../ui/inputs/Phone';
+import Password from '../ui/inputs/Password';
+import { useDispatch, useSelector } from 'react-redux';
+import { setState } from '../../redux/slices/PostAuthSlice';
 
 const Basic = () => {
+  const { state } = useSelector((state) => state.PostAuthSlice);
   const [value, setValue] = useState({
     phone: '',
     password: '',
   });
 
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('996' + value.phone, value.password);
+    if (disabled) {
+      dispatch(setState(value));
+    }
   };
-
+  const disabled = (value.phone + '').length >= 12 && value.password.length >= 4;
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <label>
+      <div>
         Логин
-        <InputPhone value={value.phone} setValue={setValue} />
-      </label>
-      <label>
+        <Phone value={value.phone} setValue={setValue} />
+      </div>
+      <div>
         Пароль
-        <InputPassword value={value.password} setValue={setValue} name="password" />
+        <Password value={value.password} setValue={setValue} name="password" />
         <div className={styles.forgout}>
           <NavLink>Забыли пароль?</NavLink>
         </div>
-      </label>
-      <button
-        type="submit"
-        className={value.phone.length && value.password.length >= 4 ? '' : styles.disabled}>
+      </div>
+      <button type="submit" className={!disabled ? styles.disabled : ''}>
         Войти
       </button>
     </form>

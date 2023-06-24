@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
 import styles from './InputPassword.module.css';
-import eyeShow from '../../../assets/icons/Show.svg';
-import eyeHide from '../../../assets/icons/Hide.svg';
+import eyeShow from '../../../../assets/icons/Show.svg';
+import eyeHide from '../../../../assets/icons/Hide.svg';
 
-function InputPassword({ value, setValue, name }) {
+function Password({ value, setValue, name }) {
   const [eye, setEye] = useState(true);
 
-  const handleChangePassword = (event) => {
-    setValue((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  const handleChange = (event) => {
+    const inputValue = event.target.value;
+
+    setValue((prev) => ({ ...prev, [event.target.name]: inputValue }));
   };
 
   const handleClickEye = (isTrue) => {
@@ -21,7 +23,7 @@ function InputPassword({ value, setValue, name }) {
         <input
           name={name}
           value={value}
-          onChange={handleChangePassword}
+          onChange={handleChange}
           minLength={4}
           required
           type={eye ? 'password' : 'text'}
@@ -38,4 +40,4 @@ function InputPassword({ value, setValue, name }) {
   );
 }
 
-export default InputPassword;
+export default Password;
