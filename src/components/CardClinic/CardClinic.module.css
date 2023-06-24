@@ -21,8 +21,14 @@
   border-radius: 16px;
   padding: 16px;
 }
+.container .CardClinic_inner > a {
+  text-decoration: none;
+}
 .container .CardClinic_inner .CardClinic_title {
   text-align: left;
+}
+.container .CardClinic_inner .CardClinic_title a {
+  text-decoration: none;
 }
 .container .CardClinic_inner .CardClinic_title h3 {
   font-weight: 700;
@@ -93,6 +99,7 @@
 }
 .container .CardClinic_inner .CardClinic_information .information_cards_ul li {
   list-style: none;
+  text-transform: uppercase;
 }
 .container .CardClinic_inner .CardClinic_information .information_cards_ul li li:last-child {
   line-height: 23px;

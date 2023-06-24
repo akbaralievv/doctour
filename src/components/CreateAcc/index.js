@@ -1,55 +1,76 @@
 import React, { useState } from 'react';
 
 import styles from './CreateAcc.module.css';
+import FullName from '../ui/inputs/FullName';
+import Birthday from '../ui/inputs/Birthday';
+import Gender from '../ui/inputs/Gender';
+import Phone from '../ui/inputs/Phone';
+import Password from '../ui/inputs/Password';
+import ConfirmPassword from '../ui/inputs/ConfirmPassword';
+import { useDispatch, useSelector } from 'react-redux';
+import { setState } from '../../redux/slices/PostCreateAccSlice';
 
 function CreateAcc() {
-  const [email, setEmail] = useState(true);
-  const [password, setPassword] = useState(true);
+  const { state } = useSelector((state) => state.PostCreateAccSlice);
+  const [value, setValue] = useState({
+    fullName: '',
+    phone: '',
+    password: '',
+    confirmPassword: '',
+    birthday: '',
+    gender: '',
+  });
 
-  const validateEmail = (email, e = 'h@ma..ru') => {
-    setEmail(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(e));
-    email.preventDefault();
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (disabled) {
+      dispatch(setState(value));
+    }
   };
+  const disabled =
+    value.fullName &&
+    value.phone &&
+    value.password.length >= 4 &&
+    value.confirmPassword === value.password &&
+    value.birthday &&
+    value.gender;
 
   return (
-    <form className={styles.form} onSubmit={validateEmail}>
-      <label>
-        Фамилия
-        <input type="text" />
-      </label>
-      <label>
-        Имя
-        <input type="text" />
-      </label>
-      <label>
-        Отчество
-        <input type="text" />
-      </label>
-      <label>
-        Номер телефона
-        <input type="number" />
-      </label>
-      <label>
-        Почта
-        <input type="email" className={!email ? styles.validate : ''} />
-      </label>
-      <label>
-        Создать пароль
-        <input type="password" />
-      </label>
-      <label>
-        Повторить пароль
-        <input type="password" />
-      </label>
-      <label>
-        Пол
-        <input type="text" />
-      </label>
-      <label>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div>
+        ФИО
+        <FullName value={value.fullName} setValue={setValue} />
+      </div>
+      <div>
         Дата рождения
-        <input type="text" />
-      </label>
-      <button type="submit">Создать аккаунт</button>
+        <Birthday value={value.birthday} setValue={setValue} />
+      </div>
+      <div>
+        Пол
+        <Gender value={value.gender} setValue={setValue} />
+      </div>
+      <div>
+        Номер телефона
+        <Phone value={value.phone} setValue={setValue} />
+      </div>
+      <div>
+        Создать пароль
+        <Password value={value.password} setValue={setValue} name="password" />
+      </div>
+      <div>
+        Повторить пароль
+        <ConfirmPassword
+          value={value.confirmPassword}
+          setValue={setValue}
+          name="confirmPassword"
+          style={value.confirmPassword === value.password ? true : false}
+        />
+      </div>
+      <button type="submit" className={!disabled ? styles.disabled : ''}>
+        Создать аккаунт
+      </button>
     </form>
   );
 }

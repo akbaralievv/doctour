@@ -5,17 +5,19 @@ import { useLocation } from 'react-router-dom';
 import arrow from '../../assets/icons/Arrow - Right 2.svg';
 import styles from './Breadcrumbs.module.css';
 
-function Breadcrumbs() {
+function Breadcrumbs({ style }) {
   const location = useLocation();
   const [path, setPath] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
+
   useEffect(() => {
     setPath(location.pathname);
-  }, []);
+  }, [location.pathname]);
+
   return (
-    <div className={styles.wrapper}>
-      <span>{city === 'bishkek' ? 'Бишкек' : city === 'osh' ? 'Ош' : ''}</span>
-      <img src={arrow} />
+    <div className={styles.wrapper} style={style}>
+      <span>{city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</span>
+      <img src={arrow} alt="icon" />
       <span>
         {path === '/doctors'
           ? 'Врачи'

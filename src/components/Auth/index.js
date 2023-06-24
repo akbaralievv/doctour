@@ -1,83 +1,45 @@
 import React, { useState } from 'react';
-import { Formik } from 'formik';
+import { NavLink } from 'react-router-dom';
 
-import styles from './Formik.module.css';
-import eyeShow from '../../assets/icons/Show.svg';
-import eyeHide from '../../assets/icons/Hide.svg';
+import styles from './Auth.module.css';
+import Phone from '../ui/inputs/Phone';
+import Password from '../ui/inputs/Password';
+import { useDispatch, useSelector } from 'react-redux';
+import { setState } from '../../redux/slices/PostAuthSlice';
 
 const Basic = () => {
-  const [eye, setEye] = useState(true);
-  const handleClick = (isTrue) => {
-    setEye(isTrue);
+  const { state } = useSelector((state) => state.PostAuthSlice);
+  const [value, setValue] = useState({
+    phone: '',
+    password: '',
+  });
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (disabled) {
+      dispatch(setState(value));
+    }
   };
+  const disabled = (value.phone + '').length >= 12 && value.password.length >= 4;
   return (
-    <div>
-      <Formik
-        initialValues={{ email: '', password: '' }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = 'Required';
-          } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-            errors.email = 'Invalid email address';
-          }
-          return errors;
-        }}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
-        }}>
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          isSubmitting,
-          /* and other goodies */
-        }) => (
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <label>
-              Логин
-              <input
-                type="email"
-                name="email"
-                onChange={handleChange}
-                onBlur={handleBlur}
-                value={values.email}
-                placeholder="Логин"
-              />
-            </label>
-            {errors.email && touched.email && errors.email}
-            <label>
-              Пароль
-              <div>
-                <input
-                  type={eye ? 'password' : 'text'}
-                  name="password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  value={values.password}
-                  placeholder="Пароль"
-                />
-                {eye ? (
-                  <img src={eyeShow} alt="icon" onClick={() => handleClick(false)} />
-                ) : (
-                  <img src={eyeHide} alt="icon" onClick={() => handleClick(true)} />
-                )}
-              </div>
-            </label>
-            {errors.password && touched.password && errors.password}
-            <button type="submit" disabled={isSubmitting}>
-              Войти
-            </button>
-          </form>
-        )}
-      </Formik>
-    </div>
+    <form className={styles.form} onSubmit={handleSubmit}>
+      <div>
+        Логин
+        <Phone value={value.phone} setValue={setValue} />
+      </div>
+      <div>
+        Пароль
+        <Password value={value.password} setValue={setValue} name="password" />
+        <div className={styles.forgout}>
+          <NavLink>Забыли пароль?</NavLink>
+        </div>
+      </div>
+      <button type="submit" className={!disabled ? styles.disabled : ''}>
+        Войти
+      </button>
+    </form>
   );
 };
 

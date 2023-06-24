@@ -1,0 +1,45 @@
+.wrapper {
+  margin: 32px 0;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 179px;
+  margin-top: 32px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.inner h2 {
+  margin-bottom: 32px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  color: #023246;
+}
+.inner ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 26px;
+  list-style: none;
+}
+.inner ul a {
+  text-decoration: none;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #023246;
+  border-bottom: 1.5px solid #023246;
+  padding-bottom: 10px;
+}

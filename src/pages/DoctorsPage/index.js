@@ -1,31 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CardDoctor from '../../components/CardDoctor';
 import './DoctorModule.css';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import PaginationDocs from '../../Functions/PaginationDoctors/PaginationDocs';
 import SearchForm from '../../components/SearchForm';
+import { getDoctors } from '../../redux/slices/GetDoctorsSlice';
 
 function DoctorsPage() {
-  const [doctors, setDoctors] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
+  const [value, setValue] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
+  const { data } = useSelector((state) => state.GetDoctorsSlice);
+  const dispatch = useDispatch();
 
-  const fetchDoctors = async () => {
-    const res = await axios.get(`https://6470c3c53de51400f724e60f.mockapi.io/api/v1/doctors`);
-    setDoctors(res.data);
-  };
   useEffect(() => {
-    fetchDoctors();
-  }, []);
+    dispatch(getDoctors({ city, value }));
+  }, [city, value.trim()]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = doctors.slice(indexOfFirstPost, indexOfLastPost);
-  const howManyPages = Math.ceil(doctors.length / postsPerPage);
+  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(data.length / postsPerPage);
 
   return (
     <div className={'cont'}>
@@ -34,12 +32,17 @@ function DoctorsPage() {
           <Breadcrumbs />
         </div>
         <div className="infoDoctors">
-          <h1>Все врачи города {city === 'bishkek' ? 'Бишкек' : city === 'osh' ? 'Ош' : ''}</h1>
+          <h1>Все врачи города {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</h1>
         </div>
-        <SearchForm placeholder={'Врачи'} style={{ marginBottom: '48px' }} />
+        <SearchForm
+          placeholder={'Врачи'}
+          style={{ marginBottom: '48px' }}
+          value={value}
+          setValue={setValue}
+        />
 
-        {currentPosts.map((e, id) => (
-          <CardDoctor data={e} key={id} />
+        {currentPosts.map((data) => (
+          <CardDoctor data={data} key={data.id} />
         ))}
         <div className="pagination-block">
           <PaginationDocs setCurrentPage={setCurrentPage} pages={howManyPages} />

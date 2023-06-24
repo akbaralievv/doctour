@@ -1,0 +1,39 @@
+.wrapper
+    display: flex
+    justify-content: space-between
+    label
+        position: relative
+    input
+        width: 158px
+        height: 56px
+        cursor: pointer
+        &::placeholder
+            color: rgba(182, 182, 182, 1)
+    img
+        position: absolute
+        cursor: pointer
+        right: 24px
+        top: 24px
+    .down
+        transform: rotateX(180deg)
+    .open
+        border-radius: 8px 8px 0 0
+        border-bottom: none
+    .options
+        cursor: pointer
+        position: absolute
+        list-style: none
+        height: 250px
+        overflow: scroll
+        overflow-x: hidden
+        width: 100%
+        background-color: rgba(246, 246, 246, 1)
+        padding-bottom: 5px
+        border: 1px solid #B6B6B6
+        z-index: 1
+
+        li
+            padding-left: 24px
+            &:hover
+                background-color: #1B6B93
+                color: #fff

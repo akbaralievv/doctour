@@ -1,0 +1,65 @@
+.wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.wrapper label {
+  position: relative;
+}
+.wrapper input {
+  width: 158px;
+  height: 56px;
+  cursor: pointer;
+}
+.wrapper input::-webkit-input-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper input::-moz-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper input:-ms-input-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper input::-ms-input-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper input::placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper img {
+  position: absolute;
+  cursor: pointer;
+  right: 24px;
+  top: 24px;
+}
+.wrapper .down {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+.wrapper .open {
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+}
+.wrapper .options {
+  cursor: pointer;
+  position: absolute;
+  list-style: none;
+  height: 250px;
+  overflow: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+  padding-bottom: 5px;
+  border: 1px solid #B6B6B6;
+  z-index: 1;
+}
+.wrapper .options li {
+  padding-left: 24px;
+}
+.wrapper .options li:hover {
+  background-color: #1B6B93;
+  color: #fff;
+}
