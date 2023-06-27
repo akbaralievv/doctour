@@ -13,12 +13,13 @@ function DoctorsPage() {
   const [postsPerPage] = useState(7);
   const [value, setValue] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
-  const { data } = useSelector((state) => state.GetDoctorsSlice);
+  const { data, loading, error } = useSelector((state) => state.GetDoctorsSlice);
   const dispatch = useDispatch();
+  const { idSpecialty, nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
 
   useEffect(() => {
-    dispatch(getDoctors({ city, value }));
-  }, [city, value.trim()]);
+    dispatch(getDoctors({ city, value, idSpecialty }));
+  }, [city, value.trim(), idSpecialty]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -29,10 +30,13 @@ function DoctorsPage() {
     <div className={'cont'}>
       <div className="wrapper">
         <div className="crumbLinks">
-          <Breadcrumbs />
+          <Breadcrumbs specialty={nameSpecialty} />
         </div>
         <div className="infoDoctors">
-          <h1>Все врачи города {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</h1>
+          <h1>
+            Все {nameSpecialty || 'врачи'} города{' '}
+            {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}
+          </h1>
         </div>
         <SearchForm
           placeholder={'Врачи'}

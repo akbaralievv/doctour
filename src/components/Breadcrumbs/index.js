@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import arrow from '../../assets/icons/Arrow - Right 2.svg';
 import styles from './Breadcrumbs.module.css';
 
-function Breadcrumbs({ style }) {
+function Breadcrumbs({ style, specialty }) {
   const location = useLocation();
   const [path, setPath] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
@@ -25,8 +25,16 @@ function Breadcrumbs({ style }) {
           ? 'Услуги'
           : path === '/clinics'
           ? 'Клиники'
+          : path === '/favorites'
+          ? 'Избранные'
           : ''}
       </span>
+      {specialty && (
+        <>
+          <img src={arrow} alt="icon" />
+          <span>{specialty}</span>
+        </>
+      )}
     </div>
   );
 }

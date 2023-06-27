@@ -5,8 +5,15 @@ import styles from './Header.module.css';
 import logo from '../../assets/icons/logo.svg';
 import logoLogin from '../../assets/icons/Login.svg';
 import SelectCity from '../SelectCity';
+import { useDispatch } from 'react-redux';
+import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 
 function Header() {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(setIdSpecialty(''));
+    dispatch(setNameSpecialty(''));
+  };
   return (
     <header className={styles.wrapper}>
       <div className={styles.container}>
@@ -23,6 +30,7 @@ function Header() {
                 <li>
                   <NavLink
                     to="/doctors"
+                    onClick={handleClick}
                     className={({ isActive }) => (isActive ? styles.active : '')}>
                     Врачи
                   </NavLink>
@@ -39,6 +47,13 @@ function Header() {
                     to="/clinics"
                     className={({ isActive }) => (isActive ? styles.active : '')}>
                     Клиники
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/favorites"
+                    className={({ isActive }) => (isActive ? styles.active : '')}>
+                    Избранные
                   </NavLink>
                 </li>
               </ul>

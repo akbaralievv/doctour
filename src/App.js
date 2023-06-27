@@ -8,6 +8,7 @@ import LoginPage from './pages/LoginPage';
 import ServicesPage from './pages/ServicesPage';
 import AboutDoctor from './components/AboutDoctor';
 import ErrorPage from './pages/ErrorPage';
+import FavoritesPage from './pages/FavoritesPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/clinics" element={<ClinicsPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/favorites" element={<FavoritesPage />} />
         </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>

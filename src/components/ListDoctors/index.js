@@ -3,13 +3,17 @@ import style from './ListDoctors.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpecialty } from '../../redux/slices/GetSpecialtySlice.js';
+import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 
 function ListDoctorsCopy() {
   const { data } = useSelector((state) => state.GetSpecialtySlice);
   const [objArray, setObjArray] = useState(null);
   const dispatch = useDispatch();
   const { city } = useSelector((state) => state.UIReducer);
-
+  const handleClick = (id, name) => {
+    dispatch(setIdSpecialty(id));
+    dispatch(setNameSpecialty(name));
+  };
   useEffect(() => {
     dispatch(getSpecialty(city));
   }, [city]);
@@ -34,7 +38,6 @@ function ListDoctorsCopy() {
       setObjArray(objArray);
     }
   }, [data]);
-
   return (
     <>
       <h2 className={style.h2}>Специальности врачей</h2>
@@ -47,8 +50,11 @@ function ListDoctorsCopy() {
                   <h3>{Object.keys(item)}</h3>
                 </li>
                 {Object.values(item)?.map((data) =>
-                  data.map((item, key) => (
-                    <Link to="/" key={key}>
+                  data.map((item) => (
+                    <Link
+                      to="/doctors"
+                      key={item.id}
+                      onClick={() => handleClick(item.id, item.name)}>
                       <li>
                         <span className={style.count}>{item.id}</span>
                         <span>{item.name}</span>

@@ -11,14 +11,39 @@ import star from '../../assets/icons/Star.svg';
 
 import Card from '../../assets/images/img.png';
 import './module.css';
+import { useDispatch } from 'react-redux';
+import { setLikeSlice } from '../../redux/slices/favoritesSlice';
 
 function CardDoctor({ data }) {
   const [like, setLike] = useState(false);
   const [stars, setStar] = useState([]);
-
+  const dispatch = useDispatch();
   const handleLike = () => {
     setLike(!like);
   };
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || { doctors: [], clinics: [] };
+    const isLiked = favorites.doctors?.some((favorite) => favorite.id === data.id);
+    setLike(isLiked);
+  }, [data]);
+
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || { doctors: [], clinics: [] };
+
+    if (like) {
+      const existingIndex = favorites.doctors?.findIndex((favorite) => favorite.id === data.id);
+      if (existingIndex === -1) {
+        favorites.doctors.push(data);
+      }
+    } else {
+      const filteredFavorites = favorites.doctors?.filter((favorite) => favorite.id !== data.id);
+      favorites.doctors = filteredFavorites;
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+    dispatch(setLikeSlice(like));
+  }, [like, data]);
+
   const StarArray = (num) => {
     const stars = [];
     let count = 0;
@@ -36,7 +61,7 @@ function CardDoctor({ data }) {
 
   useEffect(() => {
     setStar(StarArray(data.average_rating));
-  }, []);
+  }, [data.average_rating]);
 
   return (
     <Link style={{ outline: 'none', textDecoration: 'none' }}>
@@ -91,7 +116,7 @@ function CardDoctor({ data }) {
                       e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
                     )}
                 </div>
-                <div className="rate">{data.rating}</div>
+                <div className="rate">{data.average_rating?.toFixed(2)}</div>
                 <div className="feedback">
                   <p>{data.num_reviews} отзывов</p>
                 </div>

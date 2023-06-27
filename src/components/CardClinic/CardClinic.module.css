@@ -20,6 +20,23 @@
   border: 1px solid #1B6B93;
   border-radius: 16px;
   padding: 16px;
+  position: relative;
+}
+.container .CardClinic_inner .heart {
+  z-index: 2;
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  cursor: pointer;
+  position: absolute;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin: 8px;
+  width: 32px;
+  height: 32px;
+  top: 0;
+  left: 0;
 }
 .container .CardClinic_inner > a {
   text-decoration: none;
