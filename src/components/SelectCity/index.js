@@ -24,7 +24,7 @@ function SelectCity() {
         </div>
         <div className={cityModal ? styles.selectBox : styles.none}>
           <div className={styles.line}>
-            <img src={line} />
+            <img src={line} alt="icon" />
           </div>
           <div className={styles.option}>
             <input onChange={changeLocation} id={'1c'} value={'1'} type={'checkbox'} />

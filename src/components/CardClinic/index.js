@@ -3,7 +3,6 @@ import styles from './CardClinic.module.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import clinic from '../../assets/images/CardClinic/Unimed-Clinic.png';
 import location from '../../assets/icons/CardClinic/Location.svg';
 import discovery from '../../assets/icons/CardClinic/Discovery.svg';
 import time from '../../assets/icons/CardClinic/Time-Circle.svg';
