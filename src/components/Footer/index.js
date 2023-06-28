@@ -13,7 +13,7 @@ function Footer() {
         <nav className={styles.inner}>
           <div className={styles.logo}>
             <img src={logo} alt="logo" />
-            <span>Doctour</span>
+            <span>DocTour</span>
           </div>
           <ul className={styles.links}>
             <li>
@@ -35,7 +35,7 @@ function Footer() {
             </a>
           </div>
         </nav>
-        <p className={styles.copyright}>Copyright © 2023 All rights reserved - Doctour</p>
+        <p className={styles.copyright}>Copyright © 2023 All rights reserved - DocTour</p>
       </div>
     </footer>
   );

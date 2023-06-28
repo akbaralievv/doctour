@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.SERVICE_URL;
+const URL = links.BASE_URL + '/service/';
 
 export const getServices = createAsyncThunk('getServices', async function (city) {
   try {

@@ -4,7 +4,6 @@ export const UISlice = createSlice({
   name: 'UISlice',
   initialState: {
     popUp: false,
-    langPopUp: false,
     cityModal: false,
     city: '1',
   },

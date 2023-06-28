@@ -12,7 +12,7 @@ function SelectCity() {
     dispatch(setCity(e.target.value));
   };
   const cityHandle = () => {
-    dispatch(actionCityPop({ open: 'city', close: 'lang' }));
+    dispatch(actionCityPop({ open: 'city' }));
   };
 
   return (

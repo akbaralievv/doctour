@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.DOCTORS_URL;
+const URL = links.BASE_URL + '/doctors/';
 
 export const getDoctors = createAsyncThunk(
   'getDoctors',

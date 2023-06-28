@@ -87,7 +87,7 @@ function CardClinic({ data }) {
           />
           <a href={data.link_clinic} target="_blank">
             <div className={styles.CardClinic_logo}>
-              <img src={clinic} alt="Unimed-Clinic" />
+              <img src={data.photo} alt="Unimed-Clinic" />
             </div>
           </a>{' '}
           <div className={styles.CardClinic_title}>

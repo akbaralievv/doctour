@@ -7,8 +7,7 @@ import Password from '../ui/inputs/Password';
 import { useDispatch, useSelector } from 'react-redux';
 import { setState } from '../../redux/slices/PostAuthSlice';
 
-const Basic = () => {
-  const { state } = useSelector((state) => state.PostAuthSlice);
+const Auth = ({ forgot }) => {
   const [value, setValue] = useState({
     phone: '',
     password: '',
@@ -32,8 +31,8 @@ const Basic = () => {
       <div>
         Пароль
         <Password value={value.password} setValue={setValue} name="password" />
-        <div className={styles.forgout}>
-          <NavLink>Забыли пароль?</NavLink>
+        <div className={styles.forgot}>
+          <NavLink onClick={forgot}>Забыли пароль?</NavLink>
         </div>
       </div>
       <button type="submit" className={!disabled ? styles.disabled : ''}>
@@ -43,4 +42,4 @@ const Basic = () => {
   );
 };
 
-export default Basic;
+export default Auth;

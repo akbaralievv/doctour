@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.SPECIALITY_URL;
+const URL = links.BASE_URL + '/speciality/';
 
 export const getSpecialty = createAsyncThunk('getSpecial', async function (city) {
   try {

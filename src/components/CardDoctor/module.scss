@@ -79,13 +79,7 @@
           justify-content: space-between;
           align-items: center;
           margin-bottom: 20px;
-          .stage{
-            width: 133px;
-          }
-          div{
-            width: 180px;
-            height: 24px;
-          }
+          gap: 27px;
           p{
             display: flex;
             align-items: center;
@@ -93,6 +87,9 @@
               margin-right: 13px;
             }
 
+          }
+          .instagram{
+            width: 24px;
           }
         }
       }

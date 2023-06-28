@@ -7,12 +7,16 @@ import iconB from '../../assets/icons/TopDoctors/Dantist.svg';
 import iconC from '../../assets/icons/TopDoctors/Dermotolog.svg';
 import iconD from '../../assets/icons/TopDoctors/OKulist.svg';
 import iconE from '../../assets/icons/TopDoctors/Akusher.svg';
-import iconF from '../../assets/icons/TopDoctors/Psyhology.svg';
+import iconF from '../../assets/icons/TopDoctors/Clip path group.png';
+import iconG from '../../assets/icons/TopDoctors/cardio.png';
+import iconH from '../../assets/icons/TopDoctors/pediatr.png';
 
 function TopDoctors() {
   const texts = [
     { title: 'Терапевт', img: iconA },
-    { title: 'Стомотолог', img: iconB },
+    { title: 'Кардиолог', img: iconG },
+    { title: 'Педиатр', img: iconH },
+    { title: 'Стоматолог', img: iconB },
     { title: 'Дерматолог', img: iconC },
     { title: 'Офтальмолог', img: iconD },
     { title: 'Акушер', img: iconE },

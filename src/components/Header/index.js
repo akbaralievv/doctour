@@ -22,7 +22,7 @@ function Header() {
             <div className={styles.logo}>
               <NavLink to="/">
                 <img src={logo} alt="logo" />
-                <span>Doctour</span>
+                <span>DocTour</span>
               </NavLink>
             </div>
             <div className={styles.nav}>

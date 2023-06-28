@@ -72,14 +72,21 @@ function CardDoctor({ data }) {
           src={like ? heartActive : heart}
           alt="heart"
         />
-        <img className={'cardAvatar'} src={Card} alt="doctor" />
+        <img className={'cardAvatar'} src={data.photo} alt="doctor" />
         <div className="info">
           <div className="up-side">
             <div className="left">
               <div className="full-name">
                 <h1>{data.full_name}</h1>
               </div>
-              <div className="speciality">{data.specialties.map((spec) => spec.name)}</div>
+              <div className="speciality">
+                {data.specialties.map((spec, index) => (
+                  <React.Fragment key={spec.id}>
+                    {spec.name}
+                    {index !== data.specialties.length - 1 && ', '}
+                  </React.Fragment>
+                ))}
+              </div>
               <div className="education">
                 <p>
                   <img src={location} />
