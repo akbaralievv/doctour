@@ -35,14 +35,22 @@
   margin-top: 16px;
   background: #DEECF2;
   border-radius: 8px;
-  color: #1B6B93;
+  color: #023246;
   font-weight: 500;
   -webkit-animation: 300ms show;
           animation: 300ms show;
 }
 .selector .selectBox .option {
   z-index: 3;
-  padding: 10px 23px;
+  padding: 10px 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
 }
 .selector .selectBox .option label {
   cursor: pointer;
@@ -53,23 +61,18 @@
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  margin-bottom: 16px;
 }
-.selector .selectBox .line {
-  width: 100%;
-  height: 100%;
-  margin: auto;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  position: absolute;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  z-index: 0;
+.selector .selectBox .option label .select, .selector .selectBox .option label:hover {
+  color: #1B6B93;
 }
-.selector .selectBox .line img {
+.selector .selectBox hr {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border: none;
+  border: 1px solid #023246;
+}
+.selector .selectBox hr img {
   margin: auto;
 }
 .selector .selectBox input {
@@ -86,6 +89,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 127px;
 }
 
 .none {

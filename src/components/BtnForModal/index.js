@@ -1,29 +1,46 @@
 import React from 'react';
-import style from './BtnForModal.module.sass'
+import style from './BtnForModal.module.sass';
+import { useDispatch, useSelector } from 'react-redux';
+import { handleFeedBack } from '../../redux/slices/DoctorsSlice';
+import CommentItem from '../CommentItem';
 
-function BtnForModal()  {
-    return (
-        <div className={style.btnForModal}>
-            <div className={style.container}>
-                <div className={style.inner}>
-                    <div className={style.leftBlock}>
-                        <div className={style.spanOne}>
-                            <span>Врач принимает по адресу:</span>
-                            <span>Ул. Медерова, 135 лечебно-диагностический центр ЮРФА </span>
-                        </div>
-                        <div className={style.spanTwo}>
-                            <span>График работы: </span>
-                            <span>08:00 - 12:00 по пн, ср, пт</span>
-                            <span>12:00 - 17:00 по пн, ср, пт</span>
-                        </div>
-                    </div>
-                    <div className={style.btnBlock}>
-                        <button className={style.btn}>Записаться на прием</button>
-                    </div>
-                </div>
+function BtnForModal({ data }) {
+  const dispatch = useDispatch();
+
+  const handleShow = () => {
+    document.body.style.overflow = 'hidden';
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
+    dispatch(handleFeedBack(true));
+  };
+
+  return (
+    <div>
+      <div className={style.btnForModal}>
+        <div className={style.container}>
+          <div className={style.inner}>
+            <div className={style.left}>
+              <div className={style.spans}>
+                <p onClick={handleShow}>Написать Отзыв</p>
+              </div>
             </div>
+            <div className={style.right}>
+              <div>{data?.num_reviews} отзывов</div>
+            </div>
+          </div>
+
+          <div className={style.comments}>
+            {data.doctor_reviews?.map((e) => (
+              <CommentItem key={e.id} e={e} />
+            ))}
+          </div>
         </div>
-    );
-};
+      </div>
+    </div>
+  );
+}
 
 export default BtnForModal;

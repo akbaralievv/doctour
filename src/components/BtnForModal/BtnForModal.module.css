@@ -1,16 +1,9 @@
-.btnForModal {
-  height: 120px;
-}
 .btnForModal .container {
-  width: 1147px;
+  width: 1280px;
   margin: 0 auto;
 }
 .btnForModal .container .inner {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  padding: 10px;
-  border-radius: 10px;
-  border: 1px solid #1B6B93;
+  font-family: "Open Sans", sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -18,14 +11,75 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-.btnForModal .container .inner .leftBlock {
-  width: 400px;
-  height: 100px;
+.btnForModal .container .inner .left {
+  width: 703px;
+  height: 70px;
 }
-.btnForModal .container .inner .btnBlock .btn {
+.btnForModal .container .inner .left .h2 {
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #023246;
+}
+.btnForModal .container .inner .left h2:nth-child(2) {
+  color: #1B6B93;
+  margin: 20px 0 0 0;
+}
+.btnForModal .container .inner .spans {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.btnForModal .container .inner .spans p {
+  font-family: "Open Sans";
+  font-size: 24px;
+  font-weight: bold;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  width: 342px;
+  height: 64px;
+  border: 1.5px solid #1B6B93;
+  border-radius: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.btnForModal .container .inner .spans p:nth-child(2) {
+  color: #B6B6B6;
+  border: 1px solid #B6B6B6;
+  font-weight: 700;
+}
+.btnForModal .container .inner .right {
+  font-size: 32px;
+  color: #023246;
+  font-weight: bold;
+}
+.btnForModal .container .inner .right .btnn {
   width: 325px;
   height: 64px;
-  border: none;
-  background: #1B6B93;
+  border: 1px solid #1B6B93;
   border-radius: 8px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #1B6B93;
+  background: none;
+}
+.btnForModal .comments {
+  margin-top: 40px;
+  margin-bottom: 72px;
 }

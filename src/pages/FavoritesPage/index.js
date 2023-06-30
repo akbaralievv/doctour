@@ -27,11 +27,11 @@ function FavoritesPage() {
             Избранные <img src={ellipse} alt="ellipse" />{' '}
             {data.doctors?.length + data.clinics?.length}
           </h2>
-          {data.doctors?.map((state) => (
-            <CardDoctor key={state.id} data={state} />
+          {data.doctors?.map((item) => (
+            <CardDoctor key={item.id} data={item} />
           ))}
-          {data.clinics?.map((state) => (
-            <CardClinic key={state.id} data={state} />
+          {data.clinics?.map((item) => (
+            <CardClinic key={item.id} data={item} />
           ))}
         </div>
       </div>

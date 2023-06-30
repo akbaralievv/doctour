@@ -12,10 +12,12 @@ function DoctorsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(7);
   const [value, setValue] = useState('');
+
   const { city } = useSelector((state) => state.UIReducer);
   const { data, loading, error } = useSelector((state) => state.GetDoctorsSlice);
-  const dispatch = useDispatch();
   const { idSpecialty, nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDoctors({ city, value, idSpecialty }));
@@ -23,8 +25,8 @@ function DoctorsPage() {
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
-  const howManyPages = Math.ceil(data.length / postsPerPage);
+  const currentPosts = data?.slice(indexOfFirstPost, indexOfLastPost);
+  const howManyPages = Math.ceil(data?.length / postsPerPage);
 
   return (
     <div className={'cont'}>
@@ -45,7 +47,7 @@ function DoctorsPage() {
           setValue={setValue}
         />
 
-        {currentPosts.map((data) => (
+        {currentPosts?.map((data) => (
           <CardDoctor data={data} key={data.id} />
         ))}
         <div className="pagination-block">

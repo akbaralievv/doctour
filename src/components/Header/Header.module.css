@@ -97,3 +97,16 @@
       -ms-flex-align: center;
           align-items: center;
 }
+
+.favoritesPage {
+  position: relative;
+}
+
+.countFavorites {
+  top: -8px;
+  position: absolute;
+  font-size: 18px;
+  font-family: Open Sans;
+  font-weight: 600;
+  color: #F04141;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styles from './CreateAcc.module.css';
 import FullName from '../ui/inputs/FullName';
@@ -8,32 +8,33 @@ import Phone from '../ui/inputs/Phone';
 import Password from '../ui/inputs/Password';
 import ConfirmPassword from '../ui/inputs/ConfirmPassword';
 import { useDispatch, useSelector } from 'react-redux';
-import { setState } from '../../redux/slices/PostCreateAccSlice';
+import { postCreateAccSlice } from '../../redux/slices/PostCreateAccSlice';
 
 function CreateAcc() {
-  const { state } = useSelector((state) => state.PostCreateAccSlice);
   const [value, setValue] = useState({
-    fullName: '',
-    phone: '',
-    password: '',
-    confirmPassword: '',
-    birthday: '',
+    phone_number: '',
+    fullname: '',
     gender: '',
+    birthday: '',
+    password: '',
   });
+  const [openModal, setOpenModal] = useState(false);
 
+  const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
-      dispatch(setState(value));
+      dispatch(postCreateAccSlice(value));
     }
   };
+
   const disabled =
-    value.fullName &&
-    value.phone &&
+    value.fullname &&
+    value.phone_number &&
     value.password.length >= 4 &&
-    value.confirmPassword === value.password &&
+    confirmPassword === value.password &&
     value.birthday &&
     value.gender;
 
@@ -41,7 +42,7 @@ function CreateAcc() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <div>
         ФИО
-        <FullName value={value.fullName} setValue={setValue} />
+        <FullName value={value.fullname} setValue={setValue} />
       </div>
       <div>
         Дата рождения
@@ -53,7 +54,7 @@ function CreateAcc() {
       </div>
       <div>
         Номер телефона
-        <Phone value={value.phone} setValue={setValue} />
+        <Phone value={value.phone_number} setValue={setValue} />
       </div>
       <div>
         Создать пароль
@@ -62,10 +63,10 @@ function CreateAcc() {
       <div>
         Повторить пароль
         <ConfirmPassword
-          value={value.confirmPassword}
-          setValue={setValue}
+          value={confirmPassword}
+          setValue={setConfirmPassword}
           name="confirmPassword"
-          style={value.confirmPassword === value.password ? true : false}
+          style={confirmPassword === value.password ? true : false}
         />
       </div>
       <button type="submit" className={!disabled ? styles.disabled : ''}>

@@ -1,0 +1,53 @@
+.wrapper
+  padding: 32px 0 56px 0
+  .container
+    width: 1200px
+    margin: 0 auto
+    .inner
+      display: flex
+      flex-direction: column
+      gap: 40px
+      h2
+        color: #023246
+        text-align: center
+        font-size: 24px
+        font-family: Open Sans
+        font-weight: 700
+        span
+          color: #1B6B93
+      form
+        margin: 0 auto
+        width: 590px
+        .inputs
+          margin-bottom: 48px
+          display: flex
+          flex-direction: column
+          gap: 16px
+          &>div
+            display: flex
+            flex-direction: column
+            gap: 8px
+            font-size: 16px
+            font-family: Open Sans
+            color: #023246
+            font-weight: 600
+            & input
+              width: 100%
+          & .birthday>div
+            display: flex
+            gap: 20px
+          & .gender input
+            width: 24px
+        button
+          cursor: pointer
+          width: 100%
+          border: none
+          font-size: 20px
+          font-family: Open Sans
+          color: #FFFFFF
+          font-weight: 600
+          padding: 20px 100px
+          border-radius: 8px
+          background: var(--unnamed, #1B6B93)
+        .disabled
+          background-color: #DEECF2

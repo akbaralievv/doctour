@@ -14,7 +14,7 @@ function Phone({ value, setValue }) {
     const phoneValue = event.target.value.split(' ').join('').replace(/\D/g, '');
     const phoneRegExp = /^\d{9}$/;
     if (phoneRegExp.test(phoneValue)) {
-      setValue((prev) => ({ ...prev, [event.target.name]: +`996${phoneValue}` }));
+      setValue((prev) => ({ ...prev, [event.target.name]: `996${phoneValue}` }));
       setValid(true);
     } else {
       setValue((prev) => ({ ...prev, [event.target.name]: '' }));
@@ -27,11 +27,11 @@ function Phone({ value, setValue }) {
       <div style={{ position: 'relative' }}>
         <InputMask
           required
-          name="phone"
+          name="phone_number"
           mask="(999) 99 - 99 - 99"
           maskChar="_"
           placeholder="Номер телефона"
-          autoComplete="phone"
+          autoComplete="phone_number"
           onChange={handleChange}
           onBlur={handleBlur}
           className={`${styles.phone} ${valid && styles.valid}`}

@@ -7,7 +7,7 @@ import iconB from '../../assets/icons/TopDoctors/Dantist.svg';
 import iconC from '../../assets/icons/TopDoctors/Dermotolog.svg';
 import iconD from '../../assets/icons/TopDoctors/OKulist.svg';
 import iconE from '../../assets/icons/TopDoctors/Akusher.svg';
-import iconF from '../../assets/icons/TopDoctors/Clip path group.png';
+import iconF from '../../assets/icons/Psyhology (2).svg';
 import iconG from '../../assets/icons/TopDoctors/cardio.png';
 import iconH from '../../assets/icons/TopDoctors/pediatr.png';
 

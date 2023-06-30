@@ -11,7 +11,7 @@ function ForgotPassword() {
   return (
     <div className={styles.wrapper}>
       <h2>Восстановление пароля</h2>
-      <p>Введите свою почту, мы отправим Вам по почте ссылку для сброса пароля</p>
+      <p>Введите свою номер, мы отправим Вам по смс код для сброса пароля</p>
       <form onSubmit={handleSubmit}>
         <div>
           Номер телефона

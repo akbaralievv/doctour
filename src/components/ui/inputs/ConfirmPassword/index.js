@@ -9,7 +9,7 @@ function ConfirmPassword({ value, setValue, name, style }) {
 
   const handleChange = (event) => {
     const inputValue = event.target.value;
-    setValue((prev) => ({ ...prev, [event.target.name]: inputValue }));
+    setValue(inputValue);
   };
 
   const handleClickEye = (isTrue) => {

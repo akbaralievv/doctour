@@ -16,7 +16,7 @@ function FullName({ value, setValue }) {
 
   return (
     <div className={styles.wrapper}>
-      <input required type="text" name="fullName" onChange={handleChange} value={value} />
+      <input required type="text" name="fullname" onChange={handleChange} value={value} />
     </div>
   );
 }

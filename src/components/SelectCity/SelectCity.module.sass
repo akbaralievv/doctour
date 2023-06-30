@@ -20,28 +20,28 @@
         margin-top: 16px
         background: #DEECF2
         border-radius: 8px
-        color: #1B6B93
+        color: #023246
         font-weight: 500
         animation: 300ms show
 
         .option
             z-index: 3
-            padding: 10px 23px
+            padding: 10px 26px
+            display: flex
+            flex-direction: column
+            gap: 8px
             label
                 cursor: pointer
                 p
                     font-weight: 500
                     user-select: none
-                    margin-bottom: 16px
+                .select, &:hover
+                    color: #1B6B93
 
-        .line
-            width: 100%
-            height: 100%
-            margin: auto
-            user-select: none
-            position: absolute
-            display: flex
-            z-index: 0
+        hr
+            appearance: none
+            border: none
+            border: 1px solid #023246
             img
                 margin: auto
 
@@ -52,5 +52,6 @@
     display: flex
     flex-wrap: wrap
     justify-content: space-between
+    width: 127px
 .none
     display: none

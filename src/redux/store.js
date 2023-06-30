@@ -7,6 +7,9 @@ import PostCreateAccSlice from './slices/PostCreateAccSlice';
 import PostAuthSlice from './slices/PostAuthSlice';
 import GetClinicSlice from './slices/GetClinicSlice';
 import favoritesSlice from './slices/favoritesSlice';
+import DoctorsReducer from './slices/DoctorsSlice';
+import GetProfileSlice from './slices/GetProfileSlice';
+import PostWhatsappSlice from './slices/PostWhatsappSlice';
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +21,8 @@ export const store = configureStore({
     PostAuthSlice,
     GetClinicSlice,
     favoritesSlice,
+    DoctorsReducer,
+    GetProfileSlice,
+    PostWhatsappSlice,
   },
 });

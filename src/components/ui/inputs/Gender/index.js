@@ -10,11 +10,11 @@ function Gender({ value, setValue }) {
   return (
     <div className={styles.wrapper}>
       <label>
-        <input required type="radio" name="gender" value="male" onChange={handleChange} />
+        <input required type="radio" name="gender" value="Male" onChange={handleChange} />
         Мужской
       </label>
       <label>
-        <input required type="radio" name="gender" value="female" onChange={handleChange} />
+        <input required type="radio" name="gender" value="Female" onChange={handleChange} />
         Женский
       </label>
     </div>

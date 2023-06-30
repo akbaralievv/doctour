@@ -1,0 +1,83 @@
+.wrapper {
+  padding: 32px 0 56px 0;
+}
+.wrapper .container {
+  width: 1200px;
+  margin: 0 auto;
+}
+.wrapper .container .inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 40px;
+}
+.wrapper .container .inner h2 {
+  color: #023246;
+  text-align: center;
+  font-size: 24px;
+  font-family: Open Sans;
+  font-weight: 700;
+}
+.wrapper .container .inner h2 span {
+  color: #1B6B93;
+}
+.wrapper .container .inner form {
+  margin: 0 auto;
+  width: 590px;
+}
+.wrapper .container .inner form .inputs {
+  margin-bottom: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 16px;
+}
+.wrapper .container .inner form .inputs > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 8px;
+  font-size: 16px;
+  font-family: Open Sans;
+  color: #023246;
+  font-weight: 600;
+}
+.wrapper .container .inner form .inputs > div input {
+  width: 100%;
+}
+.wrapper .container .inner form .inputs .birthday > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 20px;
+}
+.wrapper .container .inner form .inputs .gender input {
+  width: 24px;
+}
+.wrapper .container .inner form button {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  font-size: 20px;
+  font-family: Open Sans;
+  color: #FFFFFF;
+  font-weight: 600;
+  padding: 20px 100px;
+  border-radius: 8px;
+  background: var(--unnamed, #1B6B93);
+}
+.wrapper .container .inner form .disabled {
+  background-color: #DEECF2;
+}

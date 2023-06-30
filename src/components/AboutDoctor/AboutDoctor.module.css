@@ -1,10 +1,13 @@
+.aboutDoctor {
+  height: 357px;
+  margin-top: 64px;
+}
 .aboutDoctor .container {
-  width: 1200px;
+  width: 1280px;
   margin: 0 auto;
 }
 .aboutDoctor .container .info {
   font-family: "Open Sans", sans-serif;
-  height: 357px;
   color: #023246;
   font-weight: 700;
   letter-spacing: 1px;
@@ -18,6 +21,7 @@
 .aboutDoctor .container .info .infoImg {
   position: relative;
   margin-right: 27px;
+  z-index: -1;
 }
 .aboutDoctor .container .info .infoImg .imgOne {
   width: 357px;
@@ -32,7 +36,7 @@
   left: 8px;
 }
 .aboutDoctor .container .info .infoInner {
-  width: 564px;
+  width: 637px;
   height: 354px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -56,7 +60,7 @@
   line-height: 23px;
 }
 .aboutDoctor .container .info .infoInner .icons {
-  width: 475px;
+  width: 100%;
   height: 129px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -82,12 +86,17 @@
           align-items: center;
 }
 .aboutDoctor .container .info .infoInner .icons .iconInner img {
+  width: 24px;
   margin-right: 10px;
+}
+.aboutDoctor .container .info .infoInner .icons .iconInner a {
+  color: #023246;
+  text-decoration: none;
 }
 .aboutDoctor .container .info .infoInner p {
   font-size: 16px;
   line-height: 23px;
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
   letter-spacing: 0;
 }

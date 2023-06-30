@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
+
 import heart from '../../assets/icons/Heart.svg';
 import heartActive from '../../assets/icons/HeartActive.svg';
 import location from '../../assets/icons/Location.svg';
@@ -11,12 +14,13 @@ import star from '../../assets/icons/Star.svg';
 
 import Card from '../../assets/images/img.png';
 import './module.css';
-import { useDispatch } from 'react-redux';
 import { setLikeSlice } from '../../redux/slices/favoritesSlice';
+import { selectDoctor, handleIds } from '../../redux/slices/DoctorsSlice';
 
 function CardDoctor({ data }) {
   const [like, setLike] = useState(false);
   const [stars, setStar] = useState([]);
+  const auth = useSelector((state) => state.PostAuthSlice);
   const dispatch = useDispatch();
   const handleLike = () => {
     setLike(!like);
@@ -64,7 +68,7 @@ function CardDoctor({ data }) {
   }, [data.average_rating]);
 
   return (
-    <Link style={{ outline: 'none', textDecoration: 'none' }}>
+    <>
       <div style={{ marginBottom: '48px' }} className={'container'}>
         <img
           onClick={handleLike}
@@ -75,45 +79,50 @@ function CardDoctor({ data }) {
         <img className={'cardAvatar'} src={data.photo} alt="doctor" />
         <div className="info">
           <div className="up-side">
-            <div className="left">
-              <div className="full-name">
-                <h1>{data.full_name}</h1>
-              </div>
-              <div className="speciality">
-                {data.specialties.map((spec, index) => (
-                  <React.Fragment key={spec.id}>
-                    {spec.name}
-                    {index !== data.specialties.length - 1 && ', '}
-                  </React.Fragment>
-                ))}
-              </div>
-              <div className="education">
-                <p>
-                  <img src={location} />
-                  {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
-                </p>
-              </div>
-              <div className="mini-info">
-                <div className="stage">
+            <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.id}`}>
+              <div className="left">
+                <div className="full-name">
+                  <h1>{data.full_name}</h1>
+                </div>
+                <div className="speciality">
+                  {data.specialties.map((spec, index) => (
+                    <React.Fragment key={spec.id}>
+                      {spec.name}
+                      {index !== data.specialties.length - 1 && ', '}
+                    </React.Fragment>
+                  ))}
+                </div>
+                <div className="education">
                   <p>
-                    <img src={pulse} />
-                    Стаж {data.experience} лет
+                    <img src={location} />
+                    {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
                   </p>
                 </div>
-                <div className="price">
-                  <p>
-                    <img src={wallet} />
-                    Прием {data.price} сомов
-                  </p>
+                <div className="mini-info">
+                  <div className="stage">
+                    <p>
+                      <img src={pulse} />
+                      Стаж {data.experience} лет
+                    </p>
+                  </div>
+                  <div className="price">
+                    <p>
+                      <img src={wallet} />
+                      Прием {data.price} сомов
+                    </p>
+                  </div>
+                  <div className="instagram">
+                    <p>
+                      <img src={inst} />
+                      {data.social}
+                    </p>
+                  </div>
                 </div>
-                <div className="instagram">
-                  <p>
-                    <img src={inst} />
-                    {data.social}
-                  </p>
+                <div className="description">
+                  <p>{data.summary}</p>
                 </div>
               </div>
-            </div>
+            </Link>
             <div className="right">
               <div className="rating">
                 <div className="stars">
@@ -128,18 +137,20 @@ function CardDoctor({ data }) {
                   <p>{data.num_reviews} отзывов</p>
                 </div>
               </div>
-              <div className="amount">
-                Кол-во посетивших пациентов
-                <h2>-200-</h2>
-              </div>
+              {auth.data ? (
+                <Link to={'/whatsapp'} className={'btn'}>
+                  Записаться через WhatsApp
+                </Link>
+              ) : (
+                <Link to={'/login'} className={'btn'}>
+                  Записаться через WhatsApp
+                </Link>
+              )}
             </div>
-          </div>
-          <div className="description">
-            <p>{data.summary}</p>
           </div>
         </div>
       </div>
-    </Link>
+    </>
   );
 }
 

@@ -1,18 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import styles from './Header.module.css';
 import logo from '../../assets/icons/logo.svg';
 import logoLogin from '../../assets/icons/Login.svg';
 import SelectCity from '../SelectCity';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
+import { setAuth } from '../../redux/slices/PostAuthSlice';
 
 function Header() {
+  const { data } = useSelector((state) => state.PostAuthSlice);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(setIdSpecialty(''));
     dispatch(setNameSpecialty(''));
+  };
+  const handleClickAuth = () => {
+    dispatch(setAuth(''));
   };
   return (
     <header className={styles.wrapper}>
@@ -49,7 +54,7 @@ function Header() {
                     Клиники
                   </NavLink>
                 </li>
-                <li>
+                <li className={styles.favoritesPage}>
                   <NavLink
                     to="/favorites"
                     className={({ isActive }) => (isActive ? styles.active : '')}>
@@ -61,10 +66,17 @@ function Header() {
           </div>
           <div className={styles.select_login}>
             <SelectCity />
-            <NavLink to="/login">
-              <span>Войти</span>
-              <img src={logoLogin} alt="icon" />
-            </NavLink>
+            {data ? (
+              <NavLink onClick={handleClickAuth}>
+                <span>Выйти</span>
+                <img src={logoLogin} alt="icon" />
+              </NavLink>
+            ) : (
+              <NavLink to="/login">
+                <span>Войти</span>
+                <img src={logoLogin} alt="icon" />
+              </NavLink>
+            )}
           </div>
         </nav>
       </div>

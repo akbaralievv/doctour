@@ -28,6 +28,9 @@
     background: grey;
     border-radius: 16px;
   }
+  a{
+    width: 100%;
+  }
   .info{
     width: 100%;
     padding: 8px 12px 11px 24px;
@@ -96,6 +99,26 @@
       .right{
         position: relative;
         display: flex;
+        flex-direction: column;
+        gap: 25px;
+        align-items: center;
+        .btn {
+            padding: 0 7px;
+            border-radius: 8px;
+            background: #1B6B93;
+            font-size: 16px;
+            font-family: Open Sans;
+            font-weight: 600;
+            width: 240px;
+            height: 85px;
+            border-radius: 8px;
+            color: #FFFFFF;
+            text-decoration: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+          }
         .rating{
           width: 144px;
           height: 135px;
@@ -104,6 +127,7 @@
           text-align: center;
           flex-direction: column;
           justify-content: space-around;
+
           p{
             font-size: 16px;
             color: #023246;
@@ -132,5 +156,7 @@
       }
     }
   }
+    
 
 }
+
