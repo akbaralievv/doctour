@@ -4,22 +4,21 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpecialty } from '../../redux/slices/GetSpecialtySlice.js';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
+import { setSearch } from '../../redux/slices/GetGlobalSearch';
 
-function ListDoctorsCopy() {
-  const { data } = useSelector((state) => state.GetSpecialtySlice);
+function ListDoctors() {
+  const { data, loading } = useSelector((state) => state.GetSpecialtySlice);
   const [objArray, setObjArray] = useState(null);
   const dispatch = useDispatch();
-  const { city } = useSelector((state) => state.UIReducer);
+
   const handleClick = (id, name) => {
     dispatch(setIdSpecialty(id));
     dispatch(setNameSpecialty(name));
+    dispatch(setSearch(''));
   };
-  useEffect(() => {
-    dispatch(getSpecialty(city));
-  }, [city]);
 
   useEffect(() => {
-    if (data) {
+    if (data && !loading) {
       const firstChar = data?.map((item) => item.name[0]);
       const set = new Set([...firstChar]);
       const setArray = [...set];
@@ -37,7 +36,8 @@ function ListDoctorsCopy() {
       });
       setObjArray(objArray);
     }
-  }, [data]);
+  }, [data, loading]);
+
   return (
     <>
       <h2 className={style.h2}>Специальности врачей</h2>
@@ -71,4 +71,4 @@ function ListDoctorsCopy() {
   );
 }
 
-export default ListDoctorsCopy;
+export default ListDoctors;

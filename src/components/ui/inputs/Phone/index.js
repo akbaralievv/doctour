@@ -34,11 +34,10 @@ function Phone({ value, setValue }) {
           autoComplete="phone_number"
           onChange={handleChange}
           onBlur={handleBlur}
-          className={`${styles.phone} ${valid && styles.valid}`}
+          className={`${styles.phone} `}
         />
         <span className={styles.span}>+996</span>
       </div>
-      {valid && <span style={{ color: 'green' }}>Success</span>}
     </>
   );
 }

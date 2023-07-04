@@ -28,6 +28,30 @@
       -ms-flex-align: center;
           align-items: center;
 }
+.topDoctors .container .inner .topIcons .icons a:first-child img {
+  width: 72px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(2) img {
+  width: 108px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(3) img {
+  width: 135px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(4) img {
+  width: 124px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(5) img {
+  width: 67px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(6) img {
+  width: 133px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(7) img {
+  width: 62px;
+}
+.topDoctors .container .inner .topIcons .icons a:nth-child(8) img {
+  width: 79px;
+}
 
 .block {
   width: 152px;
@@ -36,8 +60,29 @@
   color: #1B6B93;
   text-decoration: none;
   cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.block .img {
-  width: 133px;
-  height: 135px;
+.block > div {
+  height: 134px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }

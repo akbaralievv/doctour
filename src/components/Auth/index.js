@@ -6,19 +6,22 @@ import Phone from '../ui/inputs/Phone';
 import Password from '../ui/inputs/Password';
 import { useDispatch, useSelector } from 'react-redux';
 import { postAuthSlice } from '../../redux/slices/PostAuthSlice';
+import ModalSuccess from '../ModalSuccess';
 
 const Auth = ({ forgot }) => {
   const { data } = useSelector((state) => state.PostAuthSlice);
+  const [openModal, setOpenModal] = useState(false);
   const [value, setValue] = useState({
     phone_number: '',
     password: '',
   });
-  console.log(data);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
+      document.body.style.overflow = 'hidden';
+      setOpenModal(true);
       dispatch(postAuthSlice(value));
     }
   };
@@ -26,6 +29,7 @@ const Auth = ({ forgot }) => {
   const disabled = value.phone_number.length >= 12 && value.password.length >= 4;
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {openModal && <ModalSuccess setOpen={setOpenModal} text="Вы успешно авторизовались" />}
       <div>
         Логин
         <Phone value={value.phone} setValue={setValue} />

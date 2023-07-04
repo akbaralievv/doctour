@@ -5,3 +5,7 @@
   background-size: cover;
   padding-top: 84px;
 }
+
+.preload {
+  display: none;
+}

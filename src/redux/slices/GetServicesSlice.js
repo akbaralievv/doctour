@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.BASE_URL + '/service/';
+const URL = links.BASE_URL + 'service/';
 
 export const getServices = createAsyncThunk('getServices', async function (city) {
   try {
@@ -27,7 +27,18 @@ const getServicesSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getServices.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.error = '';
+      state.data = action.payload ? action.payload : [];
+    });
+    builder.addCase(getServices.pending, (state, action) => {
+      state.loading = true;
+      state.error = '';
+      state.data = [];
+    });
+    builder.addCase(getServices.rejected, (state, action) => {
+      state.loading = true;
+      state.error = action.error.message;
+      state.data = [];
     });
   },
 });

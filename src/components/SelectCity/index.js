@@ -1,8 +1,10 @@
 import line from '../../assets/icons/Line 7.svg';
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { actionCityPop, setCity, closePopUp } from '../../redux/slices/UISlice';
 import styles from './SelectCity.module.sass';
 import location from '../../assets/icons/LocationHeader.svg';
+import { getSpecialty } from '../../redux/slices/GetSpecialtySlice';
 
 function SelectCity() {
   const dispatch = useDispatch();
@@ -15,6 +17,9 @@ function SelectCity() {
   const cityHandle = () => {
     dispatch(actionCityPop({ open: 'city' }));
   };
+  useEffect(() => {
+    dispatch(getSpecialty(city));
+  }, [city]);
 
   return (
     <div className={styles.selects}>

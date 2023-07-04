@@ -1,7 +1,3 @@
-.wrapper {
-  margin-bottom: 36px;
-}
-
 .container {
   width: 1200px;
   margin: 0 auto;
@@ -29,27 +25,50 @@
   border-radius: 12px;
   width: 100%;
 }
-.container .CardClinic_inner .heart {
+.container .CardClinic_inner .heartWrapper {
+  background-color: #fff;
   z-index: 2;
+  position: absolute;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  left: 0;
+}
+.container .CardClinic_inner .heart {
   -webkit-transition: 300ms;
   transition: 300ms;
   cursor: pointer;
-  position: absolute;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  margin: 8px;
   width: 32px;
   height: 32px;
-  top: 0;
-  left: 0;
 }
 .container .CardClinic_inner > a {
   text-decoration: none;
 }
 .container .CardClinic_inner .CardClinic_title {
   text-align: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 16px;
 }
 .container .CardClinic_inner .CardClinic_title a {
   text-decoration: none;

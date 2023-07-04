@@ -78,12 +78,14 @@ function CardClinic({ data }) {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.CardClinic_inner}>
-          <img
-            onClick={handleLike}
-            className={styles.heart}
-            src={like ? heartActive : heart}
-            alt="heart"
-          />
+          <div className={styles.heartWrapper}>
+            <img
+              onClick={handleLike}
+              className={styles.heart}
+              src={like ? heartActive : heart}
+              alt="heart"
+            />
+          </div>
           <a href={data.link_clinic} target="_blank">
             <div className={styles.CardClinic_logo}>
               <img src={data.photo} alt="Unimed-Clinic" />

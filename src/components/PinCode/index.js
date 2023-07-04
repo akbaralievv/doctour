@@ -1,21 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import InputMask from 'react-input-mask';
 
-import styles from './ForgotPassword.module.css';
-import Phone from '../ui/inputs/Phone';
+import styles from './PinCode.module.css';
 
 function PinCode() {
-  const [value, setValue] = useState('');
   const handleSubmit = (e) => {
     e.preventDefault();
   };
   return (
     <div className={styles.wrapper}>
       <h2>Восстановление пароля</h2>
-      <p>Введите свою номер, мы отправим Вам по смс код для сброса пароля</p>
       <form onSubmit={handleSubmit}>
         <div>
-          Номер телефона
-          <input type="number" placeholder="Введите ПИН-код с СМС" />
+          СМС код
+          <InputMask
+            required
+            name="phone_number"
+            mask="99 - 99 - 99"
+            maskChar="_"
+            placeholder="Код из СМС"
+            autoComplete="phone_number"
+            // onChange={handleChange}
+            // onBlur={handleBlur}
+            className={`${styles.phone} `}
+          />
         </div>
         <button type="submit">Отправить</button>
       </form>

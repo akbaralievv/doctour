@@ -20,7 +20,30 @@
           display: flex
           justify-content: space-around
           align-items: center
-
+          a:first-child
+            img
+              width: 72px
+          a:nth-child(2)
+            img
+              width: 108px
+          a:nth-child(3)
+            img
+              width: 135px
+          a:nth-child(4)
+            img
+              width: 124px
+          a:nth-child(5)
+            img
+              width: 67px
+          a:nth-child(6)
+            img
+              width: 133px
+          a:nth-child(7)
+            img
+              width: 62px
+          a:nth-child(8)
+            img
+              width: 79px
 .block
   width: 152px
   height: 161px
@@ -28,6 +51,12 @@
   color: #1B6B93
   text-decoration: none
   cursor: pointer
-  .img
-    width: 133px
-    height: 135px
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  align-items: center
+  &>div
+    height: 134px
+    display: flex
+    justify-content: center
+    align-items: center

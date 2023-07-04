@@ -3,14 +3,14 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.BASE_URL + '/doctors/';
+const URL = links.BASE_URL + 'doctors/';
 
 export const getDoctors = createAsyncThunk(
   'getDoctors',
-  async function ({ city, value, idSpecialty }) {
+  async function ({ city, value, idSpecialty, searchValue }) {
     try {
       const response = await axios.get(
-        `${URL}/?search=${value}&city=${city}&specialties=${idSpecialty}`,
+        `${URL}/?search=${searchValue}&city=${city}&specialties=${idSpecialty}`,
       );
       if (response.status === 200) {
         const data = await response.data;
@@ -39,14 +39,18 @@ const getDoctorsSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getDoctors.fulfilled, (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.error = '';
+      state.data = action.payload ? action.payload : [];
+    });
+    builder.addCase(getDoctors.pending, (state, action) => {
+      state.loading = true;
+      state.error = '';
+      state.data = [];
     });
     builder.addCase(getDoctors.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-    builder.addCase(getDoctors.pending, (state) => {
       state.loading = true;
+      state.error = action.error.message;
+      state.data = [];
     });
   },
 });

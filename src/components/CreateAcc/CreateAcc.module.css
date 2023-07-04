@@ -22,7 +22,7 @@
   font-family: "Open Sans", sans-serif;
   font-weight: 600;
 }
-.form button {
+.form > button {
   color: white;
   background-color: #1B6B93;
   display: inline-block;

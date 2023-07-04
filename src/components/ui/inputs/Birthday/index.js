@@ -19,7 +19,20 @@ function Birthday({ value, setValue }) {
 
   const birthday = ['day', 'month', 'year'];
   const dayOptions = Array.from({ length: 31 }, (_, index) => String(index + 1));
-  const monthOptions = Array.from({ length: 12 }, (_, index) => String(index + 1));
+  const monthOptions = [
+    'Январь',
+    'Февраль',
+    'Март',
+    'Апрель',
+    'Май',
+    'Июнь',
+    'Июль',
+    'Август',
+    'Сентябрь',
+    'Октябрь',
+    'Ноябрь',
+    'Декабрь',
+  ];
   const yearOptions = Array.from({ length: 124 }, (_, index) => String(2023 - index));
 
   const handleClick = (e) => {

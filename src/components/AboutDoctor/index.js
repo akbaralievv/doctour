@@ -98,11 +98,11 @@ function AboutDoctor({ data }) {
               </div>
               <div className={style.iconInner}>
                 <img src={pulse} alt="" />
-                <span>Стаж {data.experience} лет</span>
+                <span>Стаж от {data.experience} лет</span>
               </div>
               <div className={style.iconInner}>
                 <img src={wallet} alt="" />
-                <span>Прием {data.price} сомов</span>
+                <span>Прием от {data.price} сомов</span>
               </div>
               <div className={style.iconInner}>
                 <img src={inst} alt="" />
@@ -114,20 +114,18 @@ function AboutDoctor({ data }) {
             <p>{data.summary}</p>
           </div>
           <div className={style.reviews}>
-            {stars
-              .slice(0, 5)
-              .map((e, id) =>
-                e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
-              )}
+            <div className={style.stars}>
+              {stars
+                .slice(0, 5)
+                .map((e, id) =>
+                  e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
+                )}
+            </div>
             <p className={style.score}>
               {rating > 0 ? <span>{rounded}</span> : <span>{rating0}</span>}
             </p>
             <div className={style.innerReviews}>
               <span>{data.num_reviews} отзывов</span>
-            </div>
-            <div className={style.quantity}>
-              <p>Кол-во посетивших пациентов</p>
-              <span>-200-</span>
             </div>
           </div>
         </div>

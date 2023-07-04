@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.BASE_URL + '/doctors/';
+const URL = links.BASE_URL + 'doctors/';
 
 export const getProfile = createAsyncThunk('getProfile', async function (id) {
   try {
@@ -18,6 +18,7 @@ export const getProfile = createAsyncThunk('getProfile', async function (id) {
     return console.error(err.message);
   }
 });
+
 const initialState = { data: [], error: '', loading: false };
 
 const getProfileSlice = createSlice({
@@ -26,14 +27,18 @@ const getProfileSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getProfile.fulfilled, (state, action) => {
       state.loading = false;
+      state.error = '';
       state.data = action.payload;
     });
-    builder.addCase(getProfile.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-    builder.addCase(getProfile.pending, (state) => {
+    builder.addCase(getProfile.pending, (state, action) => {
       state.loading = true;
+      state.error = '';
+      state.data = [];
+    });
+    builder.addCase(getProfile.rejected, (state, action) => {
+      state.loading = true;
+      state.error = action.error.message;
+      state.data = [];
     });
   },
 });

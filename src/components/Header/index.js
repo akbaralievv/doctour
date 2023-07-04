@@ -8,6 +8,7 @@ import SelectCity from '../SelectCity';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 import { setAuth } from '../../redux/slices/PostAuthSlice';
+import { setSearch } from '../../redux/slices/GetGlobalSearch';
 
 function Header() {
   const { data } = useSelector((state) => state.PostAuthSlice);
@@ -15,6 +16,7 @@ function Header() {
   const handleClick = () => {
     dispatch(setIdSpecialty(''));
     dispatch(setNameSpecialty(''));
+    dispatch(setSearch(''));
   };
   const handleClickAuth = () => {
     dispatch(setAuth(''));

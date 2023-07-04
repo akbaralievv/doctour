@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.REGISTER_URL;
+const URL = links.USERS_URL + 'register/';
 
 export const postCreateAccSlice = createAsyncThunk('postCreateAccSlice', async function (value) {
   try {
@@ -32,14 +32,18 @@ const createAccSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(postCreateAccSlice.fulfilled, (state, action) => {
       state.loading = false;
+      state.error = '';
       state.data = action.payload;
     });
-    builder.addCase(postCreateAccSlice.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-    builder.addCase(postCreateAccSlice.pending, (state) => {
+    builder.addCase(postCreateAccSlice.pending, (state, action) => {
       state.loading = true;
+      state.error = '';
+      state.data = '';
+    });
+    builder.addCase(postCreateAccSlice.rejected, (state, action) => {
+      state.loading = true;
+      state.error = action.error.message;
+      state.data = '';
     });
   },
 });

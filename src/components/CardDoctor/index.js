@@ -70,84 +70,86 @@ function CardDoctor({ data }) {
   return (
     <>
       <div style={{ marginBottom: '48px' }} className={'container'}>
-        <img
-          onClick={handleLike}
-          className={'heart'}
-          src={like ? heartActive : heart}
-          alt="heart"
-        />
+        <div className={'heart-wrapper'}>
+          <img
+            onClick={handleLike}
+            className={'heart'}
+            src={like ? heartActive : heart}
+            alt="heart"
+          />
+        </div>
         <img className={'cardAvatar'} src={data.photo} alt="doctor" />
         <div className="info">
-          <div className="up-side">
-            <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.id}`}>
-              <div className="left">
-                <div className="full-name">
-                  <h1>{data.full_name}</h1>
-                </div>
-                <div className="speciality">
-                  {data.specialties.map((spec, index) => (
-                    <React.Fragment key={spec.id}>
-                      {spec.name}
-                      {index !== data.specialties.length - 1 && ', '}
-                    </React.Fragment>
-                  ))}
-                </div>
-                <div className="education">
+          {/* <div className="up-side"> */}
+          <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.id}`}>
+            <div className="left">
+              <div className="full-name">
+                <h1>{data.full_name}</h1>
+              </div>
+              <div className="speciality">
+                {data.specialties.map((spec, index) => (
+                  <React.Fragment key={spec.id}>
+                    {spec.name}
+                    {index !== data.specialties.length - 1 && ', '}
+                  </React.Fragment>
+                ))}
+              </div>
+              <div className="education">
+                <p>
+                  <img src={location} />
+                  {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
+                </p>
+              </div>
+              <div className="mini-info">
+                <div className="stage">
                   <p>
-                    <img src={location} />
-                    {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
+                    <img src={pulse} />
+                    Стаж от {data.experience} лет
                   </p>
                 </div>
-                <div className="mini-info">
-                  <div className="stage">
-                    <p>
-                      <img src={pulse} />
-                      Стаж {data.experience} лет
-                    </p>
-                  </div>
-                  <div className="price">
-                    <p>
-                      <img src={wallet} />
-                      Прием {data.price} сомов
-                    </p>
-                  </div>
-                  <div className="instagram">
-                    <p>
-                      <img src={inst} />
-                      {data.social}
-                    </p>
-                  </div>
+                <div className="price">
+                  <p>
+                    <img src={wallet} />
+                    Прием от {data.price} сомов
+                  </p>
                 </div>
-                <div className="description">
-                  <p>{data.summary}</p>
+                <div className="instagram">
+                  <p>
+                    <img src={inst} />
+                    {data.social}
+                  </p>
                 </div>
               </div>
-            </Link>
-            <div className="right">
-              <div className="rating">
-                <div className="stars">
-                  {stars
-                    .slice(0, 5)
-                    .map((e, id) =>
-                      e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
-                    )}
-                </div>
-                <div className="rate">{data.average_rating?.toFixed(2)}</div>
-                <div className="feedback">
-                  <p>{data.num_reviews} отзывов</p>
-                </div>
+              <div className="description">
+                <p>{data.summary}</p>
               </div>
-              {auth.data ? (
-                <Link to={'/whatsapp'} className={'btn'}>
-                  Записаться через WhatsApp
-                </Link>
-              ) : (
-                <Link to={'/login'} className={'btn'}>
-                  Записаться через WhatsApp
-                </Link>
-              )}
             </div>
+          </Link>
+          <div className="right">
+            <div className="rating">
+              <div className="stars">
+                {stars
+                  .slice(0, 5)
+                  .map((e, id) =>
+                    e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
+                  )}
+              </div>
+              <div className="rate">{data.average_rating?.toFixed(2)}</div>
+              <div className="feedback">
+                <p>{data.num_reviews} отзывов</p>
+              </div>
+            </div>
+            {auth.data ? (
+              <Link to={'/whatsapp'} className={'btn'}>
+                Записаться через WhatsApp
+              </Link>
+            ) : (
+              <Link to={'/login'} className={'btn'}>
+                Записаться через WhatsApp
+              </Link>
+            )}
           </div>
+          {/* </div> */}
         </div>
       </div>
     </>

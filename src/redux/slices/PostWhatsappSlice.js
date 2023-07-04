@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.WHATSAPP_URL;
+const URL = links.BASE_URL + 'whatsapp-send/';
 
 export const postWhatsAppSlice = createAsyncThunk('postWhatsAppSlice', async function (value) {
   try {
@@ -27,14 +27,18 @@ const whatsAppSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(postWhatsAppSlice.fulfilled, (state, action) => {
       state.loading = false;
+      state.error = '';
       state.data = action.payload;
     });
-    builder.addCase(postWhatsAppSlice.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-    builder.addCase(postWhatsAppSlice.pending, (state) => {
+    builder.addCase(postWhatsAppSlice.pending, (state, action) => {
       state.loading = true;
+      state.error = '';
+      state.data = [];
+    });
+    builder.addCase(postWhatsAppSlice.rejected, (state, action) => {
+      state.loading = true;
+      state.error = action.error.message;
+      state.data = [];
     });
   },
 });

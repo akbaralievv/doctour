@@ -21,7 +21,7 @@ function App() {
           <Route path="/doctors/:id" element={<ProfilePage />} />
           <Route path="/clinics" element={<ClinicsPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/whatsapp" element={<WhatsAppPage />} />
+          <Route path="/doctors/:id/whatsapp" element={<WhatsAppPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
         </Route>

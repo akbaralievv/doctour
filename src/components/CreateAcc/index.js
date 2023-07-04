@@ -9,6 +9,7 @@ import Password from '../ui/inputs/Password';
 import ConfirmPassword from '../ui/inputs/ConfirmPassword';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateAccSlice } from '../../redux/slices/PostCreateAccSlice';
+import ModalSuccess from '../ModalSuccess';
 
 function CreateAcc() {
   const [value, setValue] = useState({
@@ -26,6 +27,8 @@ function CreateAcc() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
+      document.body.style.overflow = 'hidden';
+      setOpenModal(true);
       dispatch(postCreateAccSlice(value));
     }
   };
@@ -40,6 +43,7 @@ function CreateAcc() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {openModal && <ModalSuccess setOpen={setOpenModal} text="Ваш аккаунт успешно создан" />}
       <div>
         ФИО
         <FullName value={value.fullname} setValue={setValue} />

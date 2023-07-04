@@ -6,7 +6,7 @@ import stars1 from '../../assets/icons/StarF1.svg';
 import x from '../../assets/icons/Close Square.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleFeedBack } from '../../redux/slices/DoctorsSlice';
-import axios from 'axios';
+import { postComment } from '../../redux/slices/PostCommentSlice';
 
 function FeedbackModal() {
   const { data } = useSelector((state) => state.GetProfileSlice);
@@ -14,6 +14,7 @@ function FeedbackModal() {
 
   const [rating, setRating] = useState(0);
   const [text, setText] = useState('');
+
   const handleNone = () => {
     document.body.style.cssText = ``;
     dispatch(handleFeedBack(false));
@@ -26,18 +27,16 @@ function FeedbackModal() {
     setText(e.target.value);
   };
   const handleSend = async () => {
-    try {
-      const res = await axios.post('https://bekbolsun.pythonanywhere.com/api/v1/src/reviews/', {
+    dispatch(
+      postComment({
         id: data.id,
         text: text,
         stars: rating,
         doctor: data.id,
-      });
-      await handleNone();
-      await window.location.reload();
-    } catch (e) {}
+      }),
+    );
+    handleNone();
   };
-  const handle12 = () => {};
 
   return (
     <React.Fragment>
@@ -68,7 +67,7 @@ function FeedbackModal() {
                 </form>
                 <button
                   type="submit"
-                  onClick={text && rating > 0 ? handleSend : handle12}
+                  onClick={text && rating > 0 ? handleSend : ''}
                   style={text && rating > 0 ? {} : { background: '#DEECF2' }}
                   className={style.btnSend}>
                   Оставить отзыв

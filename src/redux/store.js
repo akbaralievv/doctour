@@ -10,6 +10,8 @@ import favoritesSlice from './slices/favoritesSlice';
 import DoctorsReducer from './slices/DoctorsSlice';
 import GetProfileSlice from './slices/GetProfileSlice';
 import PostWhatsappSlice from './slices/PostWhatsappSlice';
+import GetGlobalSearch from './slices/GetGlobalSearch';
+import PostCommentSlice from './slices/PostCommentSlice';
 
 export const store = configureStore({
   reducer: {
@@ -24,5 +26,7 @@ export const store = configureStore({
     DoctorsReducer,
     GetProfileSlice,
     PostWhatsappSlice,
+    GetGlobalSearch,
+    PostCommentSlice,
   },
 });

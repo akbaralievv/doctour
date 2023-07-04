@@ -2,10 +2,8 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 import { links } from './links';
-import { act } from 'react-dom/test-utils';
-import { useDispatch } from 'react-redux';
 
-const URL = links.LOGIN_URL;
+const URL = links.USERS_URL + 'login/';
 
 export const postAuthSlice = createAsyncThunk('postAuthSlice', async function (value) {
   try {
@@ -35,14 +33,18 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(postAuthSlice.fulfilled, (state, action) => {
       state.loading = false;
+      state.error = '';
       state.data = action.payload;
     });
-    builder.addCase(postAuthSlice.rejected, (state, action) => {
-      state.loading = false;
-      state.error = action.payload;
-    });
-    builder.addCase(postAuthSlice.pending, (state) => {
+    builder.addCase(postAuthSlice.pending, (state, action) => {
       state.loading = true;
+      state.error = '';
+      state.data = [];
+    });
+    builder.addCase(postAuthSlice.rejected, (state, action) => {
+      state.loading = true;
+      state.error = action.error.message;
+      state.data = [];
     });
   },
 });

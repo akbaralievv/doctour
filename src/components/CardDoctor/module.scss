@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;700&display=swap');
 
 .container{
-  margin: auto;
   font-family: 'Open Sans', sans-serif;
   position: relative;
   display: flex;
@@ -11,13 +10,23 @@
   border: #023246 solid 1px;
   border-radius: 16px;
   box-sizing: border-box;
-  .heart{
+  gap: 24px;
+  .heart-wrapper{
+    background-color: #fff;
     z-index: 2;
+    position: absolute;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .heart{
     transition: 300ms;
     cursor: pointer;
-    position: absolute;
     user-select: none;
-    margin: 8px;
     width: 32px;
     height: 32px;
   }
@@ -33,9 +42,9 @@
   }
   .info{
     width: 100%;
-    padding: 8px 12px 11px 24px;
+    padding: 8px 8px 8px 0px;
     display: flex;
-    flex-direction: column;
+    gap: 25px;
     p{
       font-size: 16px;
       color: #023246;
@@ -46,14 +55,8 @@
       font-size: 24px;
       font-weight: 700;
     }
-    .up-side{
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
+
       .left{
-        width: 546px;
-        height: 151px;
 
         .full-name{
           color: #023246;
@@ -100,17 +103,15 @@
         position: relative;
         display: flex;
         flex-direction: column;
-        gap: 25px;
+        gap: 20.5px;
         align-items: center;
         .btn {
-            padding: 0 7px;
-            border-radius: 8px;
             background: #1B6B93;
             font-size: 16px;
             font-family: Open Sans;
             font-weight: 600;
             width: 240px;
-            height: 85px;
+            padding: 16px 7px;
             border-radius: 8px;
             color: #FFFFFF;
             text-decoration: none;
@@ -120,18 +121,22 @@
             text-align: center;
           }
         .rating{
-          width: 144px;
-          height: 135px;
-          padding: 12px 12px 21px;
+          width: 236px;
+          height: 132px;
           display: flex;
           text-align: center;
           flex-direction: column;
-          justify-content: space-around;
+          justify-content: center;
+          align-items: center;
 
           p{
             font-size: 16px;
             color: #023246;
             font-weight: 500;
+          }
+          .stars{
+            display: flex;
+            gap: 7px;
           }
           .rate{
             font-size: 32px;
@@ -154,7 +159,7 @@
           }
         }
       }
-    }
+    
   }
     
 

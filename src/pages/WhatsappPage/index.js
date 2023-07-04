@@ -8,8 +8,10 @@ import Birthday from '../../components/ui/inputs/Birthday';
 import Gender from '../../components/ui/inputs/Gender';
 import Phone from '../../components/ui/inputs/Phone';
 import { postWhatsAppSlice } from '../../redux/slices/PostWhatsappSlice';
+import { useLocation } from 'react-router-dom';
 
 function WhatsAppPage() {
+  const { nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
   const [value, setValue] = useState({
     fullname: '',
     birthday: '',
@@ -19,22 +21,21 @@ function WhatsAppPage() {
   const disabled =
     value.fullname && value.birthday && value.gender && value.phone_number ? true : false;
 
+  const location = useLocation();
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
-      console.log(value);
       // dispatch(postWhatsAppSlice(value))
     }
   };
-  const { data } = useSelector((state) => state.GetProfileSlice);
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          <Breadcrumbs />
+          <Breadcrumbs specialty={nameSpecialty} nameDoctors={location.state} />
           <h2>
-            Записаться на прием к врачу <span>{data.full_name}</span>{' '}
+            Записаться на прием к врачу <span>{location.state}</span>{' '}
           </h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.inputs}>

@@ -1,38 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useLocation, useParams } from 'react-router-dom';
 
 import arrow from '../../assets/icons/Arrow - Right 2.svg';
 import styles from './Breadcrumbs.module.css';
+import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 
-function Breadcrumbs({ style, specialty }) {
+function Breadcrumbs({ specialty, nameDoctors, id }) {
   const location = useLocation();
-  const [path, setPath] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
+  const { data } = useSelector((state) => state.GetProfileSlice);
+  const path = location.pathname;
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    setPath(location.pathname);
-  }, [location.pathname]);
+  const handleClick = () => {
+    dispatch(setIdSpecialty(''));
+    dispatch(setNameSpecialty(''));
+  };
+
+  const locationName = path.includes('/doctors')
+    ? 'Врачи'
+    : path.includes('/services')
+    ? 'Услуги'
+    : path.includes('/clinics')
+    ? 'Клиники'
+    : path.includes('/favorites')
+    ? 'Избранные'
+    : '';
+
+  const locationNav =
+    locationName === 'Врачи'
+      ? '/doctors'
+      : locationName === 'Услуги'
+      ? '/services'
+      : locationName === 'Клиники'
+      ? '/clinics'
+      : locationName === 'Избранные'
+      ? '/favorites'
+      : '';
 
   return (
-    <div className={styles.wrapper} style={style}>
-      <span>{city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</span>
+    <div className={styles.wrapper}>
+      <NavLink to={'/'}>{city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</NavLink>
       <img src={arrow} alt="icon" />
-      <span>
-        {path === '/doctors'
-          ? 'Врачи'
-          : path === '/services'
-          ? 'Услуги'
-          : path === '/clinics'
-          ? 'Клиники'
-          : path === '/favorites'
-          ? 'Избранные'
-          : ''}
-      </span>
+      <NavLink to={locationNav} onClick={handleClick}>
+        {locationName}
+      </NavLink>
       {specialty && (
         <>
           <img src={arrow} alt="icon" />
-          <span>{specialty}</span>
+          <NavLink to={'/doctors'}>
+            <span>{specialty}</span>
+          </NavLink>
+        </>
+      )}
+      {nameDoctors && (
+        <>
+          <img src={arrow} alt="icon" />
+          <NavLink to={`/doctors/${data?.id}`}>
+            <span>{nameDoctors}</span>
+          </NavLink>
         </>
       )}
     </div>

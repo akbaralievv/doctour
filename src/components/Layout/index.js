@@ -6,11 +6,13 @@ import Footer from '../Footer';
 import { useDispatch, useSelector } from 'react-redux';
 import { closePopUp } from '../../redux/slices/UISlice';
 import FeedBackModal from '../FeedBackModal/FeedbackModal';
+import Preloader from '../Preloader';
 
 function Layout() {
   const dispatch = useDispatch();
   const { cityModal } = useSelector((state) => state.UIReducer);
   const { feedback } = useSelector((state) => state.DoctorsReducer);
+
   const handleClose = () => {
     dispatch(closePopUp(false));
   };
@@ -33,7 +35,7 @@ function Layout() {
         <div></div>
       )}
       <Header />
-      <Outlet />
+      {<Outlet />}
       <Footer />
     </>
   );
