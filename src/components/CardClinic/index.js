@@ -22,36 +22,49 @@ function CardClinic({ data }) {
   };
   const dispatch = useDispatch();
   const handleLike = () => {
+    localUpdate(!like);
     setLike(!like);
   };
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || {
-      doctors: [],
-      clinics: [],
-    };
-    const isLiked = favorites.clinics?.some((favorite) => favorite.id === data.id);
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || { doctors: [], clinics: [] };
+    const isLiked = favorites.clinics?.find((favorite) => favorite.id === data.id);
     setLike(isLiked);
   }, [data]);
 
   useEffect(() => {
+    if (like) {
+      dispatch(setLikeSlice(true));
+    } else {
+      dispatch(setLikeSlice(false));
+    }
+  }, [like]);
+
+  const localUpdate = (type) => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || {
       doctors: [],
       clinics: [],
     };
 
-    if (like) {
+    let updatedFavorites = { ...favorites };
+
+    if (type) {
       const existingIndex = favorites.clinics?.findIndex((favorite) => favorite.id === data.id);
       if (existingIndex === -1) {
-        favorites.clinics.push(data);
+        updatedFavorites = {
+          ...favorites,
+          clinics: [...favorites.clinics, data],
+        };
       }
     } else {
       const filteredFavorites = favorites.clinics?.filter((favorite) => favorite.id !== data.id);
-      favorites.clinics = filteredFavorites;
+      updatedFavorites = {
+        ...favorites,
+        clinics: filteredFavorites,
+      };
     }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    dispatch(setLikeSlice(like));
-  }, [like, data]);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
 
   const CardClinicSubtitle = () => {
     if (expanded) {
@@ -98,7 +111,7 @@ function CardClinic({ data }) {
             </a>
 
             <div className={styles.CardClinic_subtitle}>
-              {data.descriptions} {data.descriptions.length > 200 ? <CardClinicSubtitle /> : ''}
+              {data.descriptions} {data.descriptions?.length > 200 ? <CardClinicSubtitle /> : ''}
             </div>
           </div>
           <div className={styles.CardClinic_information}>

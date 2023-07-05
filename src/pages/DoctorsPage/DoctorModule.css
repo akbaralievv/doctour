@@ -31,6 +31,16 @@
   gap: 40px;
   margin-top: 48px;
 }
+.cont .wrapper .wrapper-card .notFound {
+  color: var(--unnamed, #023246);
+  text-align: center;
+  font-size: 48px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+}
 .cont .wrapper .crumbLinks {
   display: -webkit-box;
   display: -ms-flexbox;

@@ -16,6 +16,9 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
+.inner > div {
+  height: calc(100vh - 220px);
+}
 .inner h2 {
   margin-bottom: 32px;
   font-family: "Open Sans", sans-serif;

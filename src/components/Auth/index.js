@@ -5,23 +5,35 @@ import styles from './Auth.module.css';
 import Phone from '../ui/inputs/Phone';
 import Password from '../ui/inputs/Password';
 import { useDispatch, useSelector } from 'react-redux';
-import { postAuthSlice } from '../../redux/slices/PostAuthSlice';
+import { postAuthSlice, setAuth } from '../../redux/slices/PostAuthSlice';
 import ModalSuccess from '../ModalSuccess';
 
 const Auth = ({ forgot }) => {
-  const { data } = useSelector((state) => state.PostAuthSlice);
+  const { data, access } = useSelector((state) => state.PostAuthSlice);
   const [openModal, setOpenModal] = useState(false);
   const [value, setValue] = useState({
     phone_number: '',
     password: '',
   });
+  // console.log(access, 'access');
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data?.access) {
+      document.body.style.overflow = 'hidden';
+      setOpenModal(true);
+      localStorage.setItem('access', JSON.stringify(data.access));
+      localStorage.setItem('refresh', JSON.stringify(data.refresh));
+      dispatch(setAuth('success'));
+    }
+  }, [data]);
+  console.log(openModal);
+  // console.log(data, 'data');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (disabled) {
-      document.body.style.overflow = 'hidden';
-      setOpenModal(true);
       dispatch(postAuthSlice(value));
     }
   };

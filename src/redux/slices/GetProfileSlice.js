@@ -28,7 +28,7 @@ const getProfileSlice = createSlice({
     builder.addCase(getProfile.fulfilled, (state, action) => {
       state.loading = false;
       state.error = '';
-      state.data = action.payload;
+      state.data = action.payload ?? [];
     });
     builder.addCase(getProfile.pending, (state, action) => {
       state.loading = true;

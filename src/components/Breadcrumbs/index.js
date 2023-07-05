@@ -5,8 +5,9 @@ import { NavLink, useLocation, useParams } from 'react-router-dom';
 import arrow from '../../assets/icons/Arrow - Right 2.svg';
 import styles from './Breadcrumbs.module.css';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
+import { setIdService, setNameService } from '../../redux/slices/GetClinicSlice';
 
-function Breadcrumbs({ specialty, nameDoctors, id }) {
+function Breadcrumbs({ specialty, nameDoctors, id, service }) {
   const location = useLocation();
   const { city } = useSelector((state) => state.UIReducer);
   const { data } = useSelector((state) => state.GetProfileSlice);
@@ -16,6 +17,8 @@ function Breadcrumbs({ specialty, nameDoctors, id }) {
   const handleClick = () => {
     dispatch(setIdSpecialty(''));
     dispatch(setNameSpecialty(''));
+    dispatch(setIdService(''));
+    dispatch(setNameService(''));
   };
 
   const locationName = path.includes('/doctors')
@@ -38,21 +41,35 @@ function Breadcrumbs({ specialty, nameDoctors, id }) {
       : locationName === 'Избранные'
       ? '/favorites'
       : '';
-
   return (
     <div className={styles.wrapper}>
-      <NavLink to={'/'}>{city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</NavLink>
+      <NavLink to={'/'}>
+        {city === '92b89611-4119-4936-8a60-61d25348ad26'
+          ? 'Бишкек'
+          : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
+          ? 'Ош'
+          : ''}
+      </NavLink>
       <img src={arrow} alt="icon" />
       <NavLink to={locationNav} onClick={handleClick}>
         {locationName}
       </NavLink>
-      {specialty && (
+      {specialty ? (
         <>
           <img src={arrow} alt="icon" />
           <NavLink to={'/doctors'}>
             <span>{specialty}</span>
           </NavLink>
         </>
+      ) : service ? (
+        <>
+          <img src={arrow} alt="icon" />
+          <NavLink to={'/clinics'}>
+            <span>{service}</span>
+          </NavLink>
+        </>
+      ) : (
+        ''
       )}
       {nameDoctors && (
         <>

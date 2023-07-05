@@ -10,7 +10,7 @@ export const postCreateAccSlice = createAsyncThunk('postCreateAccSlice', async f
     const response = await axios.post(URL, value);
     if (response.status === 200) {
       const data = await response.data;
-      return data;
+      return data.detail;
     } else {
       throw Error(`error ${response.status}`);
     }
@@ -24,11 +24,6 @@ const initialState = { data: '', error: '', loading: false };
 const createAccSlice = createSlice({
   name: 'createAccSlice',
   initialState,
-  reducers: {
-    setSuccess: (state, action) => {
-      state.data = action.payload;
-    },
-  },
   extraReducers: (builder) => {
     builder.addCase(postCreateAccSlice.fulfilled, (state, action) => {
       state.loading = false;
@@ -47,5 +42,4 @@ const createAccSlice = createSlice({
     });
   },
 });
-export const { setSuccess } = createAccSlice.actions;
 export default createAccSlice.reducer;

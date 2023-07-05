@@ -5,25 +5,38 @@ import { links } from './links';
 
 const URL = links.BASE_URL + 'clinics/';
 
-export const getClinic = createAsyncThunk('getClinic', async function ({ city, searchValue }) {
-  try {
-    const response = await axios.get(`${URL}?search=${searchValue}&city=${city}`);
-    if (response.status === 200) {
-      const data = await response.data;
-      return data.results;
-    } else {
-      throw Error(`error ${response.status}`);
+export const getClinic = createAsyncThunk(
+  'getClinic',
+  async function ({ city, searchValue, idService }) {
+    try {
+      const response = await axios.get(
+        `${URL}?search=${searchValue}&city=${city}&subservice_clinic=${idService}`,
+      );
+      if (response.status === 200) {
+        const data = await response.data;
+        return data.results;
+      } else {
+        throw Error(`error ${response.status}`);
+      }
+    } catch (err) {
+      return console.error(err.message);
     }
-  } catch (err) {
-    return console.error(err.message);
-  }
-});
+  },
+);
 
-const initialState = { data: [], error: '', loading: false };
+const initialState = { data: [], error: '', loading: false, idService: '', nameService: '' };
 
 const getClinicSlice = createSlice({
   name: 'getClinicSlice',
   initialState,
+  reducers: {
+    setIdService: (state, action) => {
+      state.idService = action.payload;
+    },
+    setNameService: (state, action) => {
+      state.nameService = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getClinic.fulfilled, (state, action) => {
       state.loading = false;
@@ -42,4 +55,5 @@ const getClinicSlice = createSlice({
     });
   },
 });
+export const { setIdService, setNameService } = getClinicSlice.actions;
 export default getClinicSlice.reducer;

@@ -7,10 +7,10 @@ const URL = links.BASE_URL + 'doctors/';
 
 export const getDoctors = createAsyncThunk(
   'getDoctors',
-  async function ({ city, value, idSpecialty, searchValue }) {
+  async function ({ city, value, idSpecialty, searchValue, currentPage }) {
     try {
       const response = await axios.get(
-        `${URL}/?search=${searchValue}&city=${city}&specialties=${idSpecialty}`,
+        `${URL}/?search=${searchValue}&city=${city}&specialties=${idSpecialty}?page=${currentPage}`,
       );
       if (response.status === 200) {
         const data = await response.data;

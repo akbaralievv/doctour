@@ -22,31 +22,51 @@ function CardDoctor({ data }) {
   const [stars, setStar] = useState([]);
   const auth = useSelector((state) => state.PostAuthSlice);
   const dispatch = useDispatch();
+
   const handleLike = () => {
+    localUpdate(!like);
     setLike(!like);
   };
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || { doctors: [], clinics: [] };
-    const isLiked = favorites.doctors?.some((favorite) => favorite.id === data.id);
+    const isLiked = favorites.doctors.find((favorite) => favorite.id === data.id);
     setLike(isLiked);
   }, [data]);
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || { doctors: [], clinics: [] };
-
     if (like) {
+      dispatch(setLikeSlice(true));
+    } else {
+      dispatch(setLikeSlice(false));
+    }
+  }, [like]);
+
+  const localUpdate = (type) => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || {
+      doctors: [],
+      clinics: [],
+    };
+
+    let updatedFavorites = { ...favorites };
+
+    if (type) {
       const existingIndex = favorites.doctors?.findIndex((favorite) => favorite.id === data.id);
       if (existingIndex === -1) {
-        favorites.doctors.push(data);
+        updatedFavorites = {
+          ...favorites,
+          doctors: [...favorites.doctors, data],
+        };
       }
     } else {
       const filteredFavorites = favorites.doctors?.filter((favorite) => favorite.id !== data.id);
-      favorites.doctors = filteredFavorites;
+      updatedFavorites = {
+        ...favorites,
+        doctors: filteredFavorites,
+      };
     }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    dispatch(setLikeSlice(like));
-  }, [like, data]);
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
 
   const StarArray = (num) => {
     const stars = [];

@@ -15,19 +15,18 @@ export const postAuthSlice = createAsyncThunk('postAuthSlice', async function (v
       throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    setAuth(err.response.data.detail);
     return console.error(err.message);
   }
 });
 
-const initialState = { data: '', error: '', loading: false };
+const initialState = { data: '', error: '', loading: false, access: '' };
 
 const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
     setAuth: (state, action) => {
-      state.data = action.payload;
+      state.access = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -48,6 +47,6 @@ const authSlice = createSlice({
     });
   },
 });
-
 export const { setAuth } = authSlice.actions;
+
 export default authSlice.reducer;

@@ -9,6 +9,8 @@ import SearchForm from '../../components/SearchForm';
 import { getDoctors } from '../../redux/slices/GetDoctorsSlice';
 import SkeletonCardDoctor from '../../components/SkeletonCardDoctor';
 import { current } from '@reduxjs/toolkit';
+import styled from '@emotion/styled';
+import NotFound from '../../components/NotFound';
 
 function DoctorsPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,7 +24,7 @@ function DoctorsPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDoctors({ city, idSpecialty, searchValue }));
+    dispatch(getDoctors({ city, idSpecialty, searchValue, currentPage }));
   }, [city, idSpecialty, searchValue]);
 
   useEffect(() => {
@@ -45,7 +47,11 @@ function DoctorsPage() {
         <div className="infoDoctors">
           <h1>
             Все {nameSpecialty || 'врачи'} города{' '}
-            {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}
+            {city === '92b89611-4119-4936-8a60-61d25348ad26'
+              ? 'Бишкек'
+              : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
+              ? 'Ош'
+              : ''}
           </h1>
         </div>
         <SearchForm placeholder={'Врачи'} />
@@ -53,7 +59,7 @@ function DoctorsPage() {
           {loading ? (
             skeletons
           ) : notFound ? (
-            <p>Ничего не найдено</p>
+            <NotFound style={{ height: 'calc(100vh - 430px)' }} />
           ) : (
             currentPosts?.map((data) => <CardDoctor data={data} key={data.id} />)
           )}

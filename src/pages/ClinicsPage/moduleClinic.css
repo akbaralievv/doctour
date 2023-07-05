@@ -31,6 +31,16 @@
   gap: 36px;
   margin-top: 48px;
 }
+.container-clinic .wrapper-clinic .wrapper-card .notFound {
+  color: var(--unnamed, #023246);
+  text-align: center;
+  font-size: 48px;
+  font-family: Open Sans;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1px;
+}
 .container-clinic .wrapper-clinic .crumbLinks-clinic {
   display: -webkit-box;
   display: -ms-flexbox;

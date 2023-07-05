@@ -8,6 +8,7 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 import SearchForm from '../../components/SearchForm';
 import { getClinic } from '../../redux/slices/GetClinicSlice';
 import SkeletonCardClinic from '../../components/SkeletonCardClinic';
+import NotFound from '../../components/NotFound';
 
 function ClinicsPage() {
   const { data, loading } = useSelector((state) => state.GetClinicSlice);
@@ -15,6 +16,7 @@ function ClinicsPage() {
   const [postsPerPage] = useState(7);
   const { city } = useSelector((state) => state.UIReducer);
   const { searchValue } = useSelector((state) => state.GetGlobalSearch);
+  const { idService, nameService } = useSelector((state) => state.GetClinicSlice);
   const [notFound, setNotFound] = useState(false);
 
   const dispatch = useDispatch();
@@ -24,8 +26,8 @@ function ClinicsPage() {
   const howManyPages = Math.ceil(data?.length / postsPerPage);
 
   useEffect(() => {
-    dispatch(getClinic({ city, searchValue }));
-  }, [city, searchValue]);
+    dispatch(getClinic({ city, searchValue, idService }));
+  }, [city, searchValue, idService]);
 
   useEffect(() => {
     !loading && data?.length === 0 ? setNotFound(true) : setNotFound(false);
@@ -37,17 +39,24 @@ function ClinicsPage() {
     <div className={'container-clinic'}>
       <div className="wrapper-clinic">
         <div className="crumbLinks-clinic">
-          <Breadcrumbs />
+          <Breadcrumbs service={nameService} />
         </div>
         <div className="infoDoctors-clinic">
-          <h1>Все Клиники города {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</h1>
+          <h1>
+            Все {nameService || 'клиники'} города{' '}
+            {city === '92b89611-4119-4936-8a60-61d25348ad26'
+              ? 'Бишкек'
+              : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
+              ? 'Ош'
+              : ''}
+          </h1>
         </div>
         <SearchForm placeholder={'Клиники'} />
         <div className={'wrapper-card'}>
           {loading ? (
             skeletons
           ) : notFound ? (
-            <p>Ничего не найдено</p>
+            <NotFound style={{ height: 'calc(100vh - 430px)' }} />
           ) : (
             currentPosts?.map((data) => <CardClinic data={data} key={data.id} />)
           )}

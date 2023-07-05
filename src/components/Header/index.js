@@ -7,20 +7,37 @@ import logoLogin from '../../assets/icons/Login.svg';
 import SelectCity from '../SelectCity';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
+import { setIdService, setNameService } from '../../redux/slices/GetClinicSlice';
 import { setAuth } from '../../redux/slices/PostAuthSlice';
 import { setSearch } from '../../redux/slices/GetGlobalSearch';
 
 function Header() {
-  const { data } = useSelector((state) => state.PostAuthSlice);
+  const { data, access } = useSelector((state) => state.PostAuthSlice);
+  const [authUser, setAuthUser] = useState('');
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(setIdSpecialty(''));
     dispatch(setNameSpecialty(''));
+    dispatch(setIdService(''));
+    dispatch(setNameService(''));
     dispatch(setSearch(''));
   };
-  const handleClickAuth = () => {
+
+  useEffect(() => {
+    setAuthUser(localStorage.getItem('access') || '');
+  }, []);
+
+  useEffect(() => {
+    data?.access && setAuthUser(localStorage.getItem('access'));
+  }, [access]);
+
+  const logOut = () => {
+    localStorage.removeItem('access');
+    localStorage.removeItem('refresh');
+    setAuthUser('');
     dispatch(setAuth(''));
   };
+
   return (
     <header className={styles.wrapper}>
       <div className={styles.container}>
@@ -52,6 +69,7 @@ function Header() {
                 <li>
                   <NavLink
                     to="/clinics"
+                    onClick={handleClick}
                     className={({ isActive }) => (isActive ? styles.active : '')}>
                     Клиники
                   </NavLink>
@@ -68,8 +86,8 @@ function Header() {
           </div>
           <div className={styles.select_login}>
             <SelectCity />
-            {data ? (
-              <NavLink onClick={handleClickAuth}>
+            {authUser ? (
+              <NavLink to="/login" onClick={logOut}>
                 <span>Выйти</span>
                 <img src={logoLogin} alt="icon" />
               </NavLink>

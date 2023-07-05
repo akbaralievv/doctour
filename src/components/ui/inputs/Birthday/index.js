@@ -45,11 +45,37 @@ function Birthday({ value, setValue }) {
   };
 
   const handleChange = (e) => {
+    const month =
+      e === 'Январь'
+        ? 1
+        : e === 'Февраль'
+        ? 2
+        : e === 'Март'
+        ? 3
+        : e === 'Апрель'
+        ? 4
+        : e === 'Май'
+        ? 5
+        : e === 'Июнь'
+        ? 6
+        : e === 'Июль'
+        ? 7
+        : e === 'Август'
+        ? 8
+        : e === 'Сентябрь'
+        ? 9
+        : e === 'Октябрь'
+        ? 10
+        : e === 'Ноябрь'
+        ? 11
+        : e === 'Декабрь'
+        ? 12
+        : '';
     setInputValue((prev) =>
       open.day
         ? { ...prev, day: e }
         : open.month
-        ? { ...prev, month: e }
+        ? { ...prev, month: month }
         : open.year
         ? { ...prev, year: e }
         : '',

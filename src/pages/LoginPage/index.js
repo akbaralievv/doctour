@@ -8,12 +8,10 @@ import { NavLink } from 'react-router-dom';
 import ForgotPassword from '../../components/ForgotPassword';
 import CreateNewPassword from '../../components/CreateNewPassword';
 import { useEffect } from 'react';
-import { setSuccess } from '../../redux/slices/PostCreateAccSlice';
 import PinCode from '../../components/PinCode';
 import ModalSuccess from '../../components/ModalSuccess';
 
 function LoginPage() {
-  const { data } = useSelector((state) => state.PostCreateAccSlice);
   const [active, setActive] = useState(true);
   const [forgot, setForgot] = useState(false);
   const handleClick = (isTrue) => {

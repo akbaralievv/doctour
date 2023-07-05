@@ -18,7 +18,7 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
   const [dataNames, setDataNames] = useState({
     clinics: [],
     doctor: [],
-    serviceCategory: [],
+    Service: [],
   });
   const inputRef = useRef();
   const navigate = useNavigate();
@@ -33,13 +33,13 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
       ...prev,
       clinics: globalValue ? getNames(data?.Clinics) : [],
       doctor: globalValue ? getNames(data?.Doctor) : [],
-      serviceCategory: globalValue ? getNames(data?.ServiceCategory) : [],
+      Service: globalValue ? getNames(data?.Service) : [],
     }));
     Object.keys(data)?.length > 0 ? setNotFound(true) : setNotFound(false);
     setSearchBtn(findFirstNonEmptyArrayKey(filteredData));
   }, [data, globalValue]);
 
-  const desiredKeys = ['Clinics', 'Doctor', 'ServiceCategory'];
+  const desiredKeys = ['Clinics', 'Doctor', 'Service'];
   const filteredData = Object.keys(data)
     .filter((key) => desiredKeys.includes(key))
     .reduce((obj, key) => {
@@ -84,7 +84,7 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
         ? navigate('/clinics')
         : searchBtn === 'Doctor'
         ? navigate('/doctors')
-        : searchBtn === 'ServiceCategory'
+        : searchBtn === 'Service'
         ? navigate('/services')
         : navigate('/');
     }
@@ -95,6 +95,7 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
     dispatch(setSearch(name));
     dispatch(setIdSpecialty(''));
     dispatch(setNameSpecialty(''));
+    // console.log(e.target);
     navigate('/doctors');
   };
 
@@ -122,7 +123,7 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
     </li>
   ));
 
-  const services = dataNames.serviceCategory?.map((data, id) => (
+  const services = dataNames.Service?.map((data, id) => (
     <li key={`service-${id}`} onClick={handleClickService}>
       {data}
       <span>(Услуги)</span>

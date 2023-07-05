@@ -56,7 +56,7 @@ function ListDoctors() {
                       key={item.id}
                       onClick={() => handleClick(item.id, item.name)}>
                       <li>
-                        <span className={style.count}>{item.id}</span>
+                        <span className={style.count}>{item.doctors_count}</span>
                         <span>{item.name}</span>
                       </li>
                     </Link>

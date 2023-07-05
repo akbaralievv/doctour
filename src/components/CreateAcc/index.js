@@ -12,6 +12,7 @@ import { postCreateAccSlice } from '../../redux/slices/PostCreateAccSlice';
 import ModalSuccess from '../ModalSuccess';
 
 function CreateAcc() {
+  const { data } = useSelector((state) => state.PostCreateAccSlice);
   const [value, setValue] = useState({
     phone_number: '',
     fullname: '',
@@ -19,16 +20,21 @@ function CreateAcc() {
     birthday: '',
     password: '',
   });
+
   const [openModal, setOpenModal] = useState(false);
 
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (data) {
+      document.body.style.overflow = 'hidden';
+      setOpenModal(true);
+    }
+  }, [data]);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
-      document.body.style.overflow = 'hidden';
-      setOpenModal(true);
       dispatch(postCreateAccSlice(value));
     }
   };
@@ -43,7 +49,7 @@ function CreateAcc() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {openModal && <ModalSuccess setOpen={setOpenModal} text="Ваш аккаунт успешно создан" />}
+      {openModal && <ModalSuccess setOpen={setOpenModal} text={data} />}
       <div>
         ФИО
         <FullName value={value.fullname} setValue={setValue} />
