@@ -17,6 +17,7 @@
   border-radius: 16px;
   padding: 16px;
   position: relative;
+  gap: 35px;
 }
 .container .CardClinic_inner .CardClinic_logo {
   width: 200px;
@@ -94,7 +95,32 @@
   letter-spacing: 1px;
   color: #023246;
 }
-.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle span {
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > p {
+  font-family: Open Sans;
+  font-size: 16px;
+  color: #023246;
+  font-weight: 400;
+}
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 5px;
+}
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > div > p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  margin: 0;
+  font-family: Open Sans;
+  font-size: 16px;
+  color: #023246;
+  font-weight: 400;
+}
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > div > a {
+  display: inline-block;
+  text-decoration: none;
   color: #1B6B93;
   cursor: pointer;
 }

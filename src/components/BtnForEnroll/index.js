@@ -1,10 +1,9 @@
 import React from 'react';
 import style from './BtnForEnroll.module.sass';
 import { useSelector } from 'react-redux';
-import { Link, useParams } from 'react-router-dom';
+import { Link, NavLink, useParams } from 'react-router-dom';
 
 function BtnForEnroll({ data }) {
-  const { id } = useParams();
   const startWD = data?.clinic?.[0]?.starting_working_day;
   const startWDshort = startWD?.substr(0, 5);
   const endWD = data?.clinic?.[0]?.ending_working_day;
@@ -39,9 +38,13 @@ function BtnForEnroll({ data }) {
               </div>
             </div>
           </div>
-          <Link to={`/doctors/${id}/whatsapp`} state={data.full_name} className={style.btn}>
+          <NavLink
+            to={`/doctors/${data.slug}/whatsapp`}
+            state={data.full_name + '/' + data.id}
+            // state={data.full_name}
+            className={style.btn}>
             Записаться через Whatsapp
-          </Link>
+          </NavLink>
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import Prevs from '../../assets/icons/Arrow - Left 2.svg';
 import Nexts from '../../assets/icons/Arrow - Right 2.svg';
 import './module.css';
@@ -6,6 +7,20 @@ import './module.css';
 const PaginationDocs = ({ pages, setCurrentPage }) => {
   const [currentButton, setCurrentButton] = useState(1);
   const [arrayOfCurrButtons, setArrayOfCurrButtons] = useState([]);
+
+  const handleClick = (e) => {
+    if (e.target?.alt === 'prev') {
+      setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1));
+    } else if (e.target?.alt === 'next') {
+      setCurrentButton((prev) => (prev >= numberOfPages.length ? prev : prev + 1));
+    } else {
+      setCurrentButton(e);
+    }
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
+  };
 
   const numberOfPages = [];
   for (let i = 1; i <= pages; i++) {
@@ -45,37 +60,21 @@ const PaginationDocs = ({ pages, setCurrentPage }) => {
   }, [currentButton, pages]);
   return (
     <div className={'pagination'} style={{ display: 'flex', justifyContent: 'center' }}>
-      {pages > 3 ? (
-        <img
-          src={Prevs}
-          onClick={() => setCurrentButton((prev) => (prev <= 1 ? prev : prev - 1))}
-        />
-      ) : (
-        <div></div>
-      )}
+      {pages > 3 ? <img src={Prevs} onClick={handleClick} alt="prev" /> : <div></div>}
       <div style={{ display: 'flex', margin: '0 32px' }}>
         {arrayOfCurrButtons.map((page, index) => (
-          <div className={'figures'}>
+          <div className={'figures'} key={index}>
             <a
               key={index}
               style={{ cursor: 'pointer' }}
-              onClick={() => setCurrentButton(page)}
+              onClick={() => handleClick(page)}
               className={currentButton === page ? 'active' : ''}>
               {page}
             </a>
           </div>
         ))}
       </div>
-      {pages > 3 ? (
-        <img
-          src={Nexts}
-          onClick={() =>
-            setCurrentButton((prev) => (prev >= numberOfPages.length ? prev : prev + 1))
-          }
-        />
-      ) : (
-        <div></div>
-      )}
+      {pages > 3 ? <img src={Nexts} onClick={() => handleClick} alt="next" /> : <div></div>}
     </div>
   );
 };

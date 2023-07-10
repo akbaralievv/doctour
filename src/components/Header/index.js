@@ -8,12 +8,11 @@ import SelectCity from '../SelectCity';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 import { setIdService, setNameService } from '../../redux/slices/GetClinicSlice';
-import { setAuth } from '../../redux/slices/PostAuthSlice';
+import { removeAccessToken } from '../../redux/slices/PostAuthSlice';
 import { setSearch } from '../../redux/slices/GetGlobalSearch';
 
 function Header() {
-  const { data, access } = useSelector((state) => state.PostAuthSlice);
-  const [authUser, setAuthUser] = useState('');
+  const { data, access_token } = useSelector((state) => state.PostAuthSlice);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(setIdSpecialty(''));
@@ -23,19 +22,8 @@ function Header() {
     dispatch(setSearch(''));
   };
 
-  useEffect(() => {
-    setAuthUser(localStorage.getItem('access') || '');
-  }, []);
-
-  useEffect(() => {
-    data?.access && setAuthUser(localStorage.getItem('access'));
-  }, [access]);
-
   const logOut = () => {
-    localStorage.removeItem('access');
-    localStorage.removeItem('refresh');
-    setAuthUser('');
-    dispatch(setAuth(''));
+    dispatch(removeAccessToken());
   };
 
   return (
@@ -86,7 +74,7 @@ function Header() {
           </div>
           <div className={styles.select_login}>
             <SelectCity />
-            {authUser ? (
+            {access_token ? (
               <NavLink to="/login" onClick={logOut}>
                 <span>Выйти</span>
                 <img src={logoLogin} alt="icon" />

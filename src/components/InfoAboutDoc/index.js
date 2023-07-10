@@ -55,10 +55,10 @@ function InfoAboutDoc({ data }) {
             </div>
           </div>
           <div style={{ height: '180px' }} className={style.education}>
-            {data.specialties?.length > 0 ? <h2>Специализация</h2> : null}
+            {data.doctor_specialization?.length > 0 ? <h2>Специализация</h2> : null}
             <div className={style.innerEdu}>
               <ul style={{ marginLeft: '23px' }}>
-                {data.specialties?.map((e) => (
+                {data.doctor_specialization?.map((e) => (
                   <li key={e.id}>{e.name}</li>
                 ))}
               </ul>

@@ -11,6 +11,7 @@
         border-radius: 16px
         padding: 16px
         position: relative
+        gap: 35px
         .CardClinic_logo
             width: 200px
             img
@@ -63,9 +64,28 @@
                 line-height: 23px
                 letter-spacing: 1px
                 color: #023246
-                span
-                    color: #1B6B93
-                    cursor: pointer
+                &>p
+                    font-family: Open Sans
+                    font-size: 16px
+                    color: #023246
+                    font-weight: 400
+                &>div
+                    display: flex
+                    flex-wrap: wrap
+                    gap: 5px
+                    &>p
+                        max-width: 100%
+                        overflow-wrap: break-word
+                        margin: 0
+                        font-family: Open Sans
+                        font-size: 16px
+                        color: #023246
+                        font-weight: 400
+                    &>a
+                        display: inline-block
+                        text-decoration: none
+                        color: #1B6B93
+                        cursor: pointer
         .CardClinic_information
             display: flex
             flex-direction: column

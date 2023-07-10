@@ -27,15 +27,17 @@ function FeedbackModal() {
     setText(e.target.value);
   };
   const handleSend = async () => {
-    dispatch(
-      postComment({
-        id: data.id,
-        text: text,
-        stars: rating,
-        doctor: data.id,
-      }),
-    );
-    handleNone();
+    if (text && rating > 0) {
+      dispatch(
+        postComment({
+          text: text,
+          stars: rating,
+          doctor: data.id,
+          user: 0,
+        }),
+      );
+      handleNone();
+    }
   };
 
   return (
@@ -67,7 +69,7 @@ function FeedbackModal() {
                 </form>
                 <button
                   type="submit"
-                  onClick={text && rating > 0 ? handleSend : ''}
+                  onClick={handleSend}
                   style={text && rating > 0 ? {} : { background: '#DEECF2' }}
                   className={style.btnSend}>
                   Оставить отзыв

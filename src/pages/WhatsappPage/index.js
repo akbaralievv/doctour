@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './WhatsApp.module.css';
@@ -12,30 +12,39 @@ import { useLocation } from 'react-router-dom';
 
 function WhatsAppPage() {
   const { nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
+  const location = useLocation();
+  const doctor = location.state.split('/');
   const [value, setValue] = useState({
+    doctor: doctor[1],
     fullname: '',
     birthday: '',
     gender: '',
     phone_number: '',
   });
+
   const disabled =
     value.fullname && value.birthday && value.gender && value.phone_number ? true : false;
 
-  const location = useLocation();
   const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
-      // dispatch(postWhatsAppSlice(value))
+      dispatch(postWhatsAppSlice(value));
     }
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          <Breadcrumbs specialty={nameSpecialty} nameDoctors={location.state} />
+          <Breadcrumbs specialty={nameSpecialty} nameDoctors={doctor[0]} />
           <h2>
-            Записаться на прием к врачу <span>{location.state}</span>{' '}
+            Записаться на прием к врачу <span>{doctor[0]}</span>
           </h2>
           <form onSubmit={handleSubmit}>
             <div className={styles.inputs}>

@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import style from './ListDoctors.module.css';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSpecialty } from '../../redux/slices/GetSpecialtySlice.js';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 import { setSearch } from '../../redux/slices/GetGlobalSearch';
 
-function ListDoctors() {
+function ListDoctors({ blockRef }) {
   const { data, loading } = useSelector((state) => state.GetSpecialtySlice);
+  const { searchValue } = useSelector((state) => state.GetGlobalSearch);
   const [objArray, setObjArray] = useState(null);
   const dispatch = useDispatch();
 
@@ -41,7 +41,7 @@ function ListDoctors() {
   return (
     <>
       <h2 className={style.h2}>Специальности врачей</h2>
-      <div className={style.wrapper}>
+      <div className={style.wrapper} ref={blockRef}>
         <div className={style.container}>
           <div className={style.inner}>
             {objArray?.map((item, id) => (
@@ -57,7 +57,9 @@ function ListDoctors() {
                       onClick={() => handleClick(item.id, item.name)}>
                       <li>
                         <span className={style.count}>{item.doctors_count}</span>
-                        <span>{item.name}</span>
+                        <span className={searchValue === item.name ? style.select : ''}>
+                          {item.name}
+                        </span>
                       </li>
                     </Link>
                   )),

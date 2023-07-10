@@ -5,13 +5,16 @@ import SearchForm from '../SearchForm';
 import { useDispatch, useSelector } from 'react-redux';
 import { getGlobalSearch } from '../../redux/slices/GetGlobalSearch';
 
-function SearchDoctors() {
+function SearchDoctors({ blockRef }) {
+  const { loading } = useSelector((state) => state.GetSpecialtySlice);
   const dispatch = useDispatch();
   const [value, setValue] = useState('');
   const { city } = useSelector((state) => state.UIReducer);
+
   useEffect(() => {
     value && dispatch(getGlobalSearch({ value, city }));
   }, [value, city]);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -25,6 +28,7 @@ function SearchDoctors() {
             setGlobalValue={setValue}
             globalValue={value}
             mainPage={true}
+            blockRef={blockRef}
           />
         </div>
       </div>

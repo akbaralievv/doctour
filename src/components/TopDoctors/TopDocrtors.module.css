@@ -22,11 +22,17 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+.topDoctors .container .inner .topIcons .icons > a > span {
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 600;
 }
 .topDoctors .container .inner .topIcons .icons a:first-child img {
   width: 72px;

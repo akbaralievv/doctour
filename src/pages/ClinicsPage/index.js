@@ -11,29 +11,37 @@ import SkeletonCardClinic from '../../components/SkeletonCardClinic';
 import NotFound from '../../components/NotFound';
 
 function ClinicsPage() {
-  const { data, loading } = useSelector((state) => state.GetClinicSlice);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(7);
+  const { data, loading, error } = useSelector((state) => state.GetClinicSlice);
   const { city } = useSelector((state) => state.UIReducer);
   const { searchValue } = useSelector((state) => state.GetGlobalSearch);
   const { idService, nameService } = useSelector((state) => state.GetClinicSlice);
-  const [notFound, setNotFound] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const dispatch = useDispatch();
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = data?.slice(indexOfFirstPost, indexOfLastPost);
-  const howManyPages = Math.ceil(data?.length / postsPerPage);
+
+  const howManyPages = Math.ceil(data?.count / 10);
 
   useEffect(() => {
-    dispatch(getClinic({ city, searchValue, idService }));
-  }, [city, searchValue, idService]);
-
-  useEffect(() => {
-    !loading && data?.length === 0 ? setNotFound(true) : setNotFound(false);
-  }, [data]);
+    dispatch(getClinic({ city, searchValue, idService, currentPage }));
+    window.scrollTo(0, 0);
+  }, [city, searchValue, idService, currentPage]);
 
   const skeletons = [...new Array(7)].map((_, index) => <SkeletonCardClinic key={index} />);
+
+  const cityName =
+    city === '92b89611-4119-4936-8a60-61d25348ad26'
+      ? 'Бишкек'
+      : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
+      ? 'Ош'
+      : '';
+
+  const clinics = loading ? (
+    skeletons
+  ) : error || data.results?.length === 0 ? (
+    <NotFound style={{ height: 'calc(100vh - 430px)' }} />
+  ) : (
+    data.results?.map((data) => <CardClinic data={data} key={data.id} />)
+  );
 
   return (
     <div className={'container-clinic'}>
@@ -43,24 +51,11 @@ function ClinicsPage() {
         </div>
         <div className="infoDoctors-clinic">
           <h1>
-            Все {nameService || 'клиники'} города{' '}
-            {city === '92b89611-4119-4936-8a60-61d25348ad26'
-              ? 'Бишкек'
-              : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
-              ? 'Ош'
-              : ''}
+            Все {nameService || 'клиники'} города {cityName}
           </h1>
         </div>
         <SearchForm placeholder={'Клиники'} />
-        <div className={'wrapper-card'}>
-          {loading ? (
-            skeletons
-          ) : notFound ? (
-            <NotFound style={{ height: 'calc(100vh - 430px)' }} />
-          ) : (
-            currentPosts?.map((data) => <CardClinic data={data} key={data.id} />)
-          )}
-        </div>
+        <div className={'wrapper-card'}>{clinics}</div>
         <div className="pagination-block-clinic">
           <PaginationDocs setCurrentPage={setCurrentPage} pages={howManyPages} />
         </div>

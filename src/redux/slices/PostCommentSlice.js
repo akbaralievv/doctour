@@ -4,18 +4,18 @@ import axios from 'axios';
 import { links } from './links';
 
 const URL = links.COMMENT_URL;
+const accessToken = localStorage.getItem('access_token') || '';
+const headers = { Authorization: `Bearer ${accessToken}` };
 
 export const postComment = createAsyncThunk('postComment', async function (data) {
   try {
-    const response = await axios.post(URL, data);
+    const response = await axios.post(URL, data, headers);
     if (response.status === 200) {
       const data = await response.data;
       return data;
-    } else {
-      throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
@@ -36,7 +36,7 @@ const postCommentSlice = createSlice({
       state.data = [];
     });
     builder.addCase(postComment.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

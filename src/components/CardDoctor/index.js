@@ -11,6 +11,8 @@ import wallet from '../../assets/icons/Wallet.svg';
 import inst from '../../assets/icons/Inst.svg';
 import star0 from '../../assets/icons/Star0.svg';
 import star from '../../assets/icons/Star.svg';
+import arrowUp from '../../assets/icons/CardClinic/arrow-up.svg';
+import arrowDown from '../../assets/icons/CardClinic/arrow-down.svg';
 
 import Card from '../../assets/images/img.png';
 import './module.css';
@@ -20,8 +22,13 @@ import { selectDoctor, handleIds } from '../../redux/slices/DoctorsSlice';
 function CardDoctor({ data }) {
   const [like, setLike] = useState(false);
   const [stars, setStar] = useState([]);
+  const [expanded, setExpanded] = useState(false);
   const auth = useSelector((state) => state.PostAuthSlice);
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    setExpanded((prevExpanded) => !prevExpanded);
+  };
 
   const handleLike = () => {
     localUpdate(!like);
@@ -87,9 +94,33 @@ function CardDoctor({ data }) {
     setStar(StarArray(data.average_rating));
   }, [data.average_rating]);
 
+  const CardClinicSubtitle = () => {
+    if (expanded) {
+      return (
+        <div>
+          <p>{data.summary}</p>
+          <a onClick={handleClick}>
+            Поменьше <img src={arrowUp} alt="arrow-up icon" />
+          </a>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>{data.summary.slice(0, 100)}</p>
+          {data.summary.length > 100 && (
+            <a onClick={handleClick}>
+              Подробнее <img src={arrowDown} alt="arrow-down icon" />
+            </a>
+          )}
+        </div>
+      );
+    }
+  };
+
   return (
     <>
-      <div style={{ marginBottom: '48px' }} className={'container'}>
+      <div className={'container'}>
         <div className={'heart-wrapper'}>
           <img
             onClick={handleLike}
@@ -100,11 +131,10 @@ function CardDoctor({ data }) {
         </div>
         <img className={'cardAvatar'} src={data.photo} alt="doctor" />
         <div className="info">
-          {/* <div className="up-side"> */}
-          <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.id}`}>
-            <div className="left">
+          <div className="left">
+            <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.slug}`}>
               <div className="full-name">
-                <h1>{data.full_name}</h1>
+                <h2>{data.full_name}</h2>
               </div>
               <div className="speciality">
                 {data.specialties.map((spec, index) => (
@@ -114,47 +144,61 @@ function CardDoctor({ data }) {
                   </React.Fragment>
                 ))}
               </div>
-              <div className="education">
-                <p>
-                  <img src={location} />
-                  {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
-                </p>
-              </div>
+              {data.clinic.length > 0 && (
+                <div className="education">
+                  <p>
+                    <img src={location} alt="location" />
+                    {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
+                  </p>
+                </div>
+              )}
               <div className="mini-info">
-                <div className="stage">
-                  <p>
-                    <img src={pulse} />
-                    Стаж от {data.experience} лет
-                  </p>
-                </div>
-                <div className="price">
-                  <p>
-                    <img src={wallet} />
-                    Прием от {data.price} сомов
-                  </p>
-                </div>
-                <div className="instagram">
-                  <p>
-                    <img src={inst} />
-                    {data.social}
-                  </p>
-                </div>
+                {data.experience && (
+                  <div className="stage">
+                    <p>
+                      <img src={pulse} alt="experience" />
+                      Стаж от {data.experience} лет
+                    </p>
+                  </div>
+                )}
+                {data.price && (
+                  <div className="price">
+                    <p>
+                      <img src={wallet} alt="wallet" />
+                      Прием от {data.price} сомов
+                    </p>
+                  </div>
+                )}
+                {data.instagram && (
+                  <div className="instagram">
+                    <p>
+                      <img src={inst} alt="inst" />
+                      {data.instagram}
+                    </p>
+                  </div>
+                )}
               </div>
+            </Link>
+            {data.summary && (
               <div className="description">
-                <p>{data.summary}</p>
+                {data.summary?.length > 100 ? <CardClinicSubtitle /> : data.summary}
               </div>
-            </div>
-          </Link>
+            )}
+          </div>
           <div className="right">
             <div className="rating">
               <div className="stars">
                 {stars
                   .slice(0, 5)
                   .map((e, id) =>
-                    e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
+                    e === 'point' ? (
+                      <img src={star} key={id} alt="star" />
+                    ) : (
+                      <img src={star0} key={id} alt="star" />
+                    ),
                   )}
               </div>
-              <div className="rate">{data.average_rating?.toFixed(2)}</div>
+              {data.average_rating && <div className="rate">{data.average_rating?.toFixed(2)}</div>}
               <div className="feedback">
                 <p>{data.num_reviews} отзывов</p>
               </div>
@@ -169,7 +213,6 @@ function CardDoctor({ data }) {
               </Link>
             )}
           </div>
-          {/* </div> */}
         </div>
       </div>
     </>

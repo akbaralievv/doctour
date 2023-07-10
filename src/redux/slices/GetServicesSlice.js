@@ -11,11 +11,9 @@ export const getServices = createAsyncThunk('getServices', async function (city)
     if (response.status === 200) {
       const data = await response.data;
       return data.results;
-    } else {
-      throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
@@ -36,7 +34,7 @@ const getServicesSlice = createSlice({
       state.data = [];
     });
     builder.addCase(getServices.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

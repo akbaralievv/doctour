@@ -3,6 +3,7 @@ import style from './AboutDoctor.module.sass';
 
 import img from '../../assets/images/img.png';
 import heart from '../../assets/icons/Heart.svg';
+import heartActive from '../../assets/icons/HeartActive.svg';
 
 import pulse from '../../assets/icons/Pulse.svg';
 import inst from '../../assets/icons/Inst.svg';
@@ -20,40 +21,50 @@ function AboutDoctor({ data }) {
   const dispatch = useDispatch();
 
   const handleLike = () => {
+    console.log('1');
+    localUpdate(!like);
     setLike(!like);
   };
 
   useEffect(() => {
-    const favorites = JSON.parse(localStorage.getItem('favorites')) || {
-      doctors: [],
-      clinics: [],
-    };
-    const isLiked = favorites.doctors?.some((favorite) => favorite.id === data.id);
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || { doctors: [], clinics: [] };
+    const isLiked = favorites.doctors.find((favorite) => favorite.id === data.id);
     setLike(isLiked);
   }, [data]);
 
   useEffect(() => {
+    if (like) {
+      dispatch(setLikeSlice(true));
+    } else {
+      dispatch(setLikeSlice(false));
+    }
+  }, [like]);
+
+  const localUpdate = (type) => {
     const favorites = JSON.parse(localStorage.getItem('favorites')) || {
       doctors: [],
       clinics: [],
     };
 
-    if (like) {
+    let updatedFavorites = { ...favorites };
+
+    if (type) {
       const existingIndex = favorites.doctors?.findIndex((favorite) => favorite.id === data.id);
       if (existingIndex === -1) {
-        favorites.doctors.push(data);
+        updatedFavorites = {
+          ...favorites,
+          doctors: [...favorites.doctors, data],
+        };
       }
     } else {
       const filteredFavorites = favorites.doctors?.filter((favorite) => favorite.id !== data.id);
-      favorites.doctors = filteredFavorites;
+      updatedFavorites = {
+        ...favorites,
+        doctors: filteredFavorites,
+      };
     }
-    localStorage.setItem('favorites', JSON.stringify(favorites));
-    dispatch(setLikeSlice(like));
-  }, [like, data]);
-
-  if (!data) {
-    return null; // или можно отобразить загрузочный индикатор
-  }
+    localStorage.setItem('favorites', JSON.stringify(updatedFavorites));
+  };
 
   const StarArray = (num) => {
     const stars = [];
@@ -86,7 +97,14 @@ function AboutDoctor({ data }) {
               alt=""
               className={style.imgOne}
             />
-            <img src={heart} alt="" className={style.iconOne} onClick={handleLike} />
+            <div className={style.heartWrapper}>
+              <img
+                src={like ? heartActive : heart}
+                alt=""
+                className={style.heart}
+                onClick={handleLike}
+              />
+            </div>
           </div>
           <div className={style.infoInner}>
             <h2>{data.full_name}</h2>

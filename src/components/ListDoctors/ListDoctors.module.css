@@ -58,8 +58,11 @@
 .wrapper .inner ul li span {
   color: #023246;
   font-family: "Open Sans", sans-serif;
-  font-family: 700;
+  font-weight: 600;
   font-size: 16px;
+}
+.wrapper .inner ul li .select {
+  color: #1B6B93;
 }
 .wrapper .inner ul li .count {
   border: 1px solid #1B6B93;

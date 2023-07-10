@@ -5,17 +5,15 @@ import { links } from './links';
 
 const URL = links.BASE_URL + 'doctors/';
 
-export const getProfile = createAsyncThunk('getProfile', async function (id) {
+export const getProfile = createAsyncThunk('getProfile', async function (slug) {
   try {
-    const response = await axios.get(`${URL}/${id}`);
+    const response = await axios.get(`${URL}/${slug}`);
     if (response.status === 200) {
       const data = await response.data;
       return data;
-    } else {
-      throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
@@ -36,7 +34,7 @@ const getProfileSlice = createSlice({
       state.data = [];
     });
     builder.addCase(getProfile.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

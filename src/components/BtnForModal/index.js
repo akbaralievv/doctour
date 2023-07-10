@@ -8,13 +8,13 @@ function BtnForModal({ data }) {
   const dispatch = useDispatch();
 
   const handleShow = () => {
+    dispatch(handleFeedBack(true));
     document.body.style.overflow = 'hidden';
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'smooth',
     });
-    dispatch(handleFeedBack(true));
   };
 
   return (

@@ -14,6 +14,7 @@ import ModalSuccess from '../../components/ModalSuccess';
 function LoginPage() {
   const [active, setActive] = useState(true);
   const [forgot, setForgot] = useState(false);
+
   const handleClick = (isTrue) => {
     setActive(isTrue);
   };
@@ -21,37 +22,37 @@ function LoginPage() {
     setForgot(!forgot);
   };
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const isForgot = forgot ? (
+    <ForgotPassword />
+  ) : (
+    <>
+      <div className={styles.auth_btns}>
+        <NavLink
+          className={`${styles.auth} ${active ? styles.active : ''}`}
+          onClick={() => handleClick(true)}>
+          Авторизация
+        </NavLink>
+        <NavLink
+          className={`${styles.create} ${!active ? styles.active : ''}`}
+          onClick={() => handleClick(false)}>
+          Создать аккаунт
+        </NavLink>
+      </div>
+      <div className={styles.container_inner}>
+        {active ? <Auth forgot={handleClickForgot} /> : <CreateAcc />}
+      </div>
+    </>
+  );
 
   return (
     <>
       <div className={`${styles.wrapper}`}>
         <div className={styles.container}>
-          <div className={`${styles.inner} ${forgot && styles.forgot}`}>
-            {forgot ? (
-              <ForgotPassword />
-            ) : (
-              // <CreateNewPassword />
-              // <PinCode />
-              <>
-                <div className={styles.auth_btns}>
-                  <NavLink
-                    className={`${styles.auth} ${active ? styles.active : ''}`}
-                    onClick={() => handleClick(true)}>
-                    Авторизация
-                  </NavLink>
-                  <NavLink
-                    className={`${styles.create} ${!active ? styles.active : ''}`}
-                    onClick={() => handleClick(false)}>
-                    Создать аккаунт
-                  </NavLink>
-                </div>
-                <div className={styles.container_inner}>
-                  {active ? <Auth forgot={handleClickForgot} /> : <CreateAcc />}
-                </div>
-              </>
-            )}
-          </div>
+          <div className={`${styles.inner} ${forgot && styles.forgot}`}>{isForgot}</div>
         </div>
       </div>
     </>

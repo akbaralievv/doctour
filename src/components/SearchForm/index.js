@@ -12,14 +12,15 @@ import SkeletonSearchOptions from '../SkeletonSearchOptions';
 function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
   const [inputValue, setInputValue] = useState('');
   const [notFound, setNotFound] = useState(false);
-  const { data, loading, error } = useSelector((state) => state.GetGlobalSearch);
-  const [searchBtn, setSearchBtn] = useState('');
-
+  const { data } = useSelector((state) => state.GetGlobalSearch);
   const [dataNames, setDataNames] = useState({
     clinics: [],
     doctor: [],
     Service: [],
+    SubService: [],
+    Speciality: [],
   });
+
   const inputRef = useRef();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -34,28 +35,12 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
       clinics: globalValue ? getNames(data?.Clinics) : [],
       doctor: globalValue ? getNames(data?.Doctor) : [],
       Service: globalValue ? getNames(data?.Service) : [],
+      SubService: globalValue ? getNames(data?.SubService) : [],
+      Speciality: globalValue ? getNames(data?.Speciality) : [],
     }));
-    Object.keys(data)?.length > 0 ? setNotFound(true) : setNotFound(false);
-    setSearchBtn(findFirstNonEmptyArrayKey(filteredData));
-  }, [data, globalValue]);
 
-  const desiredKeys = ['Clinics', 'Doctor', 'Service'];
-  const filteredData = Object.keys(data)
-    .filter((key) => desiredKeys.includes(key))
-    .reduce((obj, key) => {
-      obj[key] = data[key];
-      return obj;
-    }, {});
-  const findFirstNonEmptyArrayKey = (obj) => {
-    const keys = Object.keys(obj);
-    for (let i = keys.length - 1; i >= 0; i--) {
-      const key = keys[i];
-      if (Array.isArray(obj[key]) && obj[key].length > 0) {
-        return key;
-      }
-    }
-    return null;
-  };
+    Object.keys(data)?.length > 0 ? setNotFound(true) : setNotFound(false);
+  }, [data, globalValue]);
 
   const updateSearchValue = useCallback(
     debounce((str) => {
@@ -75,33 +60,23 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
     setGlobalValue && setGlobalValue('');
     inputRef.current.focus();
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setSearch(inputValue));
     setGlobalValue && setGlobalValue('');
-    if (mainPage) {
-      searchBtn === 'Clinics'
-        ? navigate('/clinics')
-        : searchBtn === 'Doctor'
-        ? navigate('/doctors')
-        : searchBtn === 'Service'
-        ? navigate('/services')
-        : navigate('/');
-    }
+    handleNavigate();
   };
 
   const handleClickDoctor = (e) => {
-    const name = e.target.firstChild.textContent;
-    dispatch(setSearch(name));
+    dispatch(setSearch(e));
     dispatch(setIdSpecialty(''));
     dispatch(setNameSpecialty(''));
-    // console.log(e.target);
     navigate('/doctors');
   };
 
   const handleClickClinic = (e) => {
-    const name = e.target.firstChild.textContent;
-    dispatch(setSearch(name));
+    dispatch(setSearch(e));
     navigate('/clinics');
   };
 
@@ -109,28 +84,73 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
     navigate('/services');
   };
 
-  const doctors = dataNames.doctor?.map((data, id) => (
-    <li key={`doctor-${id}`} onClick={handleClickDoctor}>
-      {data}
-      <span>(Врачи)</span>
-    </li>
-  ));
+  const handleClickSpeciality = (name) => {
+    dispatch(setSearch(name));
+    window.scrollTo({
+      top: 888,
+      behavior: 'smooth',
+    });
+  };
 
-  const clinics = dataNames.clinics?.map((data, id) => (
-    <li key={`clinic-${id}`} onClick={handleClickClinic}>
-      {data}
-      <span>(Клиники)</span>
-    </li>
-  ));
+  const highlightText = (text) => {
+    const regex = new RegExp(`(${inputValue})`, 'gi');
+    const parts = text.split(regex);
+    return parts.map((part, index) => {
+      if (part === inputValue) {
+        return (
+          <span key={index} className={styles.highlight}>
+            {part}
+          </span>
+        );
+      }
+      return part;
+    });
+  };
 
-  const services = dataNames.Service?.map((data, id) => (
-    <li key={`service-${id}`} onClick={handleClickService}>
-      {data}
-      <span>(Услуги)</span>
-    </li>
-  ));
+  const options = [
+    ...(dataNames.doctor || []).map((name) => (
+      <li key={name + 'doctor'} onClick={() => handleClickDoctor(name)} name="1">
+        {highlightText(name)}
+        <span>(Врачи)</span>
+      </li>
+    )),
+    ...(dataNames.clinics || []).map((name) => (
+      <li key={name + 'clinic'} onClick={() => handleClickClinic(name)}>
+        {highlightText(name)} <span>(Клиники)</span>
+      </li>
+    )),
+    ...(dataNames.Service || []).map((name) => (
+      <li key={name + 'service'} onClick={handleClickService}>
+        {highlightText(name)} <span>(Услуги)</span>
+      </li>
+    )),
+    ...(dataNames.SubService || []).map((name) => (
+      <li key={name + 'service'} onClick={handleClickService}>
+        {highlightText(name)} <span>(Услуги)</span>
+      </li>
+    )),
+    ...(dataNames.Speciality || []).map((name) => (
+      <li key={name + 'speciality'} onClick={() => handleClickSpeciality(name)}>
+        {highlightText(name)} <span>(Специальности)</span>
+      </li>
+    )),
+  ];
 
-  const options = (doctors || []).concat(clinics || []).concat(services || []);
+  const handleNavigate = () => {
+    const name = options[0]?.key;
+    if (mainPage) {
+      name?.includes('clinic')
+        ? navigate('/clinics')
+        : name?.includes('doctor')
+        ? navigate('/doctors')
+        : name?.includes('service')
+        ? navigate('/services')
+        : name?.includes('speciality')
+        ? handleClickSpeciality(name.replace('speciality', ''))
+        : navigate('/');
+    }
+  };
+
   const skeletons = [...new Array(5)].map((_, index) => <SkeletonSearchOptions key={index} />);
 
   return (

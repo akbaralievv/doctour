@@ -2,7 +2,7 @@
   height: 357px
   margin-top: 48px
   .container
-    width: 1280px
+    width: 1200px
     margin: 0 auto
     .info
       font-family: 'Open Sans', sans-serif
@@ -14,17 +14,29 @@
       .infoImg
         position: relative
         margin-right: 27px
-        z-index: -1
         .imgOne
           width: 357px
           height: 357px
           border-radius: 20px
-        .iconOne
+        .heartWrapper
+          background-color: #fff
+          z-index: 2
           position: absolute
-          top: 8px
-          right: 0
-          bottom: 0
-          left: 8px
+          border-radius: 50%
+          width: 40px
+          height: 40px
+          top: 0
+          left: 0
+          margin: 8px
+          display: flex
+          justify-content: center
+          align-items: center
+          .heart
+            transition: 300ms
+            cursor: pointer
+            user-select: none
+            width: 32px
+            height: 32px
       .infoInner
         width: 637px
         height: 354px

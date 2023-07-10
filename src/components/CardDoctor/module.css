@@ -7,7 +7,6 @@
   display: flex;
   font-size: 21px;
   width: 1200px;
-  height: 266px;
   border: #023246 solid 1px;
   border-radius: 16px;
   -webkit-box-sizing: border-box;
@@ -46,13 +45,9 @@
 .container .cardAvatar {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  min-width: 266px;
-  height: 264px;
+  width: 266px;
   background: grey;
   border-radius: 16px;
-}
-.container a {
-  width: 100%;
 }
 .container .info {
   width: 100%;
@@ -60,25 +55,59 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 25px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .container .info p {
   font-size: 16px;
   color: #023246;
   font-weight: 500;
 }
-.container .info h1 {
+.container .info h2 {
   font-size: 24px;
   font-weight: 700;
+  font-family: "Open Sans", sans-serif;
+}
+.container .info .left .description {
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-weight: 400;
+}
+.container .info .left .description div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 5px;
+}
+.container .info .left .description p {
+  max-width: 610px;
+  overflow-wrap: break-word;
+  margin: 0;
+  font-family: Open Sans;
+  font-size: 16px;
+  color: #023246;
+  font-weight: 400;
+}
+.container .info .left .description a {
+  display: inline-block;
+  text-decoration: none;
+  color: #1B6B93;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
 }
 .container .info .left .full-name {
   color: #023246;
-  height: 24px;
   margin-bottom: 20px;
 }
 .container .info .left .speciality {
   font-size: 20px;
   font-weight: 700;
+  font-family: "Open Sans", sans-serif;
   margin-bottom: 20px;
   color: #1B6B93;
 }
@@ -107,7 +136,9 @@
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 20px;
-  gap: 27px;
+  gap: 17px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 .container .info .left .mini-info p {
   display: -webkit-box;
@@ -116,15 +147,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-.container .info .left .mini-info p img {
-  margin-right: 13px;
-}
-.container .info .left .mini-info .instagram {
-  width: 24px;
+  gap: 8px;
 }
 .container .info .right {
-  position: relative;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -132,7 +157,9 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  gap: 20.5px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -142,8 +169,9 @@
   font-size: 16px;
   font-family: Open Sans;
   font-weight: 600;
+  height: 76px;
   width: 240px;
-  padding: 16px 7px;
+  padding: 0 7px;
   border-radius: 8px;
   color: #FFFFFF;
   text-decoration: none;
@@ -175,6 +203,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  gap: 10px;
 }
 .container .info .right .rating p {
   font-size: 16px;
@@ -189,7 +218,7 @@
 }
 .container .info .right .rating .rate {
   font-size: 32px;
-  font-weight: bold;
+  font-weight: 700;
   color: #1B6B93;
 }
 .container .info .right .amount {

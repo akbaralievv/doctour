@@ -8,18 +8,17 @@ import { getSpecialty } from '../../redux/slices/GetSpecialtySlice';
 
 function SelectCity() {
   const dispatch = useDispatch();
+
   const { cityModal, city } = useSelector((state) => state.UIReducer);
 
   const changeLocation = (e) => {
     dispatch(setCity(e.target.value));
     dispatch(closePopUp(false));
   };
+
   const cityHandle = () => {
     dispatch(actionCityPop({ open: 'city' }));
   };
-  useEffect(() => {
-    dispatch(getSpecialty(city));
-  }, [city]);
 
   return (
     <div className={styles.selects}>

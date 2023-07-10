@@ -11,11 +11,9 @@ export const getSpecialty = createAsyncThunk('getSpecial', async function (city)
     if (response.status === 200) {
       const data = await response.data;
       return data.results;
-    } else {
-      throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
@@ -30,6 +28,7 @@ const getSpecialtySlice = createSlice({
       state.data = action.payload
         ? [...action.payload].sort((a, b) => a.name.localeCompare(b.name))
         : [];
+      state.error = '';
     });
     builder.addCase(getSpecialty.pending, (state, action) => {
       state.loading = true;
@@ -37,7 +36,7 @@ const getSpecialtySlice = createSlice({
       state.data = [];
     });
     builder.addCase(getSpecialty.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

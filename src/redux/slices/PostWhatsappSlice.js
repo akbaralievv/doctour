@@ -4,18 +4,18 @@ import axios from 'axios';
 import { links } from './links';
 
 const URL = links.BASE_URL + 'whatsapp-send/';
+const accessToken = localStorage.getItem('access_token') || '';
+const headers = { Authorization: `Bearer ${accessToken}` };
 
 export const postWhatsAppSlice = createAsyncThunk('postWhatsAppSlice', async function (value) {
   try {
-    const response = await axios.post(URL, value);
+    const response = await axios.post(URL, value, headers);
     if (response.status === 200) {
       const data = await response.data;
       return data.results;
-    } else {
-      throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
@@ -36,7 +36,7 @@ const whatsAppSlice = createSlice({
       state.data = [];
     });
     builder.addCase(postWhatsAppSlice.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

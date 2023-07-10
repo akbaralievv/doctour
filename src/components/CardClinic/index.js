@@ -69,20 +69,23 @@ function CardClinic({ data }) {
   const CardClinicSubtitle = () => {
     if (expanded) {
       return (
-        <>
-          {data.descriptions.slice(200)}{' '}
-          <span onClick={handleClick}>
+        <div style={{ maxWidth: '100%', overflowWrap: 'break-word' }}>
+          <p>{data.descriptions}</p>
+          <a onClick={handleClick}>
             Поменьше <img src={arrowUp} alt="arrow-up icon" />
-          </span>
-        </>
+          </a>
+        </div>
       );
     } else {
       return (
-        <>
-          <span onClick={handleClick}>
-            Подробнее <img src={arrowDown} alt="arrow-down icon" />
-          </span>
-        </>
+        <div style={{ maxWidth: '100%', overflowWrap: 'break-word' }}>
+          <p>{data.descriptions.slice(0, 100)}</p>
+          {data.descriptions.length > 100 && (
+            <a onClick={handleClick}>
+              Подробнее <img src={arrowDown} alt="arrow-down icon" />
+            </a>
+          )}
+        </div>
       );
     }
   };
@@ -103,7 +106,7 @@ function CardClinic({ data }) {
             <div className={styles.CardClinic_logo}>
               <img src={data.photo} alt="Unimed-Clinic" />
             </div>
-          </a>{' '}
+          </a>
           <div className={styles.CardClinic_title}>
             <a href={data.link_clinic} target="_blank">
               <h3>{data.title}</h3>
@@ -111,42 +114,62 @@ function CardClinic({ data }) {
             </a>
 
             <div className={styles.CardClinic_subtitle}>
-              {data.descriptions} {data.descriptions?.length > 200 ? <CardClinicSubtitle /> : ''}
+              {data.descriptions?.length > 100 ? <CardClinicSubtitle /> : data.descriptions}
             </div>
           </div>
           <div className={styles.CardClinic_information}>
-            <div className={styles.CardClinic_information_cards}>
-              <img src={location} alt="Location icon" />
-              <span>{data.address}</span>
-            </div>
+            {data.address && (
+              <div className={styles.CardClinic_information_cards}>
+                <img src={location} alt="Location icon" />
+                <span>{data.address}</span>
+              </div>
+            )}
 
-            <div className={styles.CardClinic_information_cards}>
-              <img src={discovery} alt="Discovery icon" />
-              <a href={data.link_2gis} target="blank">
-                мы в 2ГИС
-              </a>
-            </div>
-
-            <div className={styles.CardClinic_information_cards}>
-              <img src={time} alt="Time-Circle icon" />
-              <ul className={styles.information_cards_ul}>
-                <li>
-                  {data.weekday} {data.starting_working_day} - {data.ending_working_day}
-                </li>
-                <li>
-                  {data.weekend} {data.starting_working_day} - {data.ending_working_day}
-                </li>
-              </ul>
-            </div>
-
-            <div
-              className={`${styles.CardClinic_information_cards} ${styles.CardClinic_information_cardsTwo}`}>
-              <img src={call} alt="Calling icon" />
-              <ul className={styles.information_cards_ul}>
-                <li className={styles.information_cards_li_strong}>{data.contacts1}</li>
-                <li className={styles.information_cards_li_strong}>{data.contacts2}</li>
-              </ul>
-            </div>
+            {data.link_2gis && (
+              <div className={styles.CardClinic_information_cards}>
+                <img src={discovery} alt="Discovery icon" />
+                <a href={data.link_2gis} target="blank">
+                  мы в 2ГИС
+                </a>
+              </div>
+            )}
+            {(data.weekday || data.weekend) && (
+              <div className={styles.CardClinic_information_cards}>
+                <img src={time} alt="Time-Circle icon" />
+                <ul className={styles.information_cards_ul}>
+                  <li>
+                    {data.weekday} {data.starting_working_day} - {data.ending_working_day}
+                  </li>
+                  <li>
+                    {data.weekend} {data.starting_working_day} - {data.ending_working_day}
+                  </li>
+                </ul>
+              </div>
+            )}
+            {(data.contacts1 || data.contacts2) && (
+              <div
+                className={`${styles.CardClinic_information_cards} ${styles.CardClinic_information_cardsTwo}`}>
+                <img src={call} alt="Calling icon" />
+                <ul className={styles.information_cards_ul}>
+                  {data.contacts1 && (
+                    <li className={styles.information_cards_li_strong}>
+                      {(data.contacts1 + '').replace(
+                        /(\d{3})(\d{3})(\d{3})(\d{3})/,
+                        '+$1 $2 $3 $4',
+                      )}
+                    </li>
+                  )}
+                  {data.contacts2 && (
+                    <li className={styles.information_cards_li_strong}>
+                      {(data.contacts2 + '').replace(
+                        /(\d{3})(\d{3})(\d{3})(\d{3})/,
+                        '+$1 $2 $3 $4',
+                      )}
+                    </li>
+                  )}
+                </ul>
+              </div>
+            )}
           </div>
         </div>
       </div>

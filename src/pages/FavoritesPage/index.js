@@ -11,6 +11,7 @@ import NotFound from '../../components/NotFound';
 function FavoritesPage() {
   const [data, setData] = useState([]);
   const { state } = useSelector((state) => state.favoritesSlice);
+
   useEffect(() => {
     setData(
       JSON.parse(localStorage.getItem('favorites')) || {
@@ -18,29 +19,35 @@ function FavoritesPage() {
         clinics: [],
       },
     );
+    window.scrollTo(0, 0);
   }, [state]);
+
+  const favorites =
+    data.doctors?.length === 0 && data.clinics?.length === 0 ? (
+      <NotFound style={{ height: 'calc(100vh - 300px)' }} />
+    ) : (
+      <div className={styles.favoriteCard}>
+        {data.doctors?.map((item) => (
+          <CardDoctor key={item.id} data={item} />
+        ))}
+        {data.clinics?.map((item) => (
+          <CardClinic key={item.id} data={item} />
+        ))}
+      </div>
+    );
+
+  const count = data.doctors?.length + data.clinics?.length;
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.inner}>
           <Breadcrumbs />
-          <h2>
-            Избранные <img src={ellipse} alt="ellipse" />{' '}
-            {data.doctors?.length + data.clinics?.length}
-          </h2>
-          {data.doctors?.length === 0 && data.clinics?.length === 0 ? (
-            <NotFound style={{ height: 'calc(100vh - 300px)' }} />
-          ) : (
-            <>
-              {data.doctors?.map((item) => (
-                <CardDoctor key={item.id} data={item} />
-              ))}
-              {data.clinics?.map((item) => (
-                <CardClinic key={item.id} data={item} />
-              ))}
-            </>
-          )}
+          <h1>
+            Избранные <img src={ellipse} alt="ellipse" />
+            {count}
+          </h1>
+          {favorites}
         </div>
       </div>
     </div>

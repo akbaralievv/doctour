@@ -7,19 +7,17 @@ const URL = links.BASE_URL + 'clinics/';
 
 export const getClinic = createAsyncThunk(
   'getClinic',
-  async function ({ city, searchValue, idService }) {
+  async function ({ city, searchValue, idService, currentPage }) {
     try {
       const response = await axios.get(
-        `${URL}?search=${searchValue}&city=${city}&subservice_clinic=${idService}`,
+        `${URL}?search=${searchValue}&city=${city}&subservice_clinic=${idService}&page=${currentPage}`,
       );
       if (response.status === 200) {
         const data = await response.data;
-        return data.results;
-      } else {
-        throw Error(`error ${response.status}`);
+        return data;
       }
     } catch (err) {
-      return console.error(err.message);
+      throw err.response.status;
     }
   },
 );
@@ -49,7 +47,7 @@ const getClinicSlice = createSlice({
       state.data = [];
     });
     builder.addCase(getClinic.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

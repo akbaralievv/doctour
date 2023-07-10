@@ -1,21 +1,16 @@
 import React, { useRef, useEffect } from 'react';
-import { clearDataCreateAcc } from '../../redux/slices/PostCreateAccSlice';
-import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 import styles from './ModalSuccess.module.css';
-import { clearDataAuth } from '../../redux/slices/PostAuthSlice';
 
-function ModalSuccess({ setOpen, text, setValue }) {
+function ModalLogin({ setOpenModal }) {
   const modalRef = useRef();
-  const dispatch = useDispatch();
 
   const closeModal = () => {
     document.body.style.overflow = '';
-    setOpen(false);
-    dispatch(clearDataCreateAcc(''));
-    dispatch(clearDataAuth(''));
-    setValue && setValue((prev) => ({ ...prev, password: '' }));
+    setOpenModal && setOpenModal(false);
   };
+
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {
       closeModal();
@@ -36,10 +31,11 @@ function ModalSuccess({ setOpen, text, setValue }) {
         <button onClick={closeModal} className={styles.close}>
           X
         </button>
-        <p>{text}</p>
+        <p>Авторизуйтесь</p>
+        <NavLink to={'/login'}>Log in</NavLink>
       </div>
     </div>
   );
 }
 
-export default ModalSuccess;
+export default ModalLogin;

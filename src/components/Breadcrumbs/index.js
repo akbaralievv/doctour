@@ -74,7 +74,7 @@ function Breadcrumbs({ specialty, nameDoctors, id, service }) {
       {nameDoctors && (
         <>
           <img src={arrow} alt="icon" />
-          <NavLink to={`/doctors/${data?.id}`}>
+          <NavLink to={`/doctors/${data.slug ?? ''}`}>
             <span>{nameDoctors}</span>
           </NavLink>
         </>

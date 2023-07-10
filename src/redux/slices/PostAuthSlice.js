@@ -10,23 +10,33 @@ export const postAuthSlice = createAsyncThunk('postAuthSlice', async function (v
     const response = await axios.post(URL, value);
     if (response.status === 200) {
       const data = await response.data;
-      return data;
-    } else {
-      throw Error(`error ${response.status}`);
+      localStorage.setItem('access_token', JSON.stringify(data.access));
+      localStorage.setItem('refresh_token', JSON.stringify(data.refresh));
+      return data.access;
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
-const initialState = { data: '', error: '', loading: false, access: '' };
+const initialState = {
+  data: '',
+  error: '',
+  loading: false,
+  access_token: !!localStorage.getItem('access_token'),
+};
 
 const authSlice = createSlice({
   name: 'authSlice',
   initialState,
   reducers: {
-    setAuth: (state, action) => {
-      state.access = action.payload;
+    clearDataAuth: (state, action) => {
+      state.data = action.payload;
+    },
+    removeAccessToken: (state, action) => {
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      state.access_token = !!localStorage.getItem('access_token');
     },
   },
   extraReducers: (builder) => {
@@ -34,19 +44,20 @@ const authSlice = createSlice({
       state.loading = false;
       state.error = '';
       state.data = action.payload;
+      state.access_token = !!localStorage.getItem('access_token');
     });
     builder.addCase(postAuthSlice.pending, (state, action) => {
       state.loading = true;
       state.error = '';
-      state.data = [];
+      state.data = '';
     });
     builder.addCase(postAuthSlice.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
-      state.data = [];
+      state.data = '';
     });
   },
 });
-export const { setAuth } = authSlice.actions;
+export const { clearDataAuth, removeAccessToken } = authSlice.actions;
 
 export default authSlice.reducer;

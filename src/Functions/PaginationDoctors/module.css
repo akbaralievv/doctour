@@ -1,28 +1,54 @@
-.pagination img {
-  user-select: none;
+img {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
 }
-.pagination .figures {
-  user-select: none;
+
+.figures {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 33px;
   height: 44px;
+  -webkit-transition: 190ms;
   transition: 190ms;
   color: #A5A5A5;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-right: 13px;
   font-size: 24px;
 }
-.pagination .active {
+.figures > a {
+  font-family: Open Sans;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  color: #023246;
+}
+.figures > .active {
+  color: #fff;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 4px;
   color: white;
   background: #1B6B93;
 }
-
-/*# sourceMappingURL=module.css.map */

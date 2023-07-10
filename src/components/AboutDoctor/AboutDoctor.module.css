@@ -3,7 +3,7 @@
   margin-top: 48px;
 }
 .aboutDoctor .container {
-  width: 1280px;
+  width: 1200px;
   margin: 0 auto;
 }
 .aboutDoctor .container .info {
@@ -21,19 +21,42 @@
 .aboutDoctor .container .info .infoImg {
   position: relative;
   margin-right: 27px;
-  z-index: -1;
 }
 .aboutDoctor .container .info .infoImg .imgOne {
   width: 357px;
   height: 357px;
   border-radius: 20px;
 }
-.aboutDoctor .container .info .infoImg .iconOne {
+.aboutDoctor .container .info .infoImg .heartWrapper {
+  background-color: #fff;
+  z-index: 2;
   position: absolute;
-  top: 8px;
-  right: 0;
-  bottom: 0;
-  left: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  top: 0;
+  left: 0;
+  margin: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.aboutDoctor .container .info .infoImg .heartWrapper .heart {
+  -webkit-transition: 300ms;
+  transition: 300ms;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  width: 32px;
+  height: 32px;
 }
 .aboutDoctor .container .info .infoInner {
   width: 637px;

@@ -13,11 +13,9 @@ export const getGlobalSearch = createAsyncThunk(
       if (response.status === 200) {
         const data = await response.data;
         return data.results;
-      } else {
-        throw Error(`error ${response.status}`);
       }
     } catch (err) {
-      return console.error(err.message);
+      throw err.response.status;
     }
   },
 );
@@ -44,7 +42,7 @@ const globalSearchSlice = createSlice({
       state.data = [];
     });
     builder.addCase(getGlobalSearch.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });

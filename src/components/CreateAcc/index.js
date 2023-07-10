@@ -8,11 +8,11 @@ import Phone from '../ui/inputs/Phone';
 import Password from '../ui/inputs/Password';
 import ConfirmPassword from '../ui/inputs/ConfirmPassword';
 import { useDispatch, useSelector } from 'react-redux';
-import { postCreateAccSlice } from '../../redux/slices/PostCreateAccSlice';
+import { postCreateAccSlice, clearData } from '../../redux/slices/PostCreateAccSlice';
 import ModalSuccess from '../ModalSuccess';
 
 function CreateAcc() {
-  const { data } = useSelector((state) => state.PostCreateAccSlice);
+  const { data, loading } = useSelector((state) => state.PostCreateAccSlice);
   const [value, setValue] = useState({
     phone_number: '',
     fullname: '',
@@ -32,6 +32,7 @@ function CreateAcc() {
       setOpenModal(true);
     }
   }, [data]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {

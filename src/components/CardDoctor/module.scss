@@ -6,7 +6,6 @@
   display: flex;
   font-size: 21px;
   width: 1200px;
-  height: 266px;
   border: #023246 solid 1px;
   border-radius: 16px;
   box-sizing: border-box;
@@ -32,41 +31,67 @@
   }
   .cardAvatar{
     box-sizing: border-box;
-    min-width: 266px;
-    height: 264px;
+    width: 266px;
+    // height: 266px;
     background: grey;
     border-radius: 16px;
-  }
-  a{
-    width: 100%;
   }
   .info{
     width: 100%;
     padding: 8px 8px 8px 0px;
     display: flex;
-    gap: 25px;
+    justify-content: space-between;
     p{
       font-size: 16px;
       color: #023246;
       font-weight: 500;
 
     }
-    h1{
+    h2{
       font-size: 24px;
       font-weight: 700;
+      font-family: "Open Sans",sans-serif
     }
 
       .left{
-
+        .description{
+          font-family: "Open Sans";
+          font-size: 16px;
+          font-weight: 400;
+          div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+          }
+          p{
+            max-width: 610px;
+            overflow-wrap: break-word;
+            margin: 0;
+            font-family: Open Sans;
+            font-size: 16px;
+            color: #023246;
+            font-weight: 400;
+          } 
+          a{
+            display: inline-block;
+            text-decoration: none;
+            color: #1B6B93;
+            font-family: Open Sans;
+            font-size: 16px;
+            font-weight: 400;
+            cursor: pointer
+          } 
+        }
+          
         .full-name{
           color: #023246;
-          height: 24px;
           margin-bottom: 20px;
 
         }
         .speciality{
           font-size: 20px;
           font-weight: 700;
+          font-family: "Open Sans", sans-serif;
           margin-bottom: 20px;
           color: #1B6B93;
         }
@@ -85,33 +110,28 @@
           justify-content: space-between;
           align-items: center;
           margin-bottom: 20px;
-          gap: 27px;
+          gap: 17px;
+          flex-wrap: wrap;
           p{
             display: flex;
             align-items: center;
-            img{
-              margin-right: 13px;
-            }
-
-          }
-          .instagram{
-            width: 24px;
+            gap: 8px;
           }
         }
       }
       .right{
-        position: relative;
         display: flex;
         flex-direction: column;
-        gap: 20.5px;
+        justify-content: space-between;
         align-items: center;
         .btn {
             background: #1B6B93;
             font-size: 16px;
             font-family: Open Sans;
             font-weight: 600;
+            height: 76px;
             width: 240px;
-            padding: 16px 7px;
+            padding: 0 7px;
             border-radius: 8px;
             color: #FFFFFF;
             text-decoration: none;
@@ -128,7 +148,7 @@
           flex-direction: column;
           justify-content: center;
           align-items: center;
-
+          gap: 10px;
           p{
             font-size: 16px;
             color: #023246;
@@ -140,7 +160,7 @@
           }
           .rate{
             font-size: 32px;
-            font-weight: bold;
+            font-weight: 700;
             color: #1B6B93;
           }
         }

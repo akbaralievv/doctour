@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import AboutDoctor from '../../components/AboutDoctor';
 import BtnForEnroll from '../../components/BtnForEnroll';
 import InfoAboutDoc from '../../components/InfoAboutDoc';
@@ -17,26 +18,32 @@ function ProfilePage() {
   const { data, loading, error } = useSelector((state) => state.GetProfileSlice);
   const dataComment = useSelector((state) => state.PostCommentSlice);
   const { nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
-  const { id } = useParams();
+  const { slug } = useParams();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getProfile(id));
+    dispatch(getProfile(slug));
+    window.scrollTo(0, 0);
   }, [dataComment.data]);
+
+  const profile = loading ? (
+    <Preloader />
+  ) : error ? (
+    <NotFound style={{ height: 'calc(100vh - 160px)' }} />
+  ) : (
+    <>
+      <AboutDoctor data={data} />
+      <BtnForEnroll data={data} />
+      <InfoAboutDoc data={data} />
+      <BtnForModal data={data} />
+    </>
+  );
 
   return (
     <div className={styles.container}>
       <Breadcrumbs specialty={nameSpecialty} nameDoctors={data.full_name} />
-      {loading ? (
-        <Preloader />
-      ) : data.length === 0 ? (
-        <NotFound style={{ height: 'calc(100vh - 160px)' }} />
-      ) : (
-        ((<AboutDoctor data={data} />),
-        (<BtnForEnroll data={data} />),
-        (<InfoAboutDoc data={data} />),
-        (<BtnForModal data={data} />))
-      )}
+      {profile}
     </div>
   );
 }

@@ -11,11 +11,9 @@ export const postCreateAccSlice = createAsyncThunk('postCreateAccSlice', async f
     if (response.status === 200) {
       const data = await response.data;
       return data.detail;
-    } else {
-      throw Error(`error ${response.status}`);
     }
   } catch (err) {
-    return console.error(err.message);
+    throw err.response.status;
   }
 });
 
@@ -24,6 +22,11 @@ const initialState = { data: '', error: '', loading: false };
 const createAccSlice = createSlice({
   name: 'createAccSlice',
   initialState,
+  reducers: {
+    clearDataCreateAcc: (state, action) => {
+      state.data = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postCreateAccSlice.fulfilled, (state, action) => {
       state.loading = false;
@@ -36,10 +39,12 @@ const createAccSlice = createSlice({
       state.data = '';
     });
     builder.addCase(postCreateAccSlice.rejected, (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.error = action.error.message;
       state.data = '';
     });
   },
 });
+
+export const { clearDataCreateAcc } = createAccSlice.actions;
 export default createAccSlice.reducer;
