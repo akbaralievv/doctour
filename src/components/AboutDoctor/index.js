@@ -21,7 +21,6 @@ function AboutDoctor({ data }) {
   const dispatch = useDispatch();
 
   const handleLike = () => {
-    console.log('1');
     localUpdate(!like);
     setLike(!like);
   };
@@ -108,7 +107,14 @@ function AboutDoctor({ data }) {
           </div>
           <div className={style.infoInner}>
             <h2>{data.full_name}</h2>
-            <h3>{data.specialties?.[0]?.name}</h3>
+            <h3>
+              {data.specialties?.map((spec, index) => (
+                <React.Fragment key={spec.slug}>
+                  {spec.name}
+                  {index !== data.specialties.length - 1 && ', '}
+                </React.Fragment>
+              ))}
+            </h3>
             <div className={style.icons}>
               <div className={style.iconInner}>
                 <img src={location} alt="" />
@@ -134,7 +140,7 @@ function AboutDoctor({ data }) {
           <div className={style.reviews}>
             <div className={style.stars}>
               {stars
-                .slice(0, 5)
+                ?.slice(0, 5)
                 .map((e, id) =>
                   e === 'point' ? <img src={star} key={id} /> : <img src={star0} key={id} />,
                 )}

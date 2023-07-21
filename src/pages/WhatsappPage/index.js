@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom';
 function WhatsAppPage() {
   const { nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
   const location = useLocation();
-  const doctor = location.state.split('/');
+  const doctor = location.state ? location.state.split('/') : [];
   const [value, setValue] = useState({
     doctor: doctor[1],
     fullname: '',
@@ -30,7 +30,9 @@ function WhatsAppPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (disabled) {
-      dispatch(postWhatsAppSlice(value));
+      // dispatch(postWhatsAppSlice(value));
+      const text = `ФИО: ${value.fullname}%0AДень рождения: ${value.birthday}%0AПол: ${value.gender}%0AТелефон: ${value.phone_number}%20`;
+      window.open(`https://api.whatsapp.com/send?phone=${996774434853}&text=${text}`, '_blank');
     }
   };
 

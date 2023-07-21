@@ -14,7 +14,7 @@ function ModalSuccess({ setOpen, text, setValue }) {
     setOpen(false);
     dispatch(clearDataCreateAcc(''));
     dispatch(clearDataAuth(''));
-    setValue && setValue((prev) => ({ ...prev, password: '' }));
+    setValue && setValue((prev) => ({ ...prev, password: '', phone_number: '' }));
   };
   const handleClickOutside = (event) => {
     if (modalRef.current && !modalRef.current.contains(event.target)) {

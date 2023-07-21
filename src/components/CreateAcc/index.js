@@ -10,8 +10,9 @@ import ConfirmPassword from '../ui/inputs/ConfirmPassword';
 import { useDispatch, useSelector } from 'react-redux';
 import { postCreateAccSlice, clearData } from '../../redux/slices/PostCreateAccSlice';
 import ModalSuccess from '../ModalSuccess';
+import PreloadBtn from '../PreloadBtn/PreloadBtn';
 
-function CreateAcc() {
+function CreateAcc({ setOpenModal }) {
   const { data, loading } = useSelector((state) => state.PostCreateAccSlice);
   const [value, setValue] = useState({
     phone_number: '',
@@ -21,17 +22,8 @@ function CreateAcc() {
     password: '',
   });
 
-  const [openModal, setOpenModal] = useState(false);
-
   const [confirmPassword, setConfirmPassword] = useState('');
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (data) {
-      document.body.style.overflow = 'hidden';
-      setOpenModal(true);
-    }
-  }, [data]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,6 +31,17 @@ function CreateAcc() {
       dispatch(postCreateAccSlice(value));
     }
   };
+
+  useEffect(() => {
+    if (data.includes('Пользователь с данным номером телефона существует!')) {
+      document.body.style.overflow = 'hidden';
+      setOpenModal((prev) => ({
+        ...prev,
+        isTrue: true,
+        text: data,
+      }));
+    }
+  }, [data]);
 
   const disabled =
     value.fullname &&
@@ -50,7 +53,6 @@ function CreateAcc() {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {openModal && <ModalSuccess setOpen={setOpenModal} text={data} />}
       <div>
         ФИО
         <FullName value={value.fullname} setValue={setValue} />
@@ -81,7 +83,7 @@ function CreateAcc() {
         />
       </div>
       <button type="submit" className={!disabled ? styles.disabled : ''}>
-        Создать аккаунт
+        {loading ? <PreloadBtn /> : 'Создать аккаунт'}
       </button>
     </form>
   );

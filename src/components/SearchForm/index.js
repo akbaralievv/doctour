@@ -64,6 +64,8 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(setSearch(inputValue));
+    dispatch(setIdSpecialty(''));
+    dispatch(setNameSpecialty(''));
     setGlobalValue && setGlobalValue('');
     handleNavigate();
   };
@@ -78,10 +80,14 @@ function SearchForm({ placeholder, setGlobalValue, globalValue, mainPage }) {
   const handleClickClinic = (e) => {
     dispatch(setSearch(e));
     navigate('/clinics');
+    dispatch(setIdSpecialty(''));
+    dispatch(setNameSpecialty(''));
   };
 
   const handleClickService = (e) => {
     navigate('/services');
+    dispatch(setIdSpecialty(''));
+    dispatch(setNameSpecialty(''));
   };
 
   const handleClickSpeciality = (name) => {

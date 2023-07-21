@@ -22,14 +22,14 @@ function TopDoctors() {
     dispatch(setSearch(''));
   };
   const texts = [
-    { id: 'c570329f-6ae0-4b5f-89f6-7a5db7a7d949', title: 'Терапевт', img: iconA },
-    { id: 'e53f5530-ae88-4fff-b86b-cbd00d0bf472', title: 'Кардиолог', img: iconG },
-    { id: 'aac54d55-c0cc-4669-b724-982bfec73f6e', title: 'Педиатр', img: iconH },
-    { id: '476f7d19-5670-4aec-8c4e-628ed8f12f96', title: 'Стоматолог', img: iconB },
-    { id: '34f62861-4f68-4888-baea-05c819828d18', title: 'Дерматолог', img: iconC },
-    { id: 'eeb04ca4-b912-4a09-8bac-c9738015cd4e', title: 'Офтальмолог', img: iconD },
-    { id: '05baf3e3-393d-44d3-b854-c01cfc42802a', title: 'Акушер', img: iconE },
-    { id: 'e6498e88-7e47-4898-b196-86ffe3d9a44d', title: 'Невролог', img: iconF },
+    { id: '4', title: 'Терапевт', img: iconA },
+    { id: '12', title: 'Кардиолог', img: iconG },
+    { id: '14', title: 'Педиатр', img: iconH },
+    { id: '3', title: 'Стоматолог', img: iconB },
+    { id: '25', title: 'Дерматолог', img: iconC },
+    { id: '26', title: 'Офтальмолог', img: iconD },
+    { id: '27', title: 'Акушер', img: iconE },
+    { id: '6', title: 'Невролог', img: iconF },
   ];
 
   return (

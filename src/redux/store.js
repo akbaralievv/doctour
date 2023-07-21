@@ -12,6 +12,14 @@ import GetProfileSlice from './slices/GetProfileSlice';
 import PostWhatsappSlice from './slices/PostWhatsappSlice';
 import GetGlobalSearch from './slices/GetGlobalSearch';
 import PostCommentSlice from './slices/PostCommentSlice';
+import PostConfirmSlice from './slices/PostConfirmSlice';
+import GetLogoutLSice from './slices/GetLogoutLSice';
+import PostResetPassword from './slices/PostResetPassword';
+import PostFavoritesSlice from './slices/PostFavoritesSlice';
+import GetFavoritesSlice from './slices/GetFavoritesSlice';
+import DeleteFavoritesSlice from './slices/DeleteFavoritesSlice';
+import PostNewPasswordSlice from './slices/PostNewPasswordSlice';
+import PostResetCodeSlice from './slices/PostResetCodeSlice';
 
 export const store = configureStore({
   reducer: {
@@ -28,5 +36,13 @@ export const store = configureStore({
     PostWhatsappSlice,
     GetGlobalSearch,
     PostCommentSlice,
+    PostConfirmSlice,
+    GetLogoutLSice,
+    PostResetPassword,
+    PostFavoritesSlice,
+    GetFavoritesSlice,
+    DeleteFavoritesSlice,
+    PostNewPasswordSlice,
+    PostResetCodeSlice,
   },
 });

@@ -1,26 +1,35 @@
 .wrapper
-    display: flex
-    gap: 16px
-    label
-        display: flex
-        gap: 12px
+    &>label
+        position: relative
         cursor: pointer
-        input
-            width: 24px
-            height: 24px
-            outline: none
-            border-radius: 50%
-            border: 2px solid #1B6B93
-            appearance: none
-            position: relative
+        &>input
             cursor: pointer
-            &:checked::before
-                content: ""
-                position: absolute
-                top: 50%
-                left: 50%
-                transform: translate(-50%, -50%)
-                width: 14px
-                height: 14px
-                background-color: #1B6B93
-                border-radius: 50%
+            &::placeholder
+                color: rgba(182, 182, 182, 1)
+        &>img
+            position: absolute
+            right: 16px
+            top: 6px
+        .down
+            transform: rotateX(180deg)
+        .open
+            border-radius: 8px 8px 0 0
+            border-bottom: none
+        &>.options
+            cursor: pointer
+            position: absolute
+            list-style: none
+            height: 102px
+            width: 100%
+            background-color: rgba(246, 246, 246, 1)
+            padding-bottom: 5px
+            border: 1px solid #B6B6B6
+            z-index: 1
+            display: flex
+            flex-direction: column
+            gap: 10px
+            li
+                padding-left: 24px
+                &:hover
+                    background-color: #1B6B93
+                    color: #fff

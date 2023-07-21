@@ -5,9 +5,9 @@ import { links } from './links';
 
 const URL = links.BASE_URL + 'doctors/';
 
-export const getProfile = createAsyncThunk('getProfile', async function (slug) {
+export const getProfile = createAsyncThunk('getProfile', async function (id) {
   try {
-    const response = await axios.get(`${URL}/${slug}`);
+    const response = await axios.get(`${URL}${id}`);
     if (response.status === 200) {
       const data = await response.data;
       return data;

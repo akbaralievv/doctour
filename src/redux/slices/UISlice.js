@@ -5,7 +5,7 @@ export const UISlice = createSlice({
   initialState: {
     popUp: false,
     cityModal: false,
-    city: '92b89611-4119-4936-8a60-61d25348ad26',
+    city: '1',
   },
   reducers: {
     closePopUp: (state, action) => {

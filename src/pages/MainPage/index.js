@@ -25,7 +25,7 @@ function MainPage() {
   if (loading) {
     return <Preloader />;
   } else if (error) {
-    return <NotFound />;
+    return <NotFound style={{ height: 'calc(100vh - 100px)' }} />;
   }
   return (
     <div>

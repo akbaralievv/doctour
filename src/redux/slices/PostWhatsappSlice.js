@@ -4,13 +4,13 @@ import axios from 'axios';
 import { links } from './links';
 
 const URL = links.BASE_URL + 'whatsapp-send/';
-const accessToken = localStorage.getItem('access_token') || '';
-const headers = { Authorization: `Bearer ${accessToken}` };
 
 export const postWhatsAppSlice = createAsyncThunk('postWhatsAppSlice', async function (value) {
   try {
-    const response = await axios.post(URL, value, headers);
-    if (response.status === 200) {
+    const response = await axios.post(URL, value);
+    const requestUrl = response.request.responseURL;
+    if (response.status === 302) {
+      console.log(requestUrl);
       const data = await response.data;
       return data.results;
     }

@@ -33,11 +33,11 @@ function ServicesPage() {
     <NotFound style={{ height: 'calc(100vh - 160px)' }} />
   ) : (
     data?.map((service) => (
-      <div key={service.id}>
+      <div key={service.slug}>
         <h2>{service.name}</h2>
         <ul>
           {service.subservice_service?.map((data) => (
-            <li key={data.id}>
+            <li key={data.slug}>
               <NavLink to={'/clinics'} onClick={() => handleClick(data.id, data.name)}>
                 {data.name}
               </NavLink>

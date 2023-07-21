@@ -25,36 +25,18 @@ function SelectCity() {
       <div className={styles.selector}>
         <div className={styles.selectTitle} onClick={cityHandle}>
           <img src={location} alt="icon" />
-          {city === '92b89611-4119-4936-8a60-61d25348ad26'
-            ? 'Бишкек'
-            : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
-            ? 'Ош'
-            : ''}
+          {city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}
         </div>
         <div className={cityModal ? styles.selectBox : styles.none}>
           <div className={styles.option}>
-            <input
-              onChange={changeLocation}
-              id={'1c'}
-              value={'92b89611-4119-4936-8a60-61d25348ad26'}
-              type={'checkbox'}
-            />
+            <input onChange={changeLocation} id={'1c'} value={'1'} type={'checkbox'} />
             <label htmlFor={'1c'}>
-              <p className={city === '92b89611-4119-4936-8a60-61d25348ad26' ? styles.select : ''}>
-                Бишкек
-              </p>
+              <p className={city === '1' ? styles.select : ''}>Бишкек</p>
             </label>
             <hr />
-            <input
-              onChange={changeLocation}
-              id={'2c'}
-              value={'ca346822-2a3d-466f-84e7-a9ada2626ab8'}
-              type={'checkbox'}
-            />
+            <input onChange={changeLocation} id={'2c'} value={'2'} type={'checkbox'} />
             <label htmlFor={'2c'}>
-              <p className={city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8' ? styles.select : ''}>
-                Ош
-              </p>
+              <p className={city === '2' ? styles.select : ''}>Ош</p>
             </label>
           </div>
         </div>

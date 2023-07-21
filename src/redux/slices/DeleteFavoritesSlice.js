@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
 import { createAuthorizedRequest } from '../../Functions/RefreshToken';
 
 import { links } from './links';
 
-const URL = links.COMMENT_URL;
+const URL = links.POST_FAVORITES;
 
-export const postComment = createAsyncThunk('postComment', async function (data) {
+export const deleteFavorites = createAsyncThunk('deleteFavorites', async function (data) {
   try {
     const config = {
-      method: 'POST',
-      url: URL,
-      data: data,
+      method: 'DELETE',
+      url: URL + data,
     };
     const response = await createAuthorizedRequest(config);
     if (response.status === 200) {
@@ -22,28 +23,27 @@ export const postComment = createAsyncThunk('postComment', async function (data)
   }
 });
 
-const initialState = { data: [], error: '', loading: false };
+const initialState = { data: '', error: '', loading: false };
 
-const postCommentSlice = createSlice({
-  name: 'postCommentSlice',
+const deleteFavoritesSlice = createSlice({
+  name: 'deleteFavoritesSlice',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(postComment.fulfilled, (state, action) => {
+    builder.addCase(deleteFavorites.fulfilled, (state, action) => {
       state.loading = false;
       state.error = '';
       state.data = action.payload;
     });
-    builder.addCase(postComment.pending, (state, action) => {
+    builder.addCase(deleteFavorites.pending, (state, action) => {
       state.loading = true;
       state.error = '';
-      state.data = [];
+      state.data = '';
     });
-    builder.addCase(postComment.rejected, (state, action) => {
+    builder.addCase(deleteFavorites.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
-      state.data = [];
+      state.data = '';
     });
   },
 });
-
-export default postCommentSlice.reducer;
+export default deleteFavoritesSlice.reducer;

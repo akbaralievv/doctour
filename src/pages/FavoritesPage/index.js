@@ -11,7 +11,6 @@ import NotFound from '../../components/NotFound';
 function FavoritesPage() {
   const [data, setData] = useState([]);
   const { state } = useSelector((state) => state.favoritesSlice);
-
   useEffect(() => {
     setData(
       JSON.parse(localStorage.getItem('favorites')) || {
@@ -22,21 +21,24 @@ function FavoritesPage() {
     window.scrollTo(0, 0);
   }, [state]);
 
-  const favorites =
-    data.doctors?.length === 0 && data.clinics?.length === 0 ? (
-      <NotFound style={{ height: 'calc(100vh - 300px)' }} />
-    ) : (
-      <div className={styles.favoriteCard}>
-        {data.doctors?.map((item) => (
-          <CardDoctor key={item.id} data={item} />
-        ))}
-        {data.clinics?.map((item) => (
-          <CardClinic key={item.id} data={item} />
-        ))}
-      </div>
-    );
+  const favorites = () => {
+    if (data.doctors?.length > 0 || data.clinics?.length > 0) {
+      return (
+        <div className={styles.favoriteCard}>
+          {data.doctors?.map((item) => (
+            <CardDoctor key={item.id} data={item} />
+          ))}
+          {data.clinics?.map((item) => (
+            <CardClinic key={item.id} data={item} />
+          ))}
+        </div>
+      );
+    }
+    return <NotFound style={{ height: 'calc(100vh - 300px)' }} />;
+  };
 
-  const count = data.doctors?.length + data.clinics?.length;
+  const count =
+    data.doctors?.length + data.clinics?.length ? data.doctors?.length + data.clinics?.length : 0;
 
   return (
     <div className={styles.wrapper}>
@@ -47,7 +49,7 @@ function FavoritesPage() {
             Избранные <img src={ellipse} alt="ellipse" />
             {count}
           </h1>
-          {favorites}
+          {favorites()}
         </div>
       </div>
     </div>

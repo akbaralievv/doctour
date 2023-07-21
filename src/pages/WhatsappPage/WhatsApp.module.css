@@ -63,7 +63,7 @@
   display: flex;
   gap: 20px;
 }
-.wrapper .container .inner form .inputs .gender input {
+.wrapper .container .inner form .inputs .gender > input {
   width: 24px;
 }
 .wrapper .container .inner form button {

@@ -8,11 +8,14 @@ import SelectCity from '../SelectCity';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 import { setIdService, setNameService } from '../../redux/slices/GetClinicSlice';
-import { removeAccessToken } from '../../redux/slices/PostAuthSlice';
+
 import { setSearch } from '../../redux/slices/GetGlobalSearch';
+import ModalLogout from '../ModalLogout/ModalLogout';
 
 function Header() {
   const { data, access_token } = useSelector((state) => state.PostAuthSlice);
+  const [openModal, setOpenModal] = useState(false);
+  const [login, setLogin] = useState(false);
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(setIdSpecialty(''));
@@ -22,12 +25,20 @@ function Header() {
     dispatch(setSearch(''));
   };
 
+  useEffect(() => {
+    if (data) {
+      setLogin(true);
+    }
+  }, [data]);
+
   const logOut = () => {
-    dispatch(removeAccessToken());
+    document.body.style.overflow = 'hidden';
+    setOpenModal(true);
   };
 
   return (
     <header className={styles.wrapper}>
+      {openModal && <ModalLogout setOpenModal={setOpenModal} setLogin={setLogin} />}
       <div className={styles.container}>
         <nav className={styles.inner}>
           <div className={styles.logo_nav}>
@@ -75,7 +86,7 @@ function Header() {
           <div className={styles.select_login}>
             <SelectCity />
             {access_token ? (
-              <NavLink to="/login" onClick={logOut}>
+              <NavLink onClick={logOut}>
                 <span>Выйти</span>
                 <img src={logoLogin} alt="icon" />
               </NavLink>

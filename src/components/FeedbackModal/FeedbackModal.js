@@ -14,7 +14,6 @@ function FeedbackModal() {
 
   const [rating, setRating] = useState(0);
   const [text, setText] = useState('');
-
   const handleNone = () => {
     document.body.style.cssText = ``;
     dispatch(handleFeedBack(false));
@@ -33,7 +32,6 @@ function FeedbackModal() {
           text: text,
           stars: rating,
           doctor: data.id,
-          user: 0,
         }),
       );
       handleNone();

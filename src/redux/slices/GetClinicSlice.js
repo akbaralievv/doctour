@@ -10,7 +10,9 @@ export const getClinic = createAsyncThunk(
   async function ({ city, searchValue, idService, currentPage }) {
     try {
       const response = await axios.get(
-        `${URL}?search=${searchValue}&city=${city}&subservice_clinic=${idService}&page=${currentPage}`,
+        `${URL}?search=${searchValue}&city=${city}&subservice_clinic=${idService}${
+          searchValue ? '' : `&page=${currentPage}`
+        }`,
       );
       if (response.status === 200) {
         const data = await response.data;

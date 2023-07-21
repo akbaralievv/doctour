@@ -19,7 +19,7 @@ function ClinicsPage() {
 
   const dispatch = useDispatch();
 
-  const howManyPages = Math.ceil(data?.count / 10);
+  const howManyPages = Math.ceil(data?.count / 7);
 
   useEffect(() => {
     dispatch(getClinic({ city, searchValue, idService, currentPage }));
@@ -28,12 +28,7 @@ function ClinicsPage() {
 
   const skeletons = [...new Array(7)].map((_, index) => <SkeletonCardClinic key={index} />);
 
-  const cityName =
-    city === '92b89611-4119-4936-8a60-61d25348ad26'
-      ? 'Бишкек'
-      : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
-      ? 'Ош'
-      : '';
+  const cityName = city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : '';
 
   const clinics = loading ? (
     skeletons

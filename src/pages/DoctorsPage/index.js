@@ -27,19 +27,14 @@ function DoctorsPage() {
     window.scrollTo(0, 0);
   }, [dispatch, city, idSpecialty, searchValue, currentPage]);
 
-  useEffect(() => {
-    setOpenModal(error);
-    document.body.style.overflow = error ? 'hidden' : '';
-  }, [data, loading, error]);
+  // useEffect(() => {
+  //   setOpenModal(error);
+  //   document.body.style.overflow = error ? 'hidden' : '';
+  // }, [data, loading, error]);
 
   const howManyPages = Math.ceil(data?.count / 10);
 
-  const cityName =
-    city === '92b89611-4119-4936-8a60-61d25348ad26'
-      ? 'Бишкек'
-      : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
-      ? 'Ош'
-      : '';
+  const cityName = city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : '';
 
   const skeletons = [...new Array(7)].map((_, index) => <SkeletonCardDoctor key={index} />);
 
@@ -53,7 +48,7 @@ function DoctorsPage() {
 
   return (
     <div className={'cont'}>
-      {openModal && <ModalLogin setOpenModal={setOpenModal} />}
+      {/* {openModal && <ModalLogin setOpenModal={setOpenModal} />} */}
       <div className="wrapper">
         <div className="crumbLinks">
           <Breadcrumbs specialty={nameSpecialty} />

@@ -45,37 +45,11 @@ function Birthday({ value, setValue }) {
   };
 
   const handleChange = (e) => {
-    const month =
-      e === 'Январь'
-        ? 1
-        : e === 'Февраль'
-        ? 2
-        : e === 'Март'
-        ? 3
-        : e === 'Апрель'
-        ? 4
-        : e === 'Май'
-        ? 5
-        : e === 'Июнь'
-        ? 6
-        : e === 'Июль'
-        ? 7
-        : e === 'Август'
-        ? 8
-        : e === 'Сентябрь'
-        ? 9
-        : e === 'Октябрь'
-        ? 10
-        : e === 'Ноябрь'
-        ? 11
-        : e === 'Декабрь'
-        ? 12
-        : '';
     setInputValue((prev) =>
       open.day
         ? { ...prev, day: e }
         : open.month
-        ? { ...prev, month: month }
+        ? { ...prev, month: e }
         : open.year
         ? { ...prev, year: e }
         : '',
@@ -107,7 +81,33 @@ function Birthday({ value, setValue }) {
     if (inputValue.day && inputValue.month && inputValue.year) {
       setValue((prev) => ({
         ...prev,
-        birthday: `${inputValue.year}-${inputValue.month}-${inputValue.day}`,
+        birthday: `${inputValue.year}-${
+          inputValue.month === 'Январь'
+            ? 1
+            : inputValue.month === 'Февраль'
+            ? 2
+            : inputValue.month === 'Март'
+            ? 3
+            : inputValue.month === 'Апрель'
+            ? 4
+            : inputValue.month === 'Май'
+            ? 5
+            : inputValue.month === 'Июнь'
+            ? 6
+            : inputValue.month === 'Июль'
+            ? 7
+            : inputValue.month === 'Август'
+            ? 8
+            : inputValue.month === 'Сентябрь'
+            ? 9
+            : inputValue.month === 'Октябрь'
+            ? 10
+            : inputValue.month === 'Ноябрь'
+            ? 11
+            : inputValue.month === 'Декабрь'
+            ? 12
+            : ''
+        }-${inputValue.day}`,
       }));
     }
   }, [inputValue.day, inputValue.month, inputValue.year]);

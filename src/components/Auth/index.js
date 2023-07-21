@@ -10,8 +10,9 @@ import ModalSuccess from '../ModalSuccess';
 import PreloadBtn from '../PreloadBtn/PreloadBtn';
 
 const Auth = ({ forgot }) => {
-  const { data, loading } = useSelector((state) => state.PostAuthSlice);
+  const { data, loading, error } = useSelector((state) => state.PostAuthSlice);
   const [openModal, setOpenModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
   const [value, setValue] = useState({
     phone_number: '',
     password: '',
@@ -23,8 +24,11 @@ const Auth = ({ forgot }) => {
     if (data) {
       document.body.style.overflow = 'hidden';
       setOpenModal(true);
+      setErrorMessage(false);
+    } else if (error) {
+      setErrorMessage(true);
     }
-  }, [data]);
+  }, [data, error]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +44,7 @@ const Auth = ({ forgot }) => {
       {openModal && (
         <ModalSuccess setOpen={setOpenModal} setValue={setValue} text="Вы успешно авторизовались" />
       )}
+      {errorMessage && <p style={{ color: 'red' }}>Некорректые данные</p>}
       <div>
         Логин
         <Phone value={value.phone} setValue={setValue} />

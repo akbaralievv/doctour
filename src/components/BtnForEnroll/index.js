@@ -39,9 +39,8 @@ function BtnForEnroll({ data }) {
             </div>
           </div>
           <NavLink
-            to={`/doctors/${data.slug}/whatsapp`}
-            state={data.full_name + '/' + data.id}
-            // state={data.full_name}
+            to={`/doctors/${data.id}/whatsapp`}
+            state={data.full_name + '/' + data.id + '/' + data.phone}
             className={style.btn}>
             Записаться через Whatsapp
           </NavLink>

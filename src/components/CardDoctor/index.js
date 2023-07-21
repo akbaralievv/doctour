@@ -132,13 +132,13 @@ function CardDoctor({ data }) {
         <img className={'cardAvatar'} src={data.photo} alt="doctor" />
         <div className="info">
           <div className="left">
-            <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.slug}`}>
+            <Link style={{ outline: 'none', textDecoration: 'none' }} to={`/doctors/${data.id}`}>
               <div className="full-name">
                 <h2>{data.full_name}</h2>
               </div>
               <div className="speciality">
                 {data.specialties.map((spec, index) => (
-                  <React.Fragment key={spec.id}>
+                  <React.Fragment key={spec.slug}>
                     {spec.name}
                     {index !== data.specialties.length - 1 && ', '}
                   </React.Fragment>
@@ -148,7 +148,9 @@ function CardDoctor({ data }) {
                 <div className="education">
                   <p>
                     <img src={location} alt="location" />
-                    {data.clinic.map((clinic) => `${clinic.address}, ${clinic.title}`)}
+                    {data.clinic?.map(
+                      (clinic) => `${clinic.address ? clinic.address + ', ' : ''}${clinic.title}`,
+                    )}
                   </p>
                 </div>
               )}

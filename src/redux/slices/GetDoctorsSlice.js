@@ -1,52 +1,19 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
 
+import axios from 'axios';
 import { links } from './links';
 
 const URL = links.BASE_URL + 'doctors/';
-const refresh_URL = 'https://bekbolsun.pythonanywhere.com/api/v1/users/login/token/refresh/';
-
-const refreshToken = async () => {
-  try {
-    const refresh_token = localStorage.getItem('refresh_token')?.replace(/"/g, '');
-    const response = await axios.post(refresh_URL, { refresh: refresh_token });
-    const { access } = response.data;
-    localStorage.setItem('access_token', access);
-    return access;
-  } catch (error) {
-    throw error;
-  }
-};
-
-const createAuthorizedRequest = async (config) => {
-  const access_token = localStorage.getItem('access_token')?.replace(/"/g, '');
-  if (config.headers) {
-    config.headers.Authorization = `Bearer ${access_token}`;
-  } else {
-    config.headers = { Authorization: `Bearer ${access_token}` };
-  }
-  try {
-    const response = await axios(config);
-    return response;
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      const new_access_token = await refreshToken();
-      config.headers.Authorization = `Bearer ${new_access_token}`;
-      return await axios(config);
-    }
-    throw error;
-  }
-};
 
 export const getDoctors = createAsyncThunk(
   'getDoctors',
   async function ({ city, value, idSpecialty, searchValue, currentPage }) {
     try {
-      const config = {
-        method: 'get',
-        url: `${URL}/?search=${searchValue}&city=${city}&specialties=${idSpecialty}&page=${currentPage}`,
-      };
-      const response = await createAuthorizedRequest(config);
+      const response = await axios.get(
+        `${URL}?search=${searchValue}&city=${city}&specialties=${idSpecialty}${
+          searchValue ? '' : `&page=${currentPage}`
+        }`,
+      );
       if (response.status === 200) {
         const data = await response.data;
         return data;

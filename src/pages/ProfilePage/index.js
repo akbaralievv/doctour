@@ -18,12 +18,12 @@ function ProfilePage() {
   const { data, loading, error } = useSelector((state) => state.GetProfileSlice);
   const dataComment = useSelector((state) => state.PostCommentSlice);
   const { nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
-  const { slug } = useParams();
+  const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getProfile(slug));
+    dispatch(getProfile(id));
     window.scrollTo(0, 0);
   }, [dataComment.data]);
 

@@ -43,13 +43,7 @@ function Breadcrumbs({ specialty, nameDoctors, id, service }) {
       : '';
   return (
     <div className={styles.wrapper}>
-      <NavLink to={'/'}>
-        {city === '92b89611-4119-4936-8a60-61d25348ad26'
-          ? 'Бишкек'
-          : city === 'ca346822-2a3d-466f-84e7-a9ada2626ab8'
-          ? 'Ош'
-          : ''}
-      </NavLink>
+      <NavLink to={'/'}>{city === '1' ? 'Бишкек' : city === '2' ? 'Ош' : ''}</NavLink>
       <img src={arrow} alt="icon" />
       <NavLink to={locationNav} onClick={handleClick}>
         {locationName}
@@ -74,7 +68,7 @@ function Breadcrumbs({ specialty, nameDoctors, id, service }) {
       {nameDoctors && (
         <>
           <img src={arrow} alt="icon" />
-          <NavLink to={`/doctors/${data.slug ?? ''}`}>
+          <NavLink to={`/doctors/${data.id ?? ''}`}>
             <span>{nameDoctors}</span>
           </NavLink>
         </>

@@ -18,10 +18,10 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/doctors" element={<DoctorsPage />} />
-          <Route path="/doctors/:slug" element={<ProfilePage />} />
+          <Route path="/doctors/:id" element={<ProfilePage />} />
           <Route path="/clinics" element={<ClinicsPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/doctors/:slug/whatsapp" element={<WhatsAppPage />} />
+          <Route path="/doctors/:id/whatsapp" element={<WhatsAppPage />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/favorites" element={<FavoritesPage />} />
         </Route>

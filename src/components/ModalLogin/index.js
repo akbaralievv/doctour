@@ -32,7 +32,9 @@ function ModalLogin({ setOpenModal }) {
           X
         </button>
         <p>Авторизуйтесь</p>
-        <NavLink to={'/login'}>Log in</NavLink>
+        <NavLink to={'/login'} onClick={closeModal}>
+          Перейти
+        </NavLink>
       </div>
     </div>
   );

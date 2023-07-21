@@ -1,21 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { createAuthorizedRequest } from '../../Functions/RefreshToken';
+import axios from 'axios';
 
 import { links } from './links';
 
-const URL = links.COMMENT_URL;
+const URL = links.POST_FAVORITES;
 
-export const postComment = createAsyncThunk('postComment', async function (data) {
+export const getFavorites = createAsyncThunk('getFavorites', async function () {
   try {
-    const config = {
-      method: 'POST',
-      url: URL,
-      data: data,
-    };
-    const response = await createAuthorizedRequest(config);
+    const response = await axios.get(URL);
     if (response.status === 200) {
       const data = await response.data;
-      return data;
+      return data.results;
     }
   } catch (err) {
     throw err.response.status;
@@ -24,26 +19,25 @@ export const postComment = createAsyncThunk('postComment', async function (data)
 
 const initialState = { data: [], error: '', loading: false };
 
-const postCommentSlice = createSlice({
-  name: 'postCommentSlice',
+const getFavoritesSlice = createSlice({
+  name: 'getFavoritesSlice',
   initialState,
   extraReducers: (builder) => {
-    builder.addCase(postComment.fulfilled, (state, action) => {
+    builder.addCase(getFavorites.fulfilled, (state, action) => {
       state.loading = false;
       state.error = '';
       state.data = action.payload;
     });
-    builder.addCase(postComment.pending, (state, action) => {
+    builder.addCase(getFavorites.pending, (state, action) => {
       state.loading = true;
       state.error = '';
       state.data = [];
     });
-    builder.addCase(postComment.rejected, (state, action) => {
+    builder.addCase(getFavorites.rejected, (state, action) => {
       state.loading = false;
       state.error = action.error.message;
       state.data = [];
     });
   },
 });
-
-export default postCommentSlice.reducer;
+export default getFavoritesSlice.reducer;
