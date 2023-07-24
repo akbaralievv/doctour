@@ -10,7 +10,7 @@ import iconD from '../../assets/icons/TopDoctors/Okulist.png';
 import iconE from '../../assets/icons/TopDoctors/Akusher.png';
 import iconF from '../../assets/icons/TopDoctors/Psyhology.png';
 import iconG from '../../assets/icons/TopDoctors/Cardiolog.png';
-import iconH from '../../assets/icons/TopDoctors/Pediatr.png';
+import iconH from '../../assets/icons/TopDoctors/pediatr.png';
 import { setIdSpecialty, setNameSpecialty } from '../../redux/slices/GetDoctorsSlice';
 import { setSearch } from '../../redux/slices/GetGlobalSearch';
 

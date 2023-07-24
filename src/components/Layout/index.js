@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Header from '../Header';
 import Footer from '../Footer';
 import { closePopUp } from '../../redux/slices/UISlice';
-import FeedBackModal from '../FeedBackModal/FeedbackModal';
+import FeedbackModal from '../FeedbackModal/FeedbackModal';
 import Preloader from '../Preloader';
 import ModalLogin from '../ModalLogin';
 
@@ -39,7 +39,7 @@ function Layout() {
       />
       {feedback === true ? (
         <div style={{ position: 'absolute', width: '100%', height: '100%' }}>
-          {<FeedBackModal />}
+          {<FeedbackModal />}
         </div>
       ) : openModal ? (
         <ModalLogin setOpenModal={setOpenModal} />
