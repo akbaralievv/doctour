@@ -74,6 +74,20 @@
   font-size: 16px;
   font-weight: 400;
 }
+.container .info .left .description .summary {
+  overflow-y: scroll;
+  max-height: 49px;
+}
+.container .info .left .description ::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+.container .info .left .description ::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+.container .info .left .description ::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
 .container .info .left .description div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -121,6 +135,11 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #023246;
 }
 .container .info .left .education p img {
   margin-right: 8px;
@@ -140,7 +159,13 @@
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
-.container .info .left .mini-info p {
+.container .info .left .mini-info p, .container .info .left .mini-info a {
+  text-decoration: none;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  color: #023246;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -33,6 +33,9 @@ const authSlice = createSlice({
     clearDataAuth: (state, action) => {
       state.data = action.payload;
     },
+    clearErrorAuth: (state, action) => {
+      state.error = action.payload;
+    },
     removeAccessToken: (state, action) => {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
@@ -58,6 +61,6 @@ const authSlice = createSlice({
     });
   },
 });
-export const { clearDataAuth, removeAccessToken } = authSlice.actions;
+export const { clearDataAuth, removeAccessToken, clearErrorAuth } = authSlice.actions;
 
 export default authSlice.reducer;

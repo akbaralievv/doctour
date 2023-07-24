@@ -1,5 +1,8 @@
 .btnForModal {
   font-family: "Open Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
   height: 120px;
   margin-top: 40px;
 }

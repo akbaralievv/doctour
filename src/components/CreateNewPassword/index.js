@@ -7,6 +7,8 @@ import PreloadBtn from '../PreloadBtn/PreloadBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import { postNewPassword } from '../../redux/slices/PostNewPasswordSlice';
 import ModalSuccess from '../ModalSuccess';
+import { clearData } from '../../redux/slices/PostNewPasswordSlice';
+import { clearDataReset } from '../../redux/slices/PostResetCodeSlice';
 
 function CreateNewPassword({ setNewPassword, code, openModal, setOpenModal }) {
   const { data, loading } = useSelector((state) => state.PostNewPasswordSlice);
@@ -32,6 +34,8 @@ function CreateNewPassword({ setNewPassword, code, openModal, setOpenModal }) {
         isTrue: true,
         text: 'Ваш пароль успешно изменен',
       }));
+      dispatch(clearData(''));
+      dispatch(clearDataReset(''));
       setNewPassword(false);
     }
   }, [data]);
@@ -51,7 +55,7 @@ function CreateNewPassword({ setNewPassword, code, openModal, setOpenModal }) {
             value={confirmPassword}
             setValue={setConfirmPassword}
             name="confirmPassword"
-            style={value.confirmPassword === value.password ? true : false}
+            style={confirmPassword === value.password ? true : false}
           />
         </div>
         <button type="submit" className={!disabled ? styles.disabled : ''} disabled={loading}>

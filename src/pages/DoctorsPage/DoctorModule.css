@@ -16,6 +16,7 @@
           justify-content: center;
   margin-top: 32px;
   margin-bottom: 40px;
+  min-height: calc(100vh - 280px);
 }
 .cont .wrapper {
   width: 1200px;

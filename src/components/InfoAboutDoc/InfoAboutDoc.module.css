@@ -1,66 +1,60 @@
 .infoAboutDoc {
-  margin-top: 40px;
+  margin: 40px 0;
 }
 .infoAboutDoc .container {
   margin: 0 auto;
   width: 1280px;
 }
 .infoAboutDoc .container .inner {
-  font-family: "Open Sans", sans-serif;
-  letter-spacing: 1px;
-  font-weight: 600;
+  font-family: Open Sans;
   font-size: 16px;
+  font-style: normal;
+  color: #023246;
+  font-weight: 400;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
 }
 .infoAboutDoc .container .inner .education {
-  min-height: 145px;
-  margin-right: 24px;
+  width: 600px;
 }
-.infoAboutDoc .container .inner .education h2 {
-  font-weight: 700;
+.infoAboutDoc .container .inner h2 {
+  font-family: Open Sans;
   font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
   color: #023246;
-  margin: 0;
+  margin-bottom: 25px;
 }
-.infoAboutDoc .container .inner .education .innerEdu {
+.infoAboutDoc .container .inner .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  gap: 11px;
 }
-.infoAboutDoc .container .inner .education .innerEdu ul {
-  font-weight: 400;
+.infoAboutDoc .container .inner .title .year {
+  font-family: Open Sans;
   font-size: 16px;
-  color: #023246;
+  font-style: normal;
+  font-weight: 600;
 }
-.infoAboutDoc .container .inner .education .innerEdu ul li {
-  margin-top: 8px;
-}
-.infoAboutDoc .container .inner .education .innerEdu ul li:nth-child(1) {
-  margin-top: 0;
-}
-.infoAboutDoc .container .inner .education .innerEdu .spans {
+.infoAboutDoc .container .inner .title .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  margin-top: 20px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 5px;
 }
-.infoAboutDoc .container .inner .education .innerEdu .firstSpan span {
-  display: block;
-  width: 124px;
-  height: 24px;
-  color: #023246;
-  margin-right: 11px;
-}
-.infoAboutDoc .container .inner .education .innerEdu .texts p {
-  width: 495px;
+.infoAboutDoc .container .inner .title .text > span {
+  font-family: Open Sans;
   font-size: 16px;
-  margin: 0;
-  font-weight: 500;
-  line-height: 21px;
-  letter-spacing: 0;
-  color: #023246;
-}
-.infoAboutDoc .container .inner .education .innerEdu .texts span {
+  font-style: normal;
+  font-weight: 600;
   color: #1B6B93;
 }
-
-/*# sourceMappingURL=InfoAboutDoc.module.css.map */

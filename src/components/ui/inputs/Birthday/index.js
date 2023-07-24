@@ -5,20 +5,7 @@ import styles from './InputBirthday.module.css';
 import down from '../../../../assets/icons/Down 2.svg';
 
 function Birthday({ value, setValue }) {
-  const [inputValue, setInputValue] = useState({
-    day: '',
-    month: '',
-    year: '',
-  });
-  const [open, setOpen] = useState({
-    day: false,
-    month: false,
-    year: false,
-  });
-  const optionsRef = useRef();
-
-  const birthday = ['day', 'month', 'year'];
-  const dayOptions = Array.from({ length: 31 }, (_, index) => String(index + 1));
+  const [year, month, day] = value.split('-').map(String);
   const monthOptions = [
     'Январь',
     'Февраль',
@@ -33,6 +20,22 @@ function Birthday({ value, setValue }) {
     'Ноябрь',
     'Декабрь',
   ];
+  const monthName = monthOptions[month - 1];
+  const [inputValue, setInputValue] = useState({
+    day: day ?? '',
+    month: monthName ?? '',
+    year: year ?? '',
+  });
+  const [open, setOpen] = useState({
+    day: false,
+    month: false,
+    year: false,
+  });
+  const optionsRef = useRef();
+  console.log(value);
+
+  const birthday = ['day', 'month', 'year'];
+  const dayOptions = Array.from({ length: 31 }, (_, index) => String(index + 1));
   const yearOptions = Array.from({ length: 124 }, (_, index) => String(2023 - index));
 
   const handleClick = (e) => {

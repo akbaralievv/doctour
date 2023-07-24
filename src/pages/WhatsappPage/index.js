@@ -12,14 +12,15 @@ import { useLocation } from 'react-router-dom';
 
 function WhatsAppPage() {
   const { nameSpecialty } = useSelector((state) => state.GetDoctorsSlice);
+  const { data: user } = useSelector((state) => state.GetUserProfileSlice);
   const location = useLocation();
   const doctor = location.state ? location.state.split('/') : [];
   const [value, setValue] = useState({
     doctor: doctor[1],
-    fullname: '',
-    birthday: '',
-    gender: '',
-    phone_number: '',
+    fullname: user[0]?.fullname ?? '',
+    birthday: user[0]?.birthday ?? '',
+    gender: user[0]?.gender ?? '',
+    phone_number: user[0]?.phone_number ?? '',
   });
 
   const disabled =

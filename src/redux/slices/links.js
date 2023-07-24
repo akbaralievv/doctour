@@ -10,4 +10,5 @@ export const links = {
   POST_FAVORITES: 'http://15.152.44.148/api/v1/src/favorites-doctors/',
   NEW_PASSWORD: 'http://15.152.44.148/api/v1/users/reset-new-password/',
   RESET_PHONE_CODE: 'http://15.152.44.148/api/v1/users/reset-password-code/',
+  USER_PROFILE: 'http://15.152.44.148/api/v1/users/profile/',
 };

@@ -22,6 +22,11 @@ const initialState = { data: '', error: '', loading: false };
 const postResetCodeSlice = createSlice({
   name: 'postResetPasswordSlice',
   initialState,
+  reducers: {
+    clearDataReset: (state, action) => {
+      state.data = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postResetCode.fulfilled, (state, action) => {
       state.loading = false;
@@ -40,4 +45,5 @@ const postResetCodeSlice = createSlice({
     });
   },
 });
+export const { clearDataReset } = postResetCodeSlice.actions;
 export default postResetCodeSlice.reducer;

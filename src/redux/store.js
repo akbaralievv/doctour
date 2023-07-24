@@ -20,6 +20,7 @@ import GetFavoritesSlice from './slices/GetFavoritesSlice';
 import DeleteFavoritesSlice from './slices/DeleteFavoritesSlice';
 import PostNewPasswordSlice from './slices/PostNewPasswordSlice';
 import PostResetCodeSlice from './slices/PostResetCodeSlice';
+import GetUserProfileSlice from './slices/GetUserProfileSlice';
 
 export const store = configureStore({
   reducer: {
@@ -44,5 +45,6 @@ export const store = configureStore({
     DeleteFavoritesSlice,
     PostNewPasswordSlice,
     PostResetCodeSlice,
+    GetUserProfileSlice,
   },
 });

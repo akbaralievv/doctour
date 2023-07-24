@@ -25,6 +25,11 @@ const initialState = { data: '', error: '', loading: false };
 const postNewPasswordSlice = createSlice({
   name: 'postNewPasswordSlice',
   initialState,
+  reducers: {
+    clearData: (state, action) => {
+      state.data = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(postNewPassword.fulfilled, (state, action) => {
       state.loading = false;
@@ -43,4 +48,5 @@ const postNewPasswordSlice = createSlice({
     });
   },
 });
+export const { clearData } = postNewPasswordSlice.actions;
 export default postNewPasswordSlice.reducer;

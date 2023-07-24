@@ -4,6 +4,7 @@
   background-size: cover;
   padding: 102px 0 102px 0;
   position: relative;
+  min-height: calc(100vh - 280px);
 }
 
 .container {

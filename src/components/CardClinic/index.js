@@ -70,7 +70,7 @@ function CardClinic({ data }) {
     if (expanded) {
       return (
         <div style={{ maxWidth: '100%', overflowWrap: 'break-word' }}>
-          <p>{data.descriptions}</p>
+          <p className={styles.summary}>{data.descriptions}</p>
           <a onClick={handleClick}>
             Поменьше <img src={arrowUp} alt="arrow-up icon" />
           </a>

@@ -28,7 +28,7 @@ function MainPage() {
     return <NotFound style={{ height: 'calc(100vh - 100px)' }} />;
   }
   return (
-    <div>
+    <div className={styles.wrapper}>
       <section className={styles.section}>
         <div className={styles.section_inner}>
           <SearchDoctors blockRef={blockRef} />

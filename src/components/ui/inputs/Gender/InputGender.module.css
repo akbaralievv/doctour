@@ -1,37 +1,60 @@
-.wrapper {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 16px;
-}
-.wrapper label {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  gap: 12px;
-  cursor: pointer;
-}
-.wrapper label input {
-  width: 24px;
-  height: 24px;
-  outline: none;
-  border-radius: 50%;
-  border: 2px solid #1B6B93;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
+.wrapper > label {
   position: relative;
   cursor: pointer;
 }
-.wrapper label input:checked::before {
-  content: "";
+.wrapper > label > input {
+  cursor: pointer;
+}
+.wrapper > label > input::-webkit-input-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper > label > input::-moz-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper > label > input:-ms-input-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper > label > input::-ms-input-placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper > label > input::placeholder {
+  color: rgb(182, 182, 182);
+}
+.wrapper > label > img {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  width: 14px;
-  height: 14px;
+  right: 16px;
+  top: 6px;
+}
+.wrapper > label .down {
+  -webkit-transform: rotateX(180deg);
+          transform: rotateX(180deg);
+}
+.wrapper > label .open {
+  border-radius: 8px 8px 0 0;
+  border-bottom: none;
+}
+.wrapper > label > .options {
+  cursor: pointer;
+  position: absolute;
+  list-style: none;
+  height: 70px;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+  padding-bottom: 5px;
+  border: 1px solid #B6B6B6;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+.wrapper > label > .options li {
+  padding-left: 24px;
+}
+.wrapper > label > .options li:hover {
   background-color: #1B6B93;
-  border-radius: 50%;
+  color: #fff;
 }

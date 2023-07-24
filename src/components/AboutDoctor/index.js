@@ -116,26 +116,36 @@ function AboutDoctor({ data }) {
               ))}
             </h3>
             <div className={style.icons}>
-              <div className={style.iconInner}>
-                <img src={location} alt="" />
-                <span>{data.clinic?.[0]?.address}</span>
-              </div>
-              <div className={style.iconInner}>
-                <img src={pulse} alt="" />
-                <span>Стаж от {data.experience} лет</span>
-              </div>
-              <div className={style.iconInner}>
-                <img src={wallet} alt="" />
-                <span>Прием от {data.price} сомов</span>
-              </div>
-              <div className={style.iconInner}>
-                <img src={inst} alt="" />
-                <div>
-                  <a href="">@akylbekova.a</a>
+              {data.clinic?.[0]?.address && (
+                <div className={style.iconInner}>
+                  <img src={location} alt="" />
+                  <span>{data.clinic?.[0]?.address}</span>
                 </div>
-              </div>
+              )}
+              {data.experience && (
+                <div className={style.iconInner}>
+                  <img src={pulse} alt="" />
+                  <span>Стаж от {data.experience} лет</span>
+                </div>
+              )}
+              {data.price && (
+                <div className={style.iconInner}>
+                  <img src={wallet} alt="" />
+                  <span>Прием от {data.price} сомов</span>
+                </div>
+              )}
+              {data.instagram && (
+                <div className={style.iconInner}>
+                  <img src={inst} alt="" />
+                  <div>
+                    <a href={data.instagram} target="_blanc">
+                      {data.instagram}
+                    </a>
+                  </div>
+                </div>
+              )}
             </div>
-            <p>{data.summary}</p>
+            <p className={style.summary}>{data.summary}</p>
           </div>
           <div className={style.reviews}>
             <div className={style.stars}>

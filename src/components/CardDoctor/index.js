@@ -18,6 +18,7 @@ import Card from '../../assets/images/img.png';
 import './module.css';
 import { setLikeSlice } from '../../redux/slices/favoritesSlice';
 import { selectDoctor, handleIds } from '../../redux/slices/DoctorsSlice';
+import styled from '@emotion/styled';
 
 function CardDoctor({ data }) {
   const [like, setLike] = useState(false);
@@ -98,7 +99,7 @@ function CardDoctor({ data }) {
     if (expanded) {
       return (
         <div>
-          <p>{data.summary}</p>
+          <p className={'summary'}>{data.summary}</p>
           <a onClick={handleClick}>
             Поменьше <img src={arrowUp} alt="arrow-up icon" />
           </a>
@@ -154,33 +155,33 @@ function CardDoctor({ data }) {
                   </p>
                 </div>
               )}
-              <div className="mini-info">
-                {data.experience && (
-                  <div className="stage">
-                    <p>
-                      <img src={pulse} alt="experience" />
-                      Стаж от {data.experience} лет
-                    </p>
-                  </div>
-                )}
-                {data.price && (
-                  <div className="price">
-                    <p>
-                      <img src={wallet} alt="wallet" />
-                      Прием от {data.price} сомов
-                    </p>
-                  </div>
-                )}
-                {data.instagram && (
-                  <div className="instagram">
-                    <p>
-                      <img src={inst} alt="inst" />
-                      {data.instagram}
-                    </p>
-                  </div>
-                )}
-              </div>
             </Link>
+            <div className="mini-info">
+              {data.experience && (
+                <div className="stage">
+                  <p>
+                    <img src={pulse} alt="experience" />
+                    Стаж от {data.experience} лет
+                  </p>
+                </div>
+              )}
+              {data.price && (
+                <div className="price">
+                  <p>
+                    <img src={wallet} alt="wallet" />
+                    Прием от {data.price} сомов
+                  </p>
+                </div>
+              )}
+              {data.instagram && (
+                <div className="instagram">
+                  <a href={data.instagram} target="_blanc">
+                    <img src={inst} alt="inst" />
+                    {data.instagram}
+                  </a>
+                </div>
+              )}
+            </div>
             {data.summary && (
               <div className="description">
                 {data.summary?.length > 100 ? <CardClinicSubtitle /> : data.summary}

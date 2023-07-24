@@ -36,7 +36,6 @@ const Auth = ({ forgot }) => {
       dispatch(postAuthSlice(value));
     }
   };
-
   const disabled = value.phone_number.length >= 12 && value.password.length >= 4;
 
   return (

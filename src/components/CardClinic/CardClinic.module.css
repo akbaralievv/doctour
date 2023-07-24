@@ -95,13 +95,27 @@
   letter-spacing: 1px;
   color: #023246;
 }
-.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > p {
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle .summary {
+  overflow-y: scroll;
+  max-height: 49px;
+}
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle .summary::-webkit-scrollbar {
+  width: 0.5em;
+  height: 0.5em;
+}
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle .summary::-webkit-scrollbar-thumb {
+  background-color: #888;
+}
+.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle .summary::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+.container .CardClinic_inner .CardClinic_title > p {
   font-family: Open Sans;
   font-size: 16px;
   color: #023246;
   font-weight: 400;
 }
-.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > div {
+.container .CardClinic_inner .CardClinic_title > p > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -109,7 +123,7 @@
       flex-wrap: wrap;
   gap: 5px;
 }
-.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > div > p {
+.container .CardClinic_inner .CardClinic_title > p > div > p {
   max-width: 100%;
   overflow-wrap: break-word;
   margin: 0;
@@ -118,7 +132,7 @@
   color: #023246;
   font-weight: 400;
 }
-.container .CardClinic_inner .CardClinic_title .CardClinic_subtitle > div > a {
+.container .CardClinic_inner .CardClinic_title > p > div > a {
   display: inline-block;
   text-decoration: none;
   color: #1B6B93;

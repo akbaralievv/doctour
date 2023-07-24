@@ -34,7 +34,7 @@ function FavoritesPage() {
         </div>
       );
     }
-    return <NotFound style={{ height: 'calc(100vh - 300px)' }} />;
+    return <NotFound />;
   };
 
   const count =

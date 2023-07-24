@@ -2,15 +2,18 @@ import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 
 import styles from './InputPhone.module.css';
+import { clearErrorAuth } from '../../../../redux/slices/PostAuthSlice';
+import { useDispatch } from 'react-redux';
 
 function Phone({ value, setValue }) {
   const [valid, setValid] = useState(false);
-
   const handleBlur = () => {
     setValid(false);
   };
+  const dispatch = useDispatch();
 
   const handleChange = (event) => {
+    // dispatch(clearErrorAuth(''));
     const phoneValue = event.target.value.split(' ').join('').replace(/\D/g, '');
     const phoneRegExp = /^\d{9}$/;
     if (phoneRegExp.test(phoneValue)) {
@@ -21,7 +24,7 @@ function Phone({ value, setValue }) {
       setValid(false);
     }
   };
-
+  const defaultValue = value && typeof value === 'string' ? value.substring(3) : '';
   return (
     <>
       <div style={{ position: 'relative' }}>
@@ -31,6 +34,7 @@ function Phone({ value, setValue }) {
           mask="(999) 99 - 99 - 99"
           maskChar="_"
           placeholder="Номер телефона"
+          defaultValue={defaultValue}
           autoComplete="phone_number"
           onChange={handleChange}
           onBlur={handleBlur}
