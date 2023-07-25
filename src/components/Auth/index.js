@@ -25,8 +25,11 @@ const Auth = ({ forgot }) => {
       document.body.style.overflow = 'hidden';
       setOpenModal(true);
       setErrorMessage(false);
-    } else if (error) {
+    }
+    if (error) {
       setErrorMessage(true);
+    } else {
+      setErrorMessage(false);
     }
   }, [data, error]);
 
@@ -36,6 +39,11 @@ const Auth = ({ forgot }) => {
       dispatch(postAuthSlice(value));
     }
   };
+
+  useEffect(() => {
+    setErrorMessage(false);
+  }, [value]);
+
   const disabled = value.phone_number.length >= 12 && value.password.length >= 4;
 
   return (

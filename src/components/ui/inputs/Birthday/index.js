@@ -32,7 +32,6 @@ function Birthday({ value, setValue }) {
     year: false,
   });
   const optionsRef = useRef();
-  console.log(value);
 
   const birthday = ['day', 'month', 'year'];
   const dayOptions = Array.from({ length: 31 }, (_, index) => String(index + 1));

@@ -67,8 +67,6 @@ function LoginPage() {
     window.scrollTo(0, 0);
   }, []);
 
-  console.log(codeData);
-
   const isForgot = forgot ? (
     <ForgotPassword openModal={openModal} setOpenModal={setOpenModal} />
   ) : pinCode.isTrue ? (

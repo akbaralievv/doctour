@@ -23,8 +23,13 @@ function Gender({ value, setValue }) {
       document.removeEventListener('click', handleClickOutside);
     };
   }, []);
+  const handleInputClick = (e) => {
+    e.stopPropagation(); // Предотвращаем всплытие события на внешние элементы
+    setOpen(!open);
+  };
 
   const gender = ['Мужчина', 'Женщина', 'Другое'];
+
   return (
     <div className={styles.wrapper}>
       <label>
@@ -36,7 +41,7 @@ function Gender({ value, setValue }) {
           value={value}
           placeholder="Другое"
           className={open ? styles.open : ''}
-          onClick={() => setOpen(!open)}
+          onClick={handleInputClick}
         />
         <img src={down} alt="arrow" className={open ? styles.down : ''} />
         {open && (
