@@ -30,7 +30,7 @@ function ServicesPage() {
   const services = loading ? (
     <Preloader />
   ) : error ? (
-    <NotFound style={{ height: 'calc(100vh - 160px)' }} />
+    <NotFound style={{ height: 'calc(100vh - 220px)' }} />
   ) : (
     data?.map((service) => (
       <div key={service.slug}>
